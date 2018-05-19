@@ -18,6 +18,7 @@
 #include <string.h>
 #include <limits.h>
 #include <assert.h>
+#include <atlstr.h>
 #include "conman.h"
 
 	#define ODMA_KEY	"ODMA32"
@@ -105,24 +106,20 @@ int ODMRegistry::GetAppDefaultDmsId( LPCSTR lpszAppId, LPSTR lpszDmsId )
 		return 0;
 
 
-	auto * DMSKey = new char[ODM_APPID_MAX + 1 + sizeof(ODMA_KEY)];
-	strncpy(DMSKey, lpszAppId, ODM_APPID_MAX);
-	DMSKey[ODM_APPID_MAX - 1 ] = '\0';     // ensure NULL termination
-	strcat(DMSKey, "\\" );
-	strcat(DMSKey, ODMA_KEY);
+	CString dmsKey{ lpszAppId };
+	dmsKey += "\\";
+	dmsKey += ODMA_KEY;
 	
 	LONG nLen = ODM_DMSID_MAX;
 	char *DMSName = new char[nLen];
 
-	if (RegQueryValue(HKEY_CLASSES_ROOT, DMSKey, DMSName, &nLen) != ERROR_SUCCESS )
+	if (RegQueryValue(HKEY_CLASSES_ROOT, dmsKey, DMSName, &nLen) != ERROR_SUCCESS )
 	{
-		delete[] DMSKey;
 		delete[] DMSName;
 		return -1;
 	}
 
 	strcpy(lpszDmsId, DMSName);
-	delete[] DMSKey;
 	delete[] DMSName;
 	
 	return 0;
