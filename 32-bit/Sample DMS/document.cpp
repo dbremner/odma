@@ -9,6 +9,7 @@
 #include <dos.h>
 #include "odmasamp.h"
 #include <stdlib.h>
+#include <assert.h>
 
 Document::Document()
 {
@@ -200,7 +201,10 @@ char buff[165];
 				strcat_s(szFormatNames, ",");
 				if(strlen(szFormatNames) > dataLen) return ODM_E_TRUNCATED;
 			}
-			strcpy(szFormatNames+strlen(szFormatNames)-1, "");
+			const size_t len = strlen(szFormatNames);
+			assert(len > 0);
+			const size_t last_comma = len - 1;
+			szFormatNames[last_comma] = '\0';
 			dataSource = szFormatNames; 
 		}
 		break;
