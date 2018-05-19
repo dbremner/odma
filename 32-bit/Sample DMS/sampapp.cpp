@@ -113,13 +113,11 @@ STDMETHODIMP_(ULONG) Application::CODMDocMan::Release(VOID)
 STDMETHODIMP_(ODMSTATUS) Application::CODMDocMan::SelectDoc(LPSTR lpszDocId,
 LPDWORD pdwFlags)
 {
-ODMSTATUS err;
-
 	if(*pdwFlags & ODM_SILENT)
 		return ODM_E_USERINT;   // This DMS can't make a selection without user input.
 
-	err = DialogBoxParam(hInst, MAKEINTRESOURCE(SELECT_DIALOG),
-				m_pObject->m_clientWind, (DLGPROC)SelectDocProc, (LPARAM)lpszDocId);
+	ODMSTATUS err = DialogBoxParam(hInst, MAKEINTRESOURCE(SELECT_DIALOG),
+	                               m_pObject->m_clientWind, (DLGPROC)SelectDocProc, (LPARAM)lpszDocId);
 
 	if(err == IDOK) 
 	{
@@ -137,9 +135,7 @@ ODMSTATUS err;
 STDMETHODIMP_(ODMSTATUS) Application::CODMDocMan::OpenDoc(DWORD flags,
 LPSTR lpszDocId, LPSTR lpszDocLocation)
 {
-Document *pDoc;
-
-	pDoc = DocList.GetDocumentById(lpszDocId);
+	Document *pDoc = DocList.GetDocumentById(lpszDocId);
 
 	if(pDoc == nullptr)
 		return ODM_E_DOCID;
@@ -410,8 +406,7 @@ ODMSTATUS odmstatus;
 										lpszFormat, pcbCallBack, pInstanceData);
 	else
 	{
-		LPSTR lpszTempDocId;
-		lpszTempDocId=new char[ODM_DOCID_MAX];
+		LPSTR lpszTempDocId = new char[ODM_DOCID_MAX];
 
 		odmstatus=m_pObject->m_ODMDocMan.NewDoc(lpszTempDocId, 
 										ODM_SILENT, lpszFormat, nullptr);
@@ -437,9 +432,7 @@ return odmstatus;
 STDMETHODIMP_(ODMSTATUS) Application::CODMDocMan2::SaveDocEx(LPSTR lpszDocId, 
 										LPSTR lpszNewDocId, LPDWORD pdwFlags)
 {
-ODMSTATUS odmstatus;
-
-	odmstatus=m_pObject->m_ODMDocMan.SaveDoc(lpszDocId, lpszNewDocId);
+	ODMSTATUS odmstatus = m_pObject->m_ODMDocMan.SaveDoc(lpszDocId, lpszNewDocId);
 	if(odmstatus==ODM_SUCCESS)
 		*pdwFlags=(*pdwFlags)|ODM_VERSION_SAME; 
 
@@ -449,13 +442,11 @@ return ODM_E_NOSUPPORT;
 STDMETHODIMP_(ODMSTATUS) Application::CODMDocMan2::SelectDocEx(LPSTR lpszDocIds, LPWORD pwDocIdsLen,
 		LPWORD pwDocCount, LPDWORD pdwFlags, LPSTR lpszFormatFilter)
 {
-ODMSTATUS odmstatus;
-
 	if(*pdwFlags & ODM_SILENT)
 		return ODM_E_USERINT;   // This DMS can't make a selection without user input.
 
-	odmstatus = DialogBoxParam(hInst, MAKEINTRESOURCE(SELECT_DIALOG_EX),
-				m_pObject->m_clientWind, (DLGPROC)SelectDocProcEx, (LPARAM)lpszDocIds);
+	ODMSTATUS odmstatus = DialogBoxParam(hInst, MAKEINTRESOURCE(SELECT_DIALOG_EX),
+	                                     m_pObject->m_clientWind, (DLGPROC)SelectDocProcEx, (LPARAM)lpszDocIds);
 
 	if(odmstatus == IDOK) 
 	{
@@ -484,9 +475,7 @@ STDMETHODIMP_(ODMSTATUS) Application::CODMDocMan2::SetDocEvent(LPSTR lpszDocId, 
 STDMETHODIMP_(ODMSTATUS) Application::CODMDocMan2::GetAlternateContent(LPSTR lpszDocId, LPDWORD pdwFlags,
 		LPSTR lpszFormat, LPSTR lpszDocLocation)
 {
-Document *pDoc;
-
-	pDoc = DocList.GetDocumentById(lpszDocId);
+	Document *pDoc = DocList.GetDocumentById(lpszDocId);
 
 	if(pDoc == nullptr)
 		return ODM_E_DOCID;
@@ -498,9 +487,7 @@ Document *pDoc;
 STDMETHODIMP_(ODMSTATUS) Application::CODMDocMan2::SetAlternateContent(LPSTR lpszDocId, LPDWORD pdwFlags,
 		LPSTR lpszFormat, LPSTR lpszDocLocation)
 {
-Document *pDoc;
-
-	pDoc = DocList.GetDocumentById(lpszDocId);
+	Document *pDoc = DocList.GetDocumentById(lpszDocId);
 
 	if(pDoc == nullptr)
 		return ODM_E_DOCID;
@@ -565,14 +552,13 @@ QueryGetResults( LPCSTR lpszQuery, LPSTR lpszDocId, LPSTR lpszDocName, WORD docN
 {
 	WORD& rnIndex = m_pObject->m_nQueryDocListIndex;
 	WORD nCount;
-	Document *pDoc;
-	
+
 	if ( strcmp( m_pObject->m_szQueryId, lpszQuery ) != 0 )
 		return ODM_E_FAIL;
 
 	for ( nCount = 0; rnIndex < MAXDOCS && nCount < *docCount; rnIndex++ )
 	{
-		pDoc = DocList.GetDocumentByIndex( rnIndex );
+		Document *pDoc = DocList.GetDocumentByIndex( rnIndex );
 		if ( pDoc == nullptr )
 			continue;
 		

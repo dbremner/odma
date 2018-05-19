@@ -38,13 +38,10 @@ LPUNKNOWN pUnkOuter, LPVOID pReserved, LPSTR lpszAppId, DWORD dwEnvData)
 		return (HRESULT) E_FAIL;
 #endif
 
-	Application *pApp;
-	HRESULT hRes;
-
 	*ppvObj = nullptr;        // Ensure NULL stored here in case of error return.
 
 	// Create a new Application object.
-	pApp = new Application(pUnkOuter, dwEnvData);
+	Application *pApp = new Application(pUnkOuter, dwEnvData);
 
 	if(pApp == nullptr) {
 		MessageBox((HWND)dwEnvData, "Memory allocation failure", DMSNAME, MB_OK );
@@ -52,7 +49,7 @@ LPUNKNOWN pUnkOuter, LPVOID pReserved, LPSTR lpszAppId, DWORD dwEnvData)
 	}
 
 	// Get the requested interface on the application object.
-	hRes = pApp->GetInterface(riid, ppvObj);
+	HRESULT hRes = pApp->GetInterface(riid, ppvObj);
 
 	if(*ppvObj)
 		((LPUNKNOWN)(*ppvObj))->Release();  // Balances the ref. count from 'new'.

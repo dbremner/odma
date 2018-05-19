@@ -9,12 +9,12 @@
 DocumentList::DocumentList(void)
 {
 int i;
-char *buff, *entry;
+	char *entry;
 
 	for(i=0; i<MAXDOCS; i++)
 		List[i] = nullptr;
 
-	buff = new char[2048];
+	char *buff = new char[2048];
 
 	if(buff) {
 		// Read in documents from previous session if any.
@@ -30,10 +30,8 @@ char *buff, *entry;
 
 DocumentList::~DocumentList(void)
 {
-int i;
-
 	// Delete all the document objects in the list.
-	for(i=0; i<MAXDOCS; i++) {
+	for(int i = 0; i<MAXDOCS; i++) {
 		if(List[i])
 			delete List[i];
 	}
@@ -51,17 +49,14 @@ Document* DocumentList::GetDocumentByIndex(int n)
 
 int DocumentList::GetDocumentIndexById(LPSTR lpszDocId)
 {
-char *lp;
-int i, offset;
-
 	// ::ODMA\<DmsId>\<doc-specific>
-	offset = 7+strlen(DMSID)+1;
+	int offset = 7+strlen(DMSID)+1;
 
-	for(i=0; i<MAXDOCS; i++) {
+	for(int i = 0; i<MAXDOCS; i++) {
 		if(List[i] == nullptr)
 			continue;
 
-		lp = List[i]->GetId();
+		char *lp = List[i]->GetId();
 
 		if(!strcmp(lp, lpszDocId+offset)) {
 			return i;
@@ -74,9 +69,7 @@ int i, offset;
 
 Document* DocumentList::GetDocumentById(LPSTR lpszDocId)
 {
-int n;
-
-	n = GetDocumentIndexById(lpszDocId);
+	int n = GetDocumentIndexById(lpszDocId);
 
 	if(n == -1)
 		return nullptr;
@@ -141,9 +134,8 @@ HWND hParent )
 {
 int i;
 ODMSTATUS err;
-Document *pOldDoc;
 
-	pOldDoc = GetDocumentById(lpszDocId);
+	Document *pOldDoc = GetDocumentById(lpszDocId);
 
 	if(!pOldDoc)
 		return ODM_E_DOCID;
@@ -181,9 +173,7 @@ Document *pOldDoc;
 
 ODMSTATUS DocumentList::DeleteDocument( LPSTR lpszDocId )
 {
-int n;
-
-	n = GetDocumentIndexById(lpszDocId);
+	int n = GetDocumentIndexById(lpszDocId);
 
 	if(n == -1)
 		return ODM_E_DOCID;
@@ -196,13 +186,11 @@ int n;
 
 void DocumentList::SaveList(void)
 {
-int i;
-
 	// First wipe out the previous list
 	WritePrivateProfileString("DocList", nullptr, nullptr, "ODMASAMP.INI");
 
 	// Now save each document's info. to the file.
-	for(i=0; i<MAXDOCS; i++) {
+	for(int i = 0; i<MAXDOCS; i++) {
 		if(List[i])
 			List[i]->SaveInfo();
 	}

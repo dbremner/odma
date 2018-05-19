@@ -138,13 +138,12 @@ LPVOID sessionData, WORD dataLen)
 ODMSTATUS Document::EditAttributes(HWND hParent)
 {
 ProDlgData pdData;
-int err;
 
 	pdData.pDocument = this;
 	pdData.Mode = PROFILE_EDIT;
 
-	err = DialogBoxParam(hInst, MAKEINTRESOURCE(PROFILE_DIALOG), hParent,
-				(DLGPROC)ProfileProc, (LPARAM)&pdData);
+	int err = DialogBoxParam(hInst, MAKEINTRESOURCE(PROFILE_DIALOG), hParent,
+	                         (DLGPROC)ProfileProc, (LPARAM)&pdData);
 
 	if(err == IDOK)
 	{

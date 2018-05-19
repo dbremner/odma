@@ -14,8 +14,7 @@ LPARAM lParam)
 {
 static char *DocId;
 int ii, index, count;
-Document *pDoc;
-LPSTR lpNowDocId;
+	LPSTR lpNowDocId;
 
 	switch(message) {
 		case WM_INITDIALOG:
@@ -23,7 +22,7 @@ LPSTR lpNowDocId;
 
 			for(ii=0, count=0; ii<MAXDOCS; ii++) 
 			{
-				pDoc = DocList.GetDocumentByIndex(ii);
+				Document *pDoc = DocList.GetDocumentByIndex(ii);
 
 				if(pDoc == nullptr)
 					continue;
@@ -92,9 +91,10 @@ BOOL CALLBACK _export SelectDocProcEx(HWND hwndDlg, UINT message, WPARAM wParam,
 LPARAM lParam)
 {
 static char *lpDocList;
-int ii, index, count = 0, end;
-Document *pDoc;
-LPSTR lpNowDocId;
+	int ii;
+	int count = 0;
+	int end;
+	LPSTR lpNowDocId;
 
 	switch(message) {
 		case WM_INITDIALOG:
@@ -107,7 +107,7 @@ LPSTR lpNowDocId;
 
 			for(ii=0; ii<MAXDOCS; ii++) 
 			{
-				pDoc = DocList.GetDocumentByIndex(ii);
+				Document *pDoc = DocList.GetDocumentByIndex(ii);
 
 				if(pDoc == nullptr)
 					continue;
@@ -115,7 +115,7 @@ LPSTR lpNowDocId;
 				//BVG: Set Doc Name into List Box 
 				LPSTR lpNowDocName=new char[DOC_NAME_MAX];
 				pDoc->GetInfo(ODM_NAME, lpNowDocName, DOC_NAME_MAX);
-				index=(int)SendDlgItemMessage(hwndDlg, IDC_SELECT, LB_ADDSTRING, 0, (LPARAM)lpNowDocName);
+				int index = (int)SendDlgItemMessage(hwndDlg, IDC_SELECT, LB_ADDSTRING, 0, (LPARAM)lpNowDocName);
 				delete lpNowDocName;
 
 				//BVG: Save DocId as ItemData
