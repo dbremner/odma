@@ -116,12 +116,14 @@ int ODMRegistry::GetAppDefaultDmsId( LPCSTR lpszAppId, LPSTR lpszDmsId )
 
 	if (RegQueryValue(HKEY_CLASSES_ROOT, DMSKey, DMSName, &nLen) != ERROR_SUCCESS )
 	{
-		delete DMSKey, DMSName;
+		delete[] DMSKey;
+		delete[] DMSName;
 		return -1;
 	}
 
 	strcpy(lpszDmsId, DMSName);
-	delete DMSKey, DMSName;
+	delete[] DMSKey;
+	delete[] DMSName;
 	
 	return 0;
 }
