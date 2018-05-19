@@ -55,18 +55,18 @@ class ODMDmsList
 	}
 
 public:
-	ODMDmsList(){ m_pListHead = NULL; }
+	ODMDmsList(){ m_pListHead = nullptr; }
 	
 	~ODMDmsList(){ ClearList(); }
 	
-	BOOL IsEmpty(){ return m_pListHead == NULL; }
+	BOOL IsEmpty(){ return m_pListHead == nullptr; }
 
 	BOOL Add( const ODMDms*& rItem )
 	{
 		if ( UpdateList( rItem ) )
 			return TRUE;
 
-		return NULL != new ListNode( rItem, m_pListHead );
+		return nullptr != new ListNode( rItem, m_pListHead );
 	}
 
 	ODMDms** Find( const ODMDms*& rItem )
@@ -84,7 +84,7 @@ public:
 
 	void Remove( const ODMDms*& rItem )
 	{
-		ListNode* pPreviousNode = NULL;
+		ListNode* pPreviousNode = nullptr;
 		ListNode* pRemoveNode = m_pListHead;
 		while ( pRemoveNode )
 		{
@@ -125,7 +125,7 @@ public:
 	ODMDmsListIterator( ODMDmsList& rList ) : m_rList( rList ) { m_pCurrent = rList.m_pListHead; }
 	ODMDms*& Current(){ return m_pCurrent->m_item; }
 	void Restart(){ m_pCurrent = m_rList.m_pListHead; };
-	operator int(){ return m_pCurrent != NULL; }
+	operator int(){ return m_pCurrent != nullptr; }
 	ODMDms*& operator ++(){ m_pCurrent = m_pCurrent->m_pNext; return m_pCurrent->m_item; }
 	ODMDms*& operator ++( int )
 	{
@@ -186,7 +186,7 @@ class AppDmsOverrideList
 	}
 
 public:
-	AppDmsOverrideList(){ m_pListHead = NULL; }
+	AppDmsOverrideList(){ m_pListHead = nullptr; }
 	
 	~AppDmsOverrideList(){ ClearList(); }
 
@@ -195,7 +195,7 @@ public:
 		if ( UpdateList( rItem ) )
 			return TRUE;
 
-		return NULL != new ListNode( rItem, m_pListHead );
+		return nullptr != new ListNode( rItem, m_pListHead );
 	}
 
 	AppDmsOverrideItem* Find( const AppDmsOverrideItem& rItem )
@@ -213,7 +213,7 @@ public:
 
 	void Remove( const AppDmsOverrideItem& rItem )
 	{
-		ListNode* pPreviousNode = NULL;
+		ListNode* pPreviousNode = nullptr;
 		ListNode* pRemoveNode = m_pListHead;
 		while ( pRemoveNode )
 		{
@@ -281,7 +281,7 @@ public:
 	}
 	AppDmsOverrideItem& Current(){ return m_pCurrent->m_item; }
 	void Restart(){ m_pCurrent = m_rList.m_pListHead; };
-	operator int(){ return m_pCurrent != NULL; }
+	operator int(){ return m_pCurrent != nullptr; }
 	AppDmsOverrideItem& operator ++(){ m_pCurrent = m_pCurrent->m_pNext; return m_pCurrent->m_item; }
 	AppDmsOverrideItem& operator ++( int )
 	{
