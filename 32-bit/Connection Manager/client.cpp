@@ -527,7 +527,7 @@ STDMETHODIMP_(ODMSTATUS) ODMClient::CODMQuery::QueryGetResults( LPCSTR lpszQuery
 	ODMSTATUS odm;			// The return value of a call to a DMS
 	
 	// Is this queryId the valid open query?
-	if(!lpszQuery || !*lpszQuery ||	stricmp(lpszQuery, m_pObject->m_szQueryId) ||
+	if(!lpszQuery || !*lpszQuery ||	_stricmp(lpszQuery, m_pObject->m_szQueryId) ||
 		!docNameLen || !docCount || !*docCount)
 		return ODM_E_REQARG;
 	
@@ -571,7 +571,7 @@ STDMETHODIMP_(ODMSTATUS) ODMClient::CODMQuery::QueryClose( LPCSTR queryId )
 {
 	ODMDms *pDms;
 
-	if(!queryId || !*queryId || !stricmp(queryId, m_pObject->m_szQueryId))
+	if(!queryId || !*queryId || !_stricmp(queryId, m_pObject->m_szQueryId))
 		return ODM_E_FAIL;
 
 	// Close each assocaited DMS query.
@@ -654,7 +654,7 @@ ODMSTATUS ODMClient::ConnectDms(LPCSTR lpszDmsId, ODMDms **ppDms)
 	{
 		lpszCmpDmsId = m_pDefaultDms->GetId();
 
-		if(!stricmp(lpszCmpDmsId, lpszDmsId)) 
+		if(!_stricmp(lpszCmpDmsId, lpszDmsId)) 
 		{
 			*ppDms = m_pDefaultDms;
 			return ODM_SUCCESS;
@@ -666,7 +666,7 @@ ODMSTATUS ODMClient::ConnectDms(LPCSTR lpszDmsId, ODMDms **ppDms)
 	{
 		lpszCmpDmsId = iterator.Current()->GetId();
 
-		if(!stricmp(lpszCmpDmsId, lpszDmsId)) 
+		if(!_stricmp(lpszCmpDmsId, lpszDmsId)) 
 		{
 			*ppDms = iterator.Current();
 			return ODM_SUCCESS;
@@ -844,11 +844,11 @@ ODMSTATUS ODMClient::ClientQueryExecute( LPCSTR lpszQuery, DWORD flags,
 		while(*lpszId)
 		{
 			pDms = NULL;
-			if(!stricmp(lpszId, m_pDefaultDms->GetId()))
+			if(!_stricmp(lpszId, m_pDefaultDms->GetId()))
 				pDms = m_pDefaultDms;
 			else
 				for(itrOtherDmss.Restart(); itrOtherDmss; ++itrOtherDmss)
-					if(!stricmp(lpszId, itrOtherDmss.Current()->GetId()))
+					if(!_stricmp(lpszId, itrOtherDmss.Current()->GetId()))
 						pDms = itrOtherDmss.Current();
 
 			if (pDms && pDms->m_pQuery)
@@ -895,7 +895,7 @@ ODMSTATUS ODMClient::ClientQueryExecute( LPCSTR lpszQuery, DWORD flags,
 		++m_nQueryCount;
 		strcpy(m_szQueryId,CONMAN_ID);
 		char* p = &m_szQueryId[strlen(m_szQueryId)];
-		ultoa(m_nQueryCount, p, 16);
+		_ultoa(m_nQueryCount, p, 16);
 		strcpy(queryId, m_szQueryId);
 	}
 	

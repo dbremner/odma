@@ -150,7 +150,7 @@ public:
 	}
 	BOOL operator ==( const	AppDmsOverrideItem& rOther ) const
 	{ 
-		return stricmp( this->szAppId, rOther.szAppId ) == 0;
+		return _stricmp( this->szAppId, rOther.szAppId ) == 0;
 	}
 	LPCSTR AppId() const { return szAppId; }
 	LPCSTR DmsId() const { return szDmsId; }
