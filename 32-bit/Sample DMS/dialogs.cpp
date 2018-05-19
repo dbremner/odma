@@ -18,7 +18,7 @@ int ii, index, count;
 
 	switch(message) {
 		case WM_INITDIALOG:
-			DocId = (char *)lParam;
+			DocId = reinterpret_cast<char *>(lParam);
 
 			for(ii=0, count=0; ii<MAXDOCS; ii++) 
 			{
@@ -99,7 +99,7 @@ static char *lpDocList;
 
 	switch(message) {
 		case WM_INITDIALOG:
-			lpDocList = (char *)lParam;
+			lpDocList = reinterpret_cast<char *>(lParam);
 
 			//hLBWnd = GetDlgItem(hwndDlg,IDC_SELECT);
 			//lStile = GetWindowLong(hLBWnd, GWL_STYLE);
@@ -116,13 +116,13 @@ static char *lpDocList;
 				//BVG: Set Doc Name into List Box 
 				LPSTR lpNowDocName=new char[DOC_NAME_MAX];
 				pDoc->GetInfo(ODM_NAME, lpNowDocName, DOC_NAME_MAX);
-				const int index = (int)SendDlgItemMessage(hwndDlg, IDC_SELECT, LB_ADDSTRING, 0, (LPARAM)lpNowDocName);
+				const int index = (int)SendDlgItemMessage(hwndDlg, IDC_SELECT, LB_ADDSTRING, 0, reinterpret_cast<LPARAM>(lpNowDocName));
 				delete[] lpNowDocName;
 
 				//BVG: Save DocId as ItemData
 				lpNowDocId=new char[ODM_DOCID_MAX];
 				lstrcpy(lpNowDocId, pDoc->GetId());
-				SendDlgItemMessage(hwndDlg, IDC_SELECT, LB_SETITEMDATA, index, (LPARAM)lpNowDocId);
+				SendDlgItemMessage(hwndDlg, IDC_SELECT, LB_SETITEMDATA, index, reinterpret_cast<LPARAM>(lpNowDocId));
 
 				count++;
 			}
@@ -193,9 +193,9 @@ char *lp;
 
 	switch(message) {
 		case WM_INITDIALOG:
-			pSaveAsData = (SaveAsData *)lParam;
+			pSaveAsData = reinterpret_cast<SaveAsData *>(lParam);
 			SendDlgItemMessage(hwndDlg, ST_FORMAT, WM_SETTEXT, 0,
-					(LPARAM)(pSaveAsData->Format));
+					reinterpret_cast<LPARAM>(pSaveAsData->Format));
 
 			if(pSaveAsData->pcbCallBack == nullptr)
 				ShowWindow(GetDlgItem(hwndDlg, IDC_OPTIONS), SW_HIDE);
@@ -211,7 +211,7 @@ char *lp;
 					strcpy_s(pSaveAsData->Format, lp);
 					pSaveAsData->Format[sizeof(pSaveAsData->Format)-1] = '\0';
 					SendDlgItemMessage(hwndDlg, ST_FORMAT, WM_SETTEXT, 0,
-						(LPARAM)(pSaveAsData->Format));
+						reinterpret_cast<LPARAM>(pSaveAsData->Format));
 
 					return TRUE;
 
@@ -233,18 +233,18 @@ static ProDlgData *pDlgData;
 
 	switch(message) {
 		case WM_INITDIALOG:
-			pDlgData = (ProDlgData *)lParam;
+			pDlgData = reinterpret_cast<ProDlgData *>(lParam);
 			SendDlgItemMessage(hwndDlg, ST_DOCID, WM_SETTEXT, 0,
-				(LPARAM)(pDlgData->pDocument->GetId()));
+				reinterpret_cast<LPARAM>(pDlgData->pDocument->GetId()));
 
 			SendDlgItemMessage(hwndDlg, IDC_NAME, WM_SETTEXT, 0,
-				(LPARAM)pDlgData->pDocument->Name);
+				reinterpret_cast<LPARAM>(pDlgData->pDocument->Name));
 
 			SendDlgItemMessage(hwndDlg, IDC_AUTHOR, WM_SETTEXT, 0,
-				(LPARAM)pDlgData->pDocument->Author);
+				reinterpret_cast<LPARAM>(pDlgData->pDocument->Author));
 
 			SendDlgItemMessage(hwndDlg, IDC_TYPE, WM_SETTEXT, 0,
-				(LPARAM)pDlgData->pDocument->DocType);
+				reinterpret_cast<LPARAM>(pDlgData->pDocument->DocType));
 
 			if(pDlgData->Mode & PROFILE_EDIT) 
 			{
@@ -264,15 +264,15 @@ static ProDlgData *pDlgData;
 					if(pDlgData->Mode & PROFILE_EDIT) {
 						SendDlgItemMessage(hwndDlg, IDC_NAME, WM_GETTEXT,
 							sizeof(pDlgData->pDocument->Name),
-							(LPARAM)pDlgData->pDocument->Name);
+							reinterpret_cast<LPARAM>(pDlgData->pDocument->Name));
 
 						SendDlgItemMessage(hwndDlg, IDC_AUTHOR, WM_GETTEXT,
-							sizeof(pDlgData->pDocument->Author), (
-							LPARAM)pDlgData->pDocument->Author);
+							sizeof(pDlgData->pDocument->Author),
+							reinterpret_cast<LPARAM>(pDlgData->pDocument->Author));
 
 						SendDlgItemMessage(hwndDlg, IDC_TYPE, WM_GETTEXT,
 							sizeof(pDlgData->pDocument->DocType),
-							(LPARAM)pDlgData->pDocument->DocType);
+							reinterpret_cast<LPARAM>(pDlgData->pDocument->DocType));
 					}
 
 					// fall through to below

@@ -48,19 +48,19 @@ BOOL bSupport=TRUE;
 
 	if(riid == IID_IUnknown) 
 	{
-		*ppobj = (LPVOID)&m_pObject->m_Unknown;
+		*ppobj = static_cast<LPVOID>(&m_pObject->m_Unknown);
 	} 
 	else if(riid == IID_IODMDocMan) 
 	{
-		*ppobj = (LPVOID)&m_pObject->m_ODMDocMan;
+		*ppobj = static_cast<LPVOID>(&m_pObject->m_ODMDocMan);
 	} 
 	else if(riid == IID_IODMDocMan2) 
 	{
-		*ppobj = (LPVOID)&m_pObject->m_ODMDocMan2;
+		*ppobj = static_cast<LPVOID>(&m_pObject->m_ODMDocMan2);
 	} 
 	else if(riid == IID_IODMQuery) 
 	{
-		*ppobj = (LPVOID)&m_pObject->m_ODMQuery;
+		*ppobj = static_cast<LPVOID>(&m_pObject->m_ODMQuery);
 	} 
 	else if(m_pObject->m_pDefaultDms) 
 	{
@@ -76,7 +76,7 @@ BOOL bSupport=TRUE;
 		} 
 		else 
 		{
-			((LPUNKNOWN)*ppobj)->AddRef();
+			static_cast<LPUNKNOWN>(*ppobj)->AddRef();
 		}
 	}
 

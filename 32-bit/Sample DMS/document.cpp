@@ -143,7 +143,7 @@ ProDlgData pdData;
 	pdData.Mode = PROFILE_EDIT;
 
 	int err = DialogBoxParam(hInst, MAKEINTRESOURCE(PROFILE_DIALOG), hParent,
-	                         ProfileProc, (LPARAM)&pdData);
+	                         ProfileProc, reinterpret_cast<LPARAM>(&pdData));
 
 	if(err == IDOK)
 	{
@@ -165,7 +165,7 @@ ProDlgData pdData;
 	pdData.Mode = 0;
 
 	DialogBoxParam(hInst, MAKEINTRESOURCE(PROFILE_DIALOG), hParent,
-		ProfileProc, (LPARAM)&pdData);
+		ProfileProc, reinterpret_cast<LPARAM>(&pdData));
 
 	return 0;
 }

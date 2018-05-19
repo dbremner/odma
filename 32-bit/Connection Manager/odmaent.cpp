@@ -29,7 +29,7 @@ ODMSTATUS WINAPI _export ODMActivate(ODMHANDLE odmHandle, WORD action,
 		
 	if(odmHandle)
 	{
-		auto *pClient = (ODMClient *)odmHandle;
+		auto *pClient = static_cast<ODMClient *>(odmHandle);
 		odm = pClient->m_ODMDocMan.Activate(action, lpszDocId);
 	}
 
@@ -56,7 +56,7 @@ ODMSTATUS WINAPI _export ODMCloseDoc(ODMHANDLE odmHandle, LPSTR lpszDocId,
 		
 	if(odmHandle)
 	{
-		auto *pClient = (ODMClient *)odmHandle;
+		auto *pClient = static_cast<ODMClient *>(odmHandle);
 		odm = pClient->m_ODMDocMan.CloseDoc(lpszDocId, activeTime, pagesPrinted,
 			sessionData, dataLen);
 	}
@@ -79,7 +79,7 @@ ODMSTATUS WINAPI _export ODMGetDMSInfo(ODMHANDLE odmHandle, LPSTR lpszDmsId,
 		
 	if(odmHandle)
 	{
-		auto *pClient = (ODMClient *)odmHandle;
+		auto *pClient = static_cast<ODMClient *>(odmHandle);
 		odm = pClient->m_ODMDocMan.GetDMSInfo(lpszDmsId, pwVerNo, pdwExtensions);
 	}
 
@@ -109,7 +109,7 @@ ODMSTATUS WINAPI _export ODMGetDocInfo(ODMHANDLE odmHandle, LPSTR lpszDocId,
 		
 	if(odmHandle)
 	{
-		auto *pClient = (ODMClient *)odmHandle;
+		auto *pClient = static_cast<ODMClient *>(odmHandle);
 		odm = pClient->m_ODMDocMan.GetDocInfo(lpszDocId, item, lpszData, dataLen);
 	}
 
@@ -133,7 +133,7 @@ ODMSTATUS WINAPI _export ODMGetLeadMoniker(ODMHANDLE odmHandle, LPSTR lpszDocId,
 		
 	if(odmHandle)
 	{
-		auto *pClient = (ODMClient *)odmHandle;
+		auto *pClient = static_cast<ODMClient *>(odmHandle);
 		odm =  pClient->m_ODMDocMan.GetLeadMoniker(lpszDocId, ppMoniker);
 	}
 
@@ -159,7 +159,7 @@ ODMSTATUS WINAPI _export ODMNewDoc(ODMHANDLE odmHandle, LPSTR lpszDocId,
 		
 	if(odmHandle)
 	{
-		auto *pClient = (ODMClient *)odmHandle;
+		auto *pClient = static_cast<ODMClient *>(odmHandle);
 		odm = pClient->m_ODMDocMan.NewDoc(lpszDocId, dwFlags, lpszFormat, lpszDocLocation);
 	}
 
@@ -184,7 +184,7 @@ ODMSTATUS WINAPI _export ODMOpenDoc(ODMHANDLE odmHandle, DWORD flags,
 		
 	if(odmHandle)
 	{
-		auto *pClient = (ODMClient *)odmHandle;
+		auto *pClient = static_cast<ODMClient *>(odmHandle);
 		odm = pClient->m_ODMDocMan.OpenDoc( flags, lpszDocId, lpszDocLocation );
 	}
 
@@ -209,7 +209,7 @@ HRESULT WINAPI _export ODMQueryInterface(ODMHANDLE odmHandle, LPSTR lpszDocId,
 		
 	if(odmHandle)
 	{
-		auto *pClient = (ODMClient *)odmHandle;
+		auto *pClient = static_cast<ODMClient *>(odmHandle);
 		hRes = pClient->DocIdQueryInterface(lpszDocId, riid, ppvObj);
 	}
 
@@ -252,7 +252,7 @@ ODMSTATUS WINAPI _export ODMRegisterApp(ODMHANDLE *pOdmHandle,
 			ODMDms *pDms = nullptr;
 			odm = pClient->ConnectDms(lpszDmsId, &pDms);
 			if(odm == ODM_SUCCESS)
-				*pOdmHandle = (ODMHANDLE) pClient;
+				*pOdmHandle = static_cast<ODMHANDLE>(pClient);
 			else
 				delete pClient;
 		}
@@ -286,7 +286,7 @@ ODMSTATUS WINAPI _export ODMSaveAs(ODMHANDLE odmHandle, LPSTR lpszDocId,
 		
 	if(odmHandle)
 	{
-		auto *pClient = (ODMClient *)odmHandle;
+		auto *pClient = static_cast<ODMClient *>(odmHandle);
 		odm = pClient->m_ODMDocMan.SaveAs(lpszDocId, lpszNewDocId, lpszFormat,
 			pcbCallBack, pInstanceData);
 	}
@@ -311,7 +311,7 @@ ODMSTATUS WINAPI _export ODMSaveDoc(ODMHANDLE odmHandle, LPSTR lpszDocId,
 		
 	if(odmHandle)
 	{
-		auto *pClient = (ODMClient *)odmHandle;
+		auto *pClient = static_cast<ODMClient *>(odmHandle);
 		odm =  pClient->m_ODMDocMan.SaveDoc(lpszDocId, lpszNewDocId);
 	}
 
@@ -335,7 +335,7 @@ ODMSTATUS WINAPI _export ODMSelectDoc(ODMHANDLE odmHandle,
 		
 	if(odmHandle)
 	{
-		auto *pClient = (ODMClient *)odmHandle;
+		auto *pClient = static_cast<ODMClient *>(odmHandle);
 		odm = pClient->m_ODMDocMan.SelectDoc(lpszDocId, pdwFlags);
 	}
 
@@ -362,7 +362,7 @@ ODMSTATUS WINAPI _export ODMSetDocInfo(ODMHANDLE odmHandle, LPSTR lpszDocId,
 		
 	if(odmHandle)
 	{
-		auto *pClient = (ODMClient *)odmHandle;
+		auto *pClient = static_cast<ODMClient *>(odmHandle);
 		odm = pClient->m_ODMDocMan.SetDocInfo(lpszDocId, item, lpszData);
 	}
 
@@ -381,7 +381,7 @@ void WINAPI _export ODMUnRegisterApp(ODMHANDLE odmHandle)
 
 	if(odmHandle)
 	{
-		auto *pClient = (ODMClient *) odmHandle;
+		auto *pClient = static_cast<ODMClient *>(odmHandle);
 		delete pClient;
 	}
 	LogString("\tNo output parameters\r\n");
@@ -470,7 +470,7 @@ ODMSTATUS WINAPI _export ODMQueryExecute(ODMHANDLE odmHandle, LPCSTR lpszQuery,
 		
 	if(odmHandle)
 	{
-		auto *pClient = (ODMClient *)odmHandle;
+		auto *pClient = static_cast<ODMClient *>(odmHandle);
 		odm = pClient->ClientQueryExecute( lpszQuery, flags, lpszDMSList, queryId);
 	}
 
@@ -496,7 +496,7 @@ ODMSTATUS WINAPI _export ODMQueryGetResults(ODMHANDLE odmHandle, LPCSTR queryId,
 		
 	if(odmHandle)
 	{
-		auto *pClient = (ODMClient *)odmHandle;
+		auto *pClient = static_cast<ODMClient *>(odmHandle);
 		odm = pClient->m_ODMQuery.QueryGetResults( queryId, lpszDocId,
 			lpszDocName, docNameLen, docCount );
 	}
@@ -531,7 +531,7 @@ ODMSTATUS WINAPI _export ODMQueryClose(ODMHANDLE odmHandle, LPCSTR queryId)
 		
 	if(odmHandle)
 	{
-		auto *pClient = (ODMClient *)odmHandle;
+		auto *pClient = static_cast<ODMClient *>(odmHandle);
 		odm = pClient->m_ODMQuery.QueryClose(queryId);
 	}
 
@@ -566,7 +566,7 @@ ODMSTATUS WINAPI _export ODMCloseDocEx(ODMHANDLE odmHandle, LPSTR lpszDocId,
 		
 	if(odmHandle)
 	{
-		auto *pClient = (ODMClient *)odmHandle;
+		auto *pClient = static_cast<ODMClient *>(odmHandle);
 		odm = pClient->m_ODMDocMan2.CloseDocEx(lpszDocId, pdwFlags,
 			activeTime, pagesPrinted, sessionData, dataLen);
 	}
@@ -594,7 +594,7 @@ ODMSTATUS WINAPI _export ODMGetAlternateContent(ODMHANDLE odmHandle, LPSTR lpszD
 		
 	if(odmHandle)
 	{
-		auto *pClient = (ODMClient *)odmHandle;
+		auto *pClient = static_cast<ODMClient *>(odmHandle);
 		odm = pClient->m_ODMDocMan2.GetAlternateContent(lpszDocId,
 			pdwFlags, lpszFormat, lpszDocLocation);
 	}
@@ -623,7 +623,7 @@ ODMSTATUS WINAPI _export ODMGetDocRelation(ODMHANDLE odmHandle, LPSTR lpszDocId,
 		
 	if(odmHandle)
 	{
-		auto *pClient = (ODMClient *)odmHandle;
+		auto *pClient = static_cast<ODMClient *>(odmHandle);
 		odm = pClient->m_ODMDocMan2.GetDocRelation(lpszDocId, pdwFlags,
 			lpszLinkedId, lpszFormat, lpszPreviousId);
 	}
@@ -653,7 +653,7 @@ ODMSTATUS WINAPI _export ODMQueryCapability(ODMHANDLE odmHandle, LPCSTR lpszDmsI
 		
 	if(odmHandle)
 	{
-		auto *pClient = (ODMClient *)odmHandle;
+		auto *pClient = static_cast<ODMClient *>(odmHandle);
 		odm = pClient->m_ODMDocMan2.QueryCapability(lpszDmsId, function, item, flags);
 	}
 	
@@ -681,7 +681,7 @@ ODMSTATUS WINAPI _export ODMSaveAsEx(ODMHANDLE odmHandle, LPSTR lpszDocId,
 		
 	if(odmHandle)
 	{
-		auto *pClient = (ODMClient *)odmHandle;
+		auto *pClient = static_cast<ODMClient *>(odmHandle);
 		odm = pClient->m_ODMDocMan2.SaveAsEx(lpszDocId,  lpszNewDocId,
 			 lpszFormat, pcbCallBack, pInstanceData, pdwFlags);
 	}
@@ -708,7 +708,7 @@ ODMSTATUS WINAPI _export ODMSaveDocEx(ODMHANDLE odmHandle, LPSTR lpszDocId,
 		
 	if(odmHandle)
 	{
-		auto *pClient = (ODMClient *)odmHandle;
+		auto *pClient = static_cast<ODMClient *>(odmHandle);
 		odm = pClient->m_ODMDocMan2.SaveDocEx(lpszDocId, lpszNewDocId, pdwFlags);
 	}
 	
@@ -737,7 +737,7 @@ ODMSTATUS WINAPI _export ODMSelectDocEx(ODMHANDLE odmHandle, LPSTR lpszDocIds,
 		
 	if(odmHandle)
 	{
-		auto *pClient = (ODMClient *)odmHandle;
+		auto *pClient = static_cast<ODMClient *>(odmHandle);
 		odm = pClient->m_ODMDocMan2.SelectDocEx(lpszDocIds, pwDocIdsLen,
 			pwDocCount, pdwFlags, lpszFormatFilter);
 	}
@@ -771,7 +771,7 @@ ODMSTATUS WINAPI _export ODMSetAlternateContent(ODMHANDLE odmHandle, LPSTR lpszD
 		
 	if(odmHandle)
 	{
-		auto *pClient = (ODMClient *)odmHandle;
+		auto *pClient = static_cast<ODMClient *>(odmHandle);
 		odm = pClient->m_ODMDocMan2.SetAlternateContent(lpszDocId,
 			pdwFlags, lpszFormat, lpszDocLocation);
 	}
@@ -802,7 +802,7 @@ ODMSTATUS WINAPI _export ODMSetDocEvent(ODMHANDLE odmHandle, LPSTR lpszDocId,
 		
 	if(odmHandle)
 	{
-		auto *pClient = (ODMClient *)odmHandle;
+		auto *pClient = static_cast<ODMClient *>(odmHandle);
 		odm = pClient->m_ODMDocMan2.SetDocEvent(lpszDocId, flags,
 			event, lpData, dwDataLen, lpszComment);
 	}
@@ -830,7 +830,7 @@ ODMSTATUS WINAPI _export ODMSetDocRelation(ODMHANDLE odmHandle, LPSTR lpszDocId,
 		
 	if(odmHandle)
 	{
-		auto *pClient = (ODMClient *)odmHandle;
+		auto *pClient = static_cast<ODMClient *>(odmHandle);
 		odm = pClient->m_ODMDocMan2.SetDocRelation(lpszDocId, pdwFlags,
 			lpszLinkedId, lpszFormat, lpszPreviousId);
 	}

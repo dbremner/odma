@@ -219,7 +219,7 @@ WORD ODMRegistry::GetDMSCount()
 		RegCloseKey( hkey );
 	}
 	
-	return (WORD)nDMSCount;
+	return static_cast<WORD>(nDMSCount);
 }
 
 ///////////////////////////////////////////////////////////////////////////////

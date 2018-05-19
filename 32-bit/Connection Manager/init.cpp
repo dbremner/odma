@@ -142,7 +142,7 @@ void LogString(const char *str)
 
 	DWORD bw = 0;
 	SetFilePointer(hFile, bw, nullptr, FILE_END);
-	WriteFile(hFile, str, (DWORD)strlen(str), &bw, nullptr);
+	WriteFile(hFile, str, static_cast<DWORD>(strlen(str)), &bw, nullptr);
 	CloseHandle(hFile);
 }
 

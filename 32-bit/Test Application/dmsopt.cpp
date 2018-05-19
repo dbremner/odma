@@ -171,7 +171,7 @@ void CFrmDMSOptions::OnReRegister()
 {
 	OnSessionDefault();
 
-	((CODMATestApp *) AfxGetApp())->OnRegisterApp();
+	static_cast<CODMATestApp *>(AfxGetApp())->OnRegisterApp();
 
 	OnGetDmsInfo();
 }

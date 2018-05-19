@@ -48,23 +48,23 @@ STDMETHODIMP Application::CUnknown::QueryInterface(REFIID riid, LPVOID FAR* ppob
 	*ppobj = nullptr;
 
 	if(riid == IID_IUnknown) {
-		*ppobj = (LPVOID)&m_pObject->m_Unknown;
+		*ppobj = static_cast<LPVOID>(&m_pObject->m_Unknown);
 	}
 	else if(riid == IID_IODMDocMan) {
-		*ppobj = (LPVOID)&m_pObject->m_ODMDocMan;
+		*ppobj = static_cast<LPVOID>(&m_pObject->m_ODMDocMan);
 	}
 	else if(riid == IID_IODMDocMan2) {
-		*ppobj = (LPVOID)&m_pObject->m_ODMDocMan2;
+		*ppobj = static_cast<LPVOID>(&m_pObject->m_ODMDocMan2);
 	}
 	else if(riid == IID_IODMQuery) {
-		*ppobj = (LPVOID)&m_pObject->m_ODMQuery;
+		*ppobj = static_cast<LPVOID>(&m_pObject->m_ODMQuery);
 	}
 
 	if(*ppobj == nullptr) {
 		hRes = ResultFromScode(E_NOINTERFACE);
 	}
 	else {
-		((LPUNKNOWN)*ppobj)->AddRef();
+		static_cast<LPUNKNOWN>(*ppobj)->AddRef();
 	}
 
 	return hRes;
@@ -117,7 +117,7 @@ LPDWORD pdwFlags)
 		return ODM_E_USERINT;   // This DMS can't make a selection without user input.
 
 	ODMSTATUS err = DialogBoxParam(hInst, MAKEINTRESOURCE(SELECT_DIALOG),
-	                               m_pObject->m_clientWind, SelectDocProc, (LPARAM)lpszDocId);
+	                               m_pObject->m_clientWind, SelectDocProc, reinterpret_cast<LPARAM>(lpszDocId));
 
 	if(err == IDOK) 
 	{
@@ -209,7 +209,7 @@ SaveAsData saData;
 		strcpy_s(saData.Format, lpszFormat);
 
 		err = DialogBoxParam(hInst, MAKEINTRESOURCE(SAVEAS_DIALOG),
-					m_pObject->m_clientWind, SaveAsProc, (LPARAM)&saData);
+					m_pObject->m_clientWind, SaveAsProc, reinterpret_cast<LPARAM>(&saData));
 	}
 	else 
 	{		/* Document has never been accessed, so the Save as new document
@@ -444,7 +444,7 @@ STDMETHODIMP_(ODMSTATUS) Application::CODMDocMan2::SelectDocEx(LPSTR lpszDocIds,
 		return ODM_E_USERINT;   // This DMS can't make a selection without user input.
 
 	ODMSTATUS odmstatus = DialogBoxParam(hInst, MAKEINTRESOURCE(SELECT_DIALOG_EX),
-	                                     m_pObject->m_clientWind, SelectDocProcEx, (LPARAM)lpszDocIds);
+	                                     m_pObject->m_clientWind, SelectDocProcEx, reinterpret_cast<LPARAM>(lpszDocIds));
 
 	if(odmstatus == IDOK) 
 	{

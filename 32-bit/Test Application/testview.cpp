@@ -50,7 +50,7 @@ void CODMATestView::Dump(CDumpContext& dc) const
 CODMATestDoc* CODMATestView::GetDocument() // non-debug version is inline
 {
 	ASSERT(m_pDocument->IsKindOf(RUNTIME_CLASS(CODMATestDoc)));
-	return (CODMATestDoc*)m_pDocument;
+	return static_cast<CODMATestDoc*>(m_pDocument);
 }
 #endif //_DEBUG
 

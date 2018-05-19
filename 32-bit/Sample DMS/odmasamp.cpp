@@ -52,7 +52,7 @@ LPUNKNOWN pUnkOuter, LPVOID pReserved, LPSTR lpszAppId, DWORD dwEnvData)
 	const HRESULT hRes = pApp->GetInterface(riid, ppvObj);
 
 	if(*ppvObj)
-		((LPUNKNOWN)(*ppvObj))->Release();  // Balances the ref. count from 'new'.
+		static_cast<LPUNKNOWN>(*ppvObj)->Release();  // Balances the ref. count from 'new'.
 	else
 		delete pApp;
 
