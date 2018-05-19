@@ -30,13 +30,13 @@ int ii, index, count;
 				//BVG: Set Doc Name into List Box 
 				LPSTR lpNowDocName=new char[DOC_NAME_MAX];
 				pDoc->GetInfo(ODM_NAME, lpNowDocName, DOC_NAME_MAX);
-				index=(int)SendDlgItemMessage(hwndDlg, IDC_SELECT, LB_ADDSTRING, 0, (LPARAM)lpNowDocName);
+				index=(int)SendDlgItemMessage(hwndDlg, IDC_SELECT, LB_ADDSTRING, 0, reinterpret_cast<LPARAM>(lpNowDocName));
 				delete lpNowDocName;
 
 				//BVG: Save DocId as ItemData
 				lpNowDocId=new char[ODM_DOCID_MAX];
 				lstrcpy(lpNowDocId, pDoc->GetId());
-				SendDlgItemMessage(hwndDlg, IDC_SELECT, LB_SETITEMDATA, index, (LPARAM)lpNowDocId);
+				SendDlgItemMessage(hwndDlg, IDC_SELECT, LB_SETITEMDATA, index, reinterpret_cast<LPARAM>(lpNowDocId));
 
 				count++;
 			}
