@@ -181,7 +181,7 @@ char buff[165];
 		case ODM_NAME: dataSource = Name; break;
 		case ODM_TYPE: dataSource = DocType; break;
 		case ODM_TITLETEXT:
-			wsprintf(buff, "%s - %s", (LPSTR)DocId, (LPSTR)Name);
+			wsprintf(buff, "%s - %s", DocId, Name);
 			dataSource = buff;
 			break;
 
