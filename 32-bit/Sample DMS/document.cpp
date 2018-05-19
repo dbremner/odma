@@ -95,7 +95,7 @@ SYSTEMTIME tm;
 	if(tm.wMilliseconds > 99)
 		tm.wMilliseconds /= 10;
 
-	wsprintf(DocId, "%02d-%02d-%02d-%02d", tm.wHour, tm.wMinute, tm.wSecond, tm.wMilliseconds);
+	sprintf_s(DocId, "%02d-%02d-%02d-%02d", tm.wHour, tm.wMinute, tm.wSecond, tm.wMilliseconds);
 }
 
 
