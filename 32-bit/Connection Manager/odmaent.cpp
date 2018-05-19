@@ -122,7 +122,7 @@ ODMSTATUS WINAPI _export ODMGetDocInfo(ODMHANDLE odmHandle, LPSTR lpszDocId,
 
 
 ODMSTATUS WINAPI _export ODMGetLeadMoniker(ODMHANDLE odmHandle, LPSTR lpszDocId,
-		LPMONIKER FAR *ppMoniker)
+		LPMONIKER *ppMoniker)
 {
 	LogString("ODMGetLeadMoniker\r\n");
 	LogString("\tInput parameters:\r\n");
@@ -197,7 +197,7 @@ ODMSTATUS WINAPI _export ODMOpenDoc(ODMHANDLE odmHandle, DWORD flags,
 
 
 HRESULT WINAPI _export ODMQueryInterface(ODMHANDLE odmHandle, LPSTR lpszDocId,
-		REFIID riid, LPVOID FAR *ppvObj)
+		REFIID riid, LPVOID *ppvObj)
 {
 	LogString("ODMQueryInterface\r\n");
 	LogString("\tInput parameters:\r\n");
@@ -221,7 +221,7 @@ HRESULT WINAPI _export ODMQueryInterface(ODMHANDLE odmHandle, LPSTR lpszDocId,
 }
 
 
-ODMSTATUS WINAPI _export ODMRegisterApp(ODMHANDLE FAR *pOdmHandle,
+ODMSTATUS WINAPI _export ODMRegisterApp(ODMHANDLE *pOdmHandle,
 		WORD version, LPSTR lpszAppId, DWORD dwEnvData, LPVOID pReserved)
 {
 	LogString("ODMRegisterApp\r\n");

@@ -16,8 +16,8 @@
 #include <objbase.h>
 
 // Globals
-HINSTANCE NEAR hInst;
-DocumentList NEAR DocList;
+HINSTANCE hInst;
+DocumentList DocList;
 
 
 BOOL WINAPI DllMain(HANDLE hModule, DWORD fdwReason, LPVOID lpvReserved)
@@ -29,7 +29,7 @@ BOOL WINAPI DllMain(HANDLE hModule, DWORD fdwReason, LPVOID lpvReserved)
 
 /* ODMGetODMInterface - This is the main entry point for the ODMA connection
 	manager. */
-HRESULT WINAPI _export ODMGetODMInterface(REFIID riid, LPVOID FAR *ppvObj,
+HRESULT WINAPI _export ODMGetODMInterface(REFIID riid, LPVOID *ppvObj,
 LPUNKNOWN pUnkOuter, LPVOID pReserved, LPSTR lpszAppId, DWORD dwEnvData)
 {            
 

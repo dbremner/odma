@@ -25,12 +25,12 @@ class ODMClient
 	struct CUnknown;
 	struct CODMDocMan;
 	struct CODMQuery;
-	friend ODMSTATUS WINAPI ODMRegisterApp(ODMHANDLE FAR *, WORD, LPSTR, DWORD, LPVOID);
+	friend ODMSTATUS WINAPI ODMRegisterApp(ODMHANDLE *, WORD, LPSTR, DWORD, LPVOID);
 	
 public:
 	ODMClient(LPSTR lpszAppId, WORD version, DWORD dwEnvData);
 	~ODMClient();
-	HRESULT DocIdQueryInterface(LPSTR lpszDocId, REFIID riid, LPVOID FAR *ppvObj);
+	HRESULT DocIdQueryInterface(LPSTR lpszDocId, REFIID riid, LPVOID *ppvObj);
 	ODMSTATUS ClientQueryExecute(LPCSTR lpszQuery, DWORD flags, LPCSTR lpszDmsList, LPSTR queryId );
 //	ODMClient::CODMDocMan& ODMDocMan(){ return m_ODMDocMan; }
 //	ODMClient::CODMQuery& ODMQuery(){ return m_ODMQuery; }
@@ -87,7 +87,7 @@ private:
 		STDMETHOD_(ODMSTATUS, SetDocInfo)(LPSTR lpszDocId, WORD item, LPSTR lpszData);
 		STDMETHOD_(ODMSTATUS, GetDMSInfo) (LPSTR lpszDmsId, LPWORD pwVerNo,
 			LPDWORD pdwExtensions);
-		STDMETHOD_(ODMSTATUS, GetLeadMoniker)(LPSTR lpszDocId, LPMONIKER FAR *ppMoniker);
+		STDMETHOD_(ODMSTATUS, GetLeadMoniker)(LPSTR lpszDocId, LPMONIKER *ppMoniker);
 
 		private:
     	ODMClient *m_pObject;					// pointer to parent object

@@ -274,7 +274,7 @@ LPWORD pwVerNo, LPDWORD pdwExtensions)
 
 
 STDMETHODIMP_(ODMSTATUS) ODMClient::CODMDocMan::GetLeadMoniker(LPSTR lpszDocId,
-LPMONIKER FAR *ppMoniker)
+LPMONIKER *ppMoniker)
 {
 	ODMDms *pDms;
 
@@ -754,7 +754,7 @@ void ODMClient::ConnectDmss( LPCSTR lpszDmsList )
 //
 ////////////////////////////////////////////////////////////////////////////////
 
-HRESULT ODMClient::DocIdQueryInterface(LPSTR lpszDocId, REFIID riid, LPVOID FAR *ppvObj)
+HRESULT ODMClient::DocIdQueryInterface(LPSTR lpszDocId, REFIID riid, LPVOID *ppvObj)
 {
 	ODMDms *pDms;
 	*ppvObj = NULL;

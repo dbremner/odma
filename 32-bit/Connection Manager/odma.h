@@ -200,7 +200,7 @@ typedef int ODMSTATUS;
 extern "C" {
 #endif
 
-ODMSTATUS WINAPI ODMRegisterApp(ODMHANDLE FAR *pOdmHandle, WORD version,
+ODMSTATUS WINAPI ODMRegisterApp(ODMHANDLE *pOdmHandle, WORD version,
 	LPSTR lpszAppId, DWORD dwEnvData, LPVOID pReserved);
 
 void WINAPI ODMUnRegisterApp(ODMHANDLE odmHandle);

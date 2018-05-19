@@ -49,7 +49,7 @@ ODMSTATUS ODMDms::Init(LPCSTR lpszDmsId, LPSTR lpszAppId, WORD version,
 	SCODE sc;
 	int ierr;
 	char DmsLoc[80];
-	typedef HRESULT (WINAPI *PFNODMGETODMINTERFACE)(REFIID, LPVOID FAR *,
+	typedef HRESULT (WINAPI *PFNODMGETODMINTERFACE)(REFIID, LPVOID *,
 		LPUNKNOWN, LPVOID, LPSTR, DWORD);
 	PFNODMGETODMINTERFACE lpfnODMGetODMInterface;
 
@@ -103,14 +103,14 @@ ODMSTATUS ODMDms::Init(LPCSTR lpszDmsId, LPSTR lpszAppId, WORD version,
 	}
 
 	// Call the DMS entry function to get an IUnknown interface. */
-	sc = GetScode(lpfnODMGetODMInterface(IID_IUnknown, (LPVOID FAR *)&m_pUnk, pUnkOuter,
+	sc = GetScode(lpfnODMGetODMInterface(IID_IUnknown, (LPVOID *)&m_pUnk, pUnkOuter,
 		NULL, lpszAppId, dwEnvData ));
 
 	if(sc == S_OK) 
 	{
 		// Now get the IODMDocMan interface. Since this is an additional
 		//interface on an object, we release it immediately.
-		sc = GetScode( m_pUnk->QueryInterface(IID_IODMDocMan, (LPVOID FAR *)&m_pDocMan ));
+		sc = GetScode( m_pUnk->QueryInterface(IID_IODMDocMan, (LPVOID *)&m_pDocMan ));
 		if(m_pDocMan)
 			m_pDocMan->Release();
 
@@ -118,7 +118,7 @@ ODMSTATUS ODMDms::Init(LPCSTR lpszDmsId, LPSTR lpszAppId, WORD version,
 		// only need to get this interface if version is 150 or greater.
 		if( version >= 150 )
 		{
-			sc = GetScode( m_pUnk->QueryInterface( IID_IODMQuery, (LPVOID FAR *)&m_pQuery ));
+			sc = GetScode( m_pUnk->QueryInterface( IID_IODMQuery, (LPVOID *)&m_pQuery ));
 			if( m_pQuery )
 				m_pQuery->Release();
 #ifdef DEBUG
@@ -130,7 +130,7 @@ ODMSTATUS ODMDms::Init(LPCSTR lpszDmsId, LPSTR lpszAppId, WORD version,
 		// only need to get this interface if version is 200 or greater.
 		if( version >= 200 )
 		{
-			sc = GetScode( m_pUnk->QueryInterface( IID_IODMDocMan2, (LPVOID FAR *)&m_pDocMan2 ));
+			sc = GetScode( m_pUnk->QueryInterface( IID_IODMDocMan2, (LPVOID *)&m_pDocMan2 ));
 			if( m_pDocMan2 )
 				m_pDocMan2->Release();
 #ifdef DEBUG

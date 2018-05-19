@@ -36,7 +36,7 @@ Application::~Application()
 
 /* Application::GetInterface - This function allows a holder of an Application
 	object to get a pointer to one of its COM interfaces. */
-HRESULT Application::GetInterface(REFIID riid, LPVOID FAR *ppvObj)
+HRESULT Application::GetInterface(REFIID riid, LPVOID *ppvObj)
 {
 	return m_Unknown.QueryInterface(riid, ppvObj);
 }
@@ -378,7 +378,7 @@ GetDMSInfo(LPSTR lpszDmsId, LPWORD pwVerNo, LPDWORD pdwExtensions)
 
 
 STDMETHODIMP_(ODMSTATUS) Application::CODMDocMan::
-GetLeadMoniker(LPSTR lpszDocId, LPMONIKER FAR *ppMoniker)
+GetLeadMoniker(LPSTR lpszDocId, LPMONIKER *ppMoniker)
 {
 	// This sample doesn't support OLE 2.
 	*ppMoniker = NULL;

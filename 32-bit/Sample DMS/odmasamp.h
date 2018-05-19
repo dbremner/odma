@@ -41,7 +41,7 @@ class Application {
 	public:
 	Application(LPUNKNOWN pUnkOuter, DWORD dwEnvData);
 	~Application();
-	HRESULT GetInterface(REFIID riid, LPVOID FAR *ppvObj);
+	HRESULT GetInterface(REFIID riid, LPVOID *ppvObj);
 
 	private:
 	//----------------------------------------------------------------
@@ -100,7 +100,7 @@ class Application {
 		STDMETHOD_(ODMSTATUS, GetDMSInfo) (LPSTR lpszDmsId, LPWORD pwVerNo,
 			LPDWORD pdwExtensions);
 		STDMETHOD_(ODMSTATUS, GetLeadMoniker)(LPSTR lpszDocId,
-			LPMONIKER FAR *ppMoniker);
+			LPMONIKER *ppMoniker);
 
 		private:
 		Application *m_pObject;					// pointer to parent object
@@ -285,8 +285,8 @@ typedef struct {
 } ProDlgData;
 
 // Globals
-extern HINSTANCE NEAR hInst;
-extern DocumentList NEAR DocList;
+extern HINSTANCE hInst;
+extern DocumentList DocList;
 
 // Prototypes
 BOOL CALLBACK _export SelectDocProc(HWND hwndDlg, UINT message, WPARAM wParam,

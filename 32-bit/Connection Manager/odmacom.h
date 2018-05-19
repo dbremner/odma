@@ -39,7 +39,7 @@ DEFINE_OLEGUID(IID_IODMDocMan2, 0x22FF2, 0, 0);
 DECLARE_INTERFACE_(IODMDocMan, IUnknown)
 {
 	// *** IUnknown methods ***
-	STDMETHOD(QueryInterface)(THIS_ REFIID riid, LPVOID FAR *ppvObj)  PURE;
+	STDMETHOD(QueryInterface)(THIS_ REFIID riid, LPVOID *ppvObj)  PURE;
 	STDMETHOD_(ULONG, AddRef)(THIS) PURE;
 	STDMETHOD_(ULONG, Release)(THIS) PURE;
 
@@ -99,11 +99,11 @@ DECLARE_INTERFACE_(IODMDocMan, IUnknown)
 
 	STDMETHOD_(ODMSTATUS, GetLeadMoniker) (THIS_
 		LPSTR lpszDocId,
-		LPMONIKER FAR *ppMoniker) PURE;
+		LPMONIKER *ppMoniker) PURE;
 
 };
 
-typedef IODMDocMan FAR * LPODMDOCMAN;
+typedef IODMDocMan * LPODMDOCMAN;
  
 #undef  INTERFACE
 #define INTERFACE   IODMDocMan2
@@ -111,7 +111,7 @@ typedef IODMDocMan FAR * LPODMDOCMAN;
 DECLARE_INTERFACE_(IODMDocMan2, IUnknown)
 {
 	// *** IUnknown methods ***
-	STDMETHOD(QueryInterface)(THIS_ REFIID riid, LPVOID FAR *ppvObj)  PURE;
+	STDMETHOD(QueryInterface)(THIS_ REFIID riid, LPVOID *ppvObj)  PURE;
 	STDMETHOD_(ULONG, AddRef)(THIS) PURE;
 	STDMETHOD_(ULONG, Release)(THIS) PURE;
 	
@@ -185,7 +185,7 @@ DECLARE_INTERFACE_(IODMDocMan2, IUnknown)
 		LPSTR lpszPreviousId ) PURE;
 };
 
-typedef IODMDocMan2 FAR * LPODMDOCMAN2;
+typedef IODMDocMan2 * LPODMDOCMAN2;
 
 #undef  INTERFACE
 #define INTERFACE   IODMQuery
@@ -193,7 +193,7 @@ typedef IODMDocMan2 FAR * LPODMDOCMAN2;
 DECLARE_INTERFACE_(IODMQuery, IUnknown)
 {
 	// *** IUnknown methods ***
-	STDMETHOD(QueryInterface)(THIS_ REFIID riid, LPVOID FAR *ppvObj)  PURE;
+	STDMETHOD(QueryInterface)(THIS_ REFIID riid, LPVOID *ppvObj)  PURE;
 	STDMETHOD_(ULONG, AddRef)(THIS) PURE;
 	STDMETHOD_(ULONG, Release)(THIS) PURE;
 
@@ -208,7 +208,7 @@ DECLARE_INTERFACE_(IODMQuery, IUnknown)
 	STDMETHOD_(ODMSTATUS, QueryClose)(THIS_ LPCSTR dmsQueryId ) PURE;
 };
 
-typedef IODMQuery FAR * LPODMQUERY;
+typedef IODMQuery * LPODMQUERY;
 
 #ifdef __cplusplus
 extern "C" {
@@ -216,13 +216,13 @@ extern "C" {
 
 // ODMA prototypes
 HRESULT WINAPI ODMQueryInterface(ODMHANDLE odmHandle, LPSTR lpszDocId,
-	REFIID riid, LPVOID FAR *ppvObj);
+	REFIID riid, LPVOID *ppvObj);
 
 ODMSTATUS WINAPI ODMGetLeadMoniker(ODMHANDLE odmHandle, LPSTR lpszDocId,
-	LPMONIKER FAR *ppMoniker);
+	LPMONIKER *ppMoniker);
 
 // Prototype for ODMA provider entry point function
-HRESULT WINAPI _export ODMGetODMInterface(REFIID riid, LPVOID FAR *ppvObj,
+HRESULT WINAPI _export ODMGetODMInterface(REFIID riid, LPVOID *ppvObj,
 	LPUNKNOWN pUnkOuter, LPVOID pReserved, LPSTR lpszAppId, DWORD dwEnvData);
 
 #ifdef __cplusplus

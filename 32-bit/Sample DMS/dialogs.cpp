@@ -12,14 +12,14 @@
 BOOL CALLBACK _export SelectDocProc(HWND hwndDlg, UINT message, WPARAM wParam,
 LPARAM lParam)
 {
-static char FAR *DocId;
+static char *DocId;
 int ii, index, count;
 Document *pDoc;
 LPSTR lpNowDocId;
 
 	switch(message) {
 		case WM_INITDIALOG:
-			DocId = (char FAR *)lParam;
+			DocId = (char *)lParam;
 
 			for(ii=0, count=0; ii<MAXDOCS; ii++) 
 			{
@@ -91,14 +91,14 @@ LPSTR lpNowDocId;
 BOOL CALLBACK _export SelectDocProcEx(HWND hwndDlg, UINT message, WPARAM wParam,
 LPARAM lParam)
 {
-static char FAR *lpDocList;
+static char *lpDocList;
 int ii, index, count = 0, end;
 Document *pDoc;
 LPSTR lpNowDocId;
 
 	switch(message) {
 		case WM_INITDIALOG:
-			lpDocList = (char FAR *)lParam;
+			lpDocList = (char *)lParam;
 
 			//hLBWnd = GetDlgItem(hwndDlg,IDC_SELECT);
 			//lStile = GetWindowLong(hLBWnd, GWL_STYLE);
@@ -186,12 +186,12 @@ LPSTR lpNowDocId;
 BOOL CALLBACK _export SaveAsProc(HWND hwndDlg, UINT message, WPARAM wParam,
 LPARAM lParam)
 {
-static SaveAsData FAR *pSaveAsData;
+static SaveAsData *pSaveAsData;
 char *lp;
 
 	switch(message) {
 		case WM_INITDIALOG:
-			pSaveAsData = (SaveAsData FAR *)lParam;
+			pSaveAsData = (SaveAsData *)lParam;
 			SendDlgItemMessage(hwndDlg, ST_FORMAT, WM_SETTEXT, 0,
 					(LPARAM)(pSaveAsData->Format));
 
@@ -227,11 +227,11 @@ char *lp;
 BOOL CALLBACK _export ProfileProc( HWND hwndDlg, UINT message, WPARAM wParam,
 LPARAM lParam)
 {
-static ProDlgData FAR *pDlgData;
+static ProDlgData *pDlgData;
 
 	switch(message) {
 		case WM_INITDIALOG:
-			pDlgData = (ProDlgData FAR *)lParam;
+			pDlgData = (ProDlgData *)lParam;
 			SendDlgItemMessage(hwndDlg, ST_DOCID, WM_SETTEXT, 0,
 				(LPARAM)(pDlgData->pDocument->GetId()));
 

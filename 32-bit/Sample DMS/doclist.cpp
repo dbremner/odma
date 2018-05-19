@@ -51,7 +51,7 @@ Document* DocumentList::GetDocumentByIndex(int n)
 
 int DocumentList::GetDocumentIndexById(LPSTR lpszDocId)
 {
-char FAR *lp;
+char *lp;
 int i, offset;
 
 	// ::ODMA\<DmsId>\<doc-specific>
