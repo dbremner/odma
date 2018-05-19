@@ -117,7 +117,7 @@ LPDWORD pdwFlags)
 		return ODM_E_USERINT;   // This DMS can't make a selection without user input.
 
 	ODMSTATUS err = DialogBoxParam(hInst, MAKEINTRESOURCE(SELECT_DIALOG),
-	                               m_pObject->m_clientWind, (DLGPROC)SelectDocProc, (LPARAM)lpszDocId);
+	                               m_pObject->m_clientWind, SelectDocProc, (LPARAM)lpszDocId);
 
 	if(err == IDOK) 
 	{
@@ -209,7 +209,7 @@ SaveAsData saData;
 		strcpy_s(saData.Format, lpszFormat);
 
 		err = DialogBoxParam(hInst, MAKEINTRESOURCE(SAVEAS_DIALOG),
-					m_pObject->m_clientWind, (DLGPROC)SaveAsProc, (LPARAM)&saData);
+					m_pObject->m_clientWind, SaveAsProc, (LPARAM)&saData);
 	}
 	else 
 	{		/* Document has never been accessed, so the Save as new document
@@ -444,7 +444,7 @@ STDMETHODIMP_(ODMSTATUS) Application::CODMDocMan2::SelectDocEx(LPSTR lpszDocIds,
 		return ODM_E_USERINT;   // This DMS can't make a selection without user input.
 
 	ODMSTATUS odmstatus = DialogBoxParam(hInst, MAKEINTRESOURCE(SELECT_DIALOG_EX),
-	                                     m_pObject->m_clientWind, (DLGPROC)SelectDocProcEx, (LPARAM)lpszDocIds);
+	                                     m_pObject->m_clientWind, SelectDocProcEx, (LPARAM)lpszDocIds);
 
 	if(odmstatus == IDOK) 
 	{
