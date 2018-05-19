@@ -31,7 +31,7 @@ int ii, index, count;
 				LPSTR lpNowDocName=new char[DOC_NAME_MAX];
 				pDoc->GetInfo(ODM_NAME, lpNowDocName, DOC_NAME_MAX);
 				index=(int)SendDlgItemMessage(hwndDlg, IDC_SELECT, LB_ADDSTRING, 0, reinterpret_cast<LPARAM>(lpNowDocName));
-				delete lpNowDocName;
+				delete[] lpNowDocName;
 
 				//BVG: Save DocId as ItemData
 				lpNowDocId=new char[ODM_DOCID_MAX];

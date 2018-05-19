@@ -420,7 +420,7 @@ ODMSTATUS odmstatus;
 		else if(lpszNewDocId[0] == '\0')
 			strcpy(lpszNewDocId, lpszTempDocId);
 
-		delete lpszTempDocId;
+		delete[] lpszTempDocId;
 	}
 
 return odmstatus;		

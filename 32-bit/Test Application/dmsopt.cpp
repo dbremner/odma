@@ -162,7 +162,7 @@ void CFrmDMSOptions::OnRegistryDefault()
 
 	RegSetValue(HKEY_CLASSES_ROOT, DMSKey, REG_SZ, DMSName,	sizeof(DMSName));
 
-	delete DMSKey;
+	delete[] DMSKey;
 	
 }
 
