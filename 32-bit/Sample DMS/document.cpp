@@ -35,9 +35,9 @@ Document::Document(Document *pOldDoc)
 {
 	Init();
 	bEdited = pOldDoc->bEdited; //BVG:
-	strcpy(Author, pOldDoc->Author);
-	strcpy(Name, pOldDoc->Name);
-	strcpy(DocType, pOldDoc->DocType);
+	strcpy_s(Author, pOldDoc->Author);
+	strcpy_s(Name, pOldDoc->Name);
+	strcpy_s(DocType, pOldDoc->DocType);
 
 	//BVG Copy first component attributes
 	iComponents = 1;
@@ -48,7 +48,7 @@ Document::Document(Document *pOldDoc)
 // Load a document saved from a previous session
 Document::Document(LPSTR lpszDocId)
 {
-	strcpy(DocId, lpszDocId);
+	strcpy_s(DocId, lpszDocId);
 	SaveFlag = 0;
 	OpenCount = 0;
 	DocAccessed = 1;	// It was accessed in a previous session.

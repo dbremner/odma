@@ -35,8 +35,8 @@ ODMRegistry::ODMRegistry(){
 	m_bLogEnable = FALSE;
 
 	char szLogKey[255];
-	strncpy(szLogKey, ODMA_KEY, sizeof(ODMA_KEY));
-	strcat(szLogKey,".ConnectionManager\\Logging");
+	strcpy_s(szLogKey, ODMA_KEY);
+	strcat_s(szLogKey,".ConnectionManager\\Logging");
 
 	HKEY hLogKey;
 	LONG err = RegOpenKey(HKEY_CLASSES_ROOT, szLogKey, &hLogKey);
@@ -63,9 +63,9 @@ ODMRegistry::ODMRegistry(){
 	err = RegQueryValue(hLogKey, "File", m_lpszLogPath, &Len);
 	if(err != ERROR_SUCCESS || sizeof(m_lpszLogPath) == 0)
 	{
-		strcpy(m_lpszLogPath, "C:\\");
-		strcat(m_lpszLogPath, ODMA_KEY);
-		strcat(m_lpszLogPath, ".log");
+		strcpy_s(m_lpszLogPath, "C:\\");
+		strcat_s(m_lpszLogPath, ODMA_KEY);
+		strcat_s(m_lpszLogPath, ".log");
 	}
 
 	err = RegQueryValue(hLogKey, "Options", m_lplistTokens, &Len);
@@ -150,10 +150,9 @@ int ODMRegistry::GetSystemDefaultDmsId( LPSTR lpszDmsId )
 			== ERROR_SUCCESS; iSubKey++) 
 	{
 		char strKey[25];
-		strncpy(strKey, strDMS, ODM_DMSID_MAX );
-		strKey[ODM_DMSID_MAX - 1] = '\0';
-		strcat(strKey, "\\");
-		strcat(strKey, "DEFAULT");
+		strcpy_s(strKey, strDMS);
+		strcat_s(strKey, "\\");
+		strcat_s(strKey, "DEFAULT");
 	
 		HKEY hDefKey;
 		err = RegOpenKey(hODMKey, strKey, &hDefKey);
@@ -195,9 +194,9 @@ LONG err, vlen;
 	if(len > ODM_DMSID_MAX)
 		return -1;
 
-	strcpy(key, ODMA_KEY);
-	strcat(key, "\\");
-	strcat(key, lpszDmsId);
+	strcpy_s(key, ODMA_KEY);
+	strcat_s(key, "\\");
+	strcat_s(key, lpszDmsId);
 	vlen = entryLen;
 	err = RegQueryValue(HKEY_CLASSES_ROOT, key, lpszDMSEntry, &vlen);
 
@@ -309,9 +308,9 @@ ODMSTATUS ODMRegistry::SetDMS( LPCSTR lpszAppId, LPCSTR lpszDMSId )
 	HKEY hkey;
 	char szKey[sizeof(ODMA_KEY) + 1 + ODM_DMSID_MAX];
 
-	strcpy( szKey, ODMA_KEY );
-	strcat( szKey, "\\" );
-	strcat( szKey, lpszDMSId );
+	strcpy_s( szKey, ODMA_KEY );
+	strcat_s( szKey, "\\" );
+	strcat_s( szKey, lpszDMSId );
 
 	if(RegOpenKey( HKEY_CLASSES_ROOT, szKey, &hkey ) == ERROR_SUCCESS)
 		RegCloseKey( hkey );

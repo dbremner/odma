@@ -62,7 +62,7 @@ ODMSTATUS ODMDms::Init(LPCSTR lpszDmsId, LPSTR lpszAppId, WORD version,
 		return ODM_E_NODMS;
 	}
 
-	strcpy(m_szId, lpszDmsId);
+	strcpy_s(m_szId, lpszDmsId);
 
 	/* In the future we will look at version here to decide which interface
 		to query for.  But for now there is only one interface defined

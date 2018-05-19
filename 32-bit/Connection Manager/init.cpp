@@ -92,9 +92,9 @@ void LogParNumber(const char *lpszParam, ULONG lvalue)
 	LogString("=");
 
 	char szValue10[32];
-	_ltoa(lvalue, szValue10, 10);
+	_ltoa_s(lvalue, szValue10, 10);
 	char szValue16[32];
-	_ltoa(lvalue, szValue16, 16);
+	_ltoa_s(lvalue, szValue16, 16);
 
 	LogString(szValue10);
 	LogString("(");

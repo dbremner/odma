@@ -143,10 +143,8 @@ class AppDmsOverrideItem
 public:
 	AppDmsOverrideItem( LPCSTR lpszAppId, LPCSTR lpszDmsId )
 	{
-		strncpy( szAppId, lpszAppId, ODM_APPID_MAX );
-		szAppId[ ODM_APPID_MAX - 1 ] = '\0';
-		strncpy( szDmsId, lpszDmsId, ODM_DMSID_MAX );
-		szDmsId[ ODM_DMSID_MAX - 1 ] = '\0';
+		strcpy_s(szAppId, lpszAppId);
+		strcpy_s(szDmsId, lpszDmsId);
 	}
 	BOOL operator ==( const	AppDmsOverrideItem& rOther ) const
 	{ 

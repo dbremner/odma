@@ -228,7 +228,7 @@ public:
 	
 	LPCSTR GetId(){ return m_szId; } // Return a pointer to the DMS ID string.
 	
-	void QueryId( LPSTR lpszQueryId ){ strcpy( m_szQueryId, lpszQueryId ); }
+	void QueryId( LPSTR lpszQueryId ){ strcpy_s( m_szQueryId, lpszQueryId ); }
 	
 	LPCSTR QueryId(){ return m_szQueryId; }
 

@@ -21,8 +21,7 @@ ODMClient::ODMClient(LPSTR lpszAppId, WORD version, DWORD dwEnvData)
 {
 	m_dwRefs = 1;
 	m_version = version;
-	strncpy(m_appid, lpszAppId, sizeof(m_appid));
-	m_appid[sizeof(m_appid)-1] = '\0';
+	strcpy_s(m_appid, lpszAppId);
 	m_pDefaultDms = NULL;
 	m_clientWind = (HWND) dwEnvData;
 	m_nQueryCount = 0;
@@ -892,7 +891,7 @@ ODMSTATUS ODMClient::ClientQueryExecute( LPCSTR lpszQuery, DWORD flags,
 	if(odm == ODM_SUCCESS || odm == ODM_E_PARTIALSUCCESS)
 	{
 		++m_nQueryCount;
-		strcpy(m_szQueryId,CONMAN_ID);
+		strcpy_s(m_szQueryId,CONMAN_ID);
 		char* p = &m_szQueryId[strlen(m_szQueryId)];
 		_ultoa(m_nQueryCount, p, 16);
 		strcpy(queryId, m_szQueryId);
