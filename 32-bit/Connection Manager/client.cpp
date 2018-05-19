@@ -31,8 +31,7 @@ ODMClient::ODMClient(LPSTR lpszAppId, WORD version, DWORD dwEnvData)
 
 ODMClient::~ODMClient()
 {
-	if(m_pDefaultDms)
-		delete m_pDefaultDms;
+	delete m_pDefaultDms;
 
 	ODMDmsListIterator iterator( m_otherDmss );
 	while( iterator )
