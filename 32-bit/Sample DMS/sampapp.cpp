@@ -155,9 +155,7 @@ Document *pDoc;
 STDMETHODIMP_(ODMSTATUS) Application::CODMDocMan::SaveDoc(LPSTR lpszDocId,
 LPSTR lpszNewDocId)
 {
-Document *pDoc;
-
-	pDoc = DocList.GetDocumentById(lpszDocId);
+	Document *pDoc = DocList.GetDocumentById(lpszDocId);
 
 	if(pDoc == NULL)
 		return ODM_E_DOCID;
@@ -170,9 +168,7 @@ Document *pDoc;
 STDMETHODIMP_(ODMSTATUS) Application::CODMDocMan::CloseDoc(LPSTR lpszDocId,
 DWORD activeTime, DWORD pagesPrinted, LPVOID sessionData, WORD dataLen)
 {
-Document *pDoc;
-
-	pDoc = DocList.GetDocumentById(lpszDocId);
+	Document *pDoc = DocList.GetDocumentById(lpszDocId);
 
 	if(pDoc == NULL)
 		return ODM_E_DOCID;
@@ -185,16 +181,13 @@ STDMETHODIMP_(ODMSTATUS) Application::CODMDocMan::NewDoc(LPSTR lpszDocId,
 DWORD dwFlags, LPSTR lpszFormat, LPSTR lpszDocLocation)
 {
 Document *pDoc;
-LPSTR lp;
-ODMSTATUS err;
 
-	err = DocList.NewDocument(lpszFormat, lpszDocLocation, &pDoc, dwFlags,
-				m_pObject->m_clientWind);
-
+	ODMSTATUS err = DocList.NewDocument(lpszFormat, lpszDocLocation, &pDoc, dwFlags,
+	                                    m_pObject->m_clientWind);
 	if(err)
 		return err;
 
-	lp = pDoc->GetId();
+	LPSTR lp = pDoc->GetId();
 	wsprintf(lpszDocId, "::ODMA\\%s\\%s", (LPSTR) DMSID, lp);
 	return 0;
 }
@@ -206,10 +199,9 @@ LPVOID pInstanceData)
 {
 ODMSTATUS err;
 SaveAsData saData;
-Document *pDoc;
-LPSTR lp;
+	LPSTR lp;
 
-	pDoc = DocList.GetDocumentById(lpszDocId);
+	Document *pDoc = DocList.GetDocumentById(lpszDocId);
 
 	if(!pDoc)
 		return ODM_E_DOCID;
@@ -337,9 +329,7 @@ ODMSTATUS err;
 STDMETHODIMP_(ODMSTATUS) Application::CODMDocMan::GetDocInfo(LPSTR lpszDocId,
 WORD item, LPSTR lpszData, WORD dataLen)
 {
-Document *pDoc;
-
-	pDoc = DocList.GetDocumentById(lpszDocId);
+	Document *pDoc = DocList.GetDocumentById(lpszDocId);
 
 	if(pDoc == NULL)
 		return ODM_E_DOCID;
@@ -351,9 +341,7 @@ Document *pDoc;
 STDMETHODIMP_(ODMSTATUS) Application::CODMDocMan::SetDocInfo(LPSTR lpszDocId,
 WORD item, LPSTR lpszData)
 {
-Document *pDoc;
-
-	pDoc = DocList.GetDocumentById(lpszDocId);
+	Document *pDoc = DocList.GetDocumentById(lpszDocId);
 
 	if(pDoc == NULL)
 		return ODM_E_DOCID;
