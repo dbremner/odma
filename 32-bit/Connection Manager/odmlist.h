@@ -16,6 +16,8 @@
 #ifndef __ODMULIST_H
 #define __ODMULIST_H
 
+#include <atlstr.h>
+
 class ODMDms; // This class is declared in conman.h
 
 class ODMDmsList;
@@ -136,14 +138,14 @@ public:
 
 class AppDmsOverrideItem
 {
-	char szAppId[ ODM_APPID_MAX ];
-	char szDmsId[ ODM_DMSID_MAX ];
+	CString szAppId;
+	CString szDmsId;
 			
 public:
 	AppDmsOverrideItem( LPCSTR lpszAppId, LPCSTR lpszDmsId )
+		:szAppId(lpszAppId),
+		szDmsId(lpszDmsId)
 	{
-		strcpy_s(szAppId, lpszAppId);
-		strcpy_s(szDmsId, lpszDmsId);
 	}
 	BOOL operator ==( const	AppDmsOverrideItem& rOther ) const
 	{ 
