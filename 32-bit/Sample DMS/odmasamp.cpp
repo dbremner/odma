@@ -49,7 +49,7 @@ LPUNKNOWN pUnkOuter, LPVOID pReserved, LPSTR lpszAppId, DWORD dwEnvData)
 	}
 
 	// Get the requested interface on the application object.
-	HRESULT hRes = pApp->GetInterface(riid, ppvObj);
+	const HRESULT hRes = pApp->GetInterface(riid, ppvObj);
 
 	if(*ppvObj)
 		((LPUNKNOWN)(*ppvObj))->Release();  // Balances the ref. count from 'new'.

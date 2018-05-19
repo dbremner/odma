@@ -94,7 +94,7 @@ void CFrmDMSOptions::OnGetDmsInfo()
 	LPSTR lpszDms = m_GetDms.GetBuffer(ODM_DMSID_MAX);
 
 
-	ODMSTATUS odm = ODMGetDMS(lpszAppId, lpszDms);
+	const ODMSTATUS odm = ODMGetDMS(lpszAppId, lpszDms);
 	if(!odm)
 	{
 		WORD wVerNo = 0;

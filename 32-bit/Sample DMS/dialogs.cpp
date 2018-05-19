@@ -116,7 +116,7 @@ static char *lpDocList;
 				//BVG: Set Doc Name into List Box 
 				LPSTR lpNowDocName=new char[DOC_NAME_MAX];
 				pDoc->GetInfo(ODM_NAME, lpNowDocName, DOC_NAME_MAX);
-				int index = (int)SendDlgItemMessage(hwndDlg, IDC_SELECT, LB_ADDSTRING, 0, (LPARAM)lpNowDocName);
+				const int index = (int)SendDlgItemMessage(hwndDlg, IDC_SELECT, LB_ADDSTRING, 0, (LPARAM)lpNowDocName);
 				delete[] lpNowDocName;
 
 				//BVG: Save DocId as ItemData

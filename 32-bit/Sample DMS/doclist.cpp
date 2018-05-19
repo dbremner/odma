@@ -50,7 +50,7 @@ Document* DocumentList::GetDocumentByIndex(int n)
 int DocumentList::GetDocumentIndexById(LPSTR lpszDocId)
 {
 	// ::ODMA\<DmsId>\<doc-specific>
-	int offset = 7+strlen(DMSID)+1;
+	const int offset = 7+strlen(DMSID)+1;
 
 	for(int i = 0; i<MAXDOCS; i++) {
 		if(List[i] == nullptr)
@@ -69,7 +69,7 @@ int DocumentList::GetDocumentIndexById(LPSTR lpszDocId)
 
 Document* DocumentList::GetDocumentById(LPSTR lpszDocId)
 {
-	int n = GetDocumentIndexById(lpszDocId);
+	const int n = GetDocumentIndexById(lpszDocId);
 
 	if(n == -1)
 		return nullptr;
@@ -173,7 +173,7 @@ ODMSTATUS err;
 
 ODMSTATUS DocumentList::DeleteDocument( LPSTR lpszDocId )
 {
-	int n = GetDocumentIndexById(lpszDocId);
+	const int n = GetDocumentIndexById(lpszDocId);
 
 	if(n == -1)
 		return ODM_E_DOCID;

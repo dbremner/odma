@@ -73,7 +73,7 @@ STDMETHODIMP Application::CUnknown::QueryInterface(REFIID riid, LPVOID FAR* ppob
 
 STDMETHODIMP_(ULONG) Application::CUnknown::AddRef(VOID)
 {
-	ULONG dwRefs = ++m_pObject->m_dwRefs;
+	const ULONG dwRefs = ++m_pObject->m_dwRefs;
 
 	return dwRefs;
 }
@@ -81,7 +81,7 @@ STDMETHODIMP_(ULONG) Application::CUnknown::AddRef(VOID)
 
 STDMETHODIMP_(ULONG) Application::CUnknown::Release(VOID)
 {
-	ULONG dwRefs = --m_pObject->m_dwRefs;
+	const ULONG dwRefs = --m_pObject->m_dwRefs;
 
 	if(dwRefs == 0) {
 		delete m_pObject;
@@ -178,7 +178,7 @@ DWORD dwFlags, LPSTR lpszFormat, LPSTR lpszDocLocation)
 {
 Document *pDoc;
 
-	ODMSTATUS err = DocList.NewDocument(lpszFormat, lpszDocLocation, &pDoc, dwFlags,
+	const ODMSTATUS err = DocList.NewDocument(lpszFormat, lpszDocLocation, &pDoc, dwFlags,
 	                                    m_pObject->m_clientWind);
 	if(err)
 		return err;
@@ -430,7 +430,7 @@ return odmstatus;
 STDMETHODIMP_(ODMSTATUS) Application::CODMDocMan2::SaveDocEx(LPSTR lpszDocId, 
 										LPSTR lpszNewDocId, LPDWORD pdwFlags)
 {
-	ODMSTATUS odmstatus = m_pObject->m_ODMDocMan.SaveDoc(lpszDocId, lpszNewDocId);
+	const ODMSTATUS odmstatus = m_pObject->m_ODMDocMan.SaveDoc(lpszDocId, lpszNewDocId);
 	if(odmstatus==ODM_SUCCESS)
 		*pdwFlags=(*pdwFlags)|ODM_VERSION_SAME; 
 
