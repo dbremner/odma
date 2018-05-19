@@ -684,7 +684,7 @@ ODMSTATUS ODMClient::ConnectDms(LPCSTR lpszDmsId, ODMDms **ppDms)
 		at its interfaces.  It can still call ODMQueryInterface to go through the
 		connection manager. */
 
-	const ODMSTATUS odm = (*ppDms)->Init(lpszDmsId, m_appid, m_version, NULL,
+	const ODMSTATUS odm = (*ppDms)->Init(lpszDmsId, m_appid, m_version, nullptr,
 		(DWORD_PTR)m_clientWind);
 	if(odm) 
 	{
