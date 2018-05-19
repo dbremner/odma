@@ -21,7 +21,7 @@ ODMSTATUS WINAPI _export ODMActivate(ODMHANDLE odmHandle, WORD action,
 {
 	LogString("ODMActivate\r\n");
 	LogString("\tInput parameters:\r\n");
-	LogParNumber("odmHandle", (ULONG)odmHandle);
+	LogParNumber("odmHandle", (ULONG_PTR)odmHandle);
 	LogParNumber("action", action);
 	LogParString("lpszDocId", lpszDocId);
 
@@ -45,11 +45,11 @@ ODMSTATUS WINAPI _export ODMCloseDoc(ODMHANDLE odmHandle, LPSTR lpszDocId,
 {
 	LogString("ODMCloseDoc\r\n");
 	LogString("\tInput parameters:\r\n");
-	LogParNumber("odmHandle", (ULONG)odmHandle);
+	LogParNumber("odmHandle", (ULONG_PTR)odmHandle);
 	LogParString("lpszDocId", lpszDocId);
 	LogParNumber("activeTime", activeTime);
 	LogParNumber("pagesPrinted", pagesPrinted);
-	LogParNumber("sessionData address", (ULONG)sessionData);
+	LogParNumber("sessionData address", (ULONG_PTR)sessionData);
 	LogParNumber("dataLen", dataLen);
 
 	ODMSTATUS odm = ODM_E_HANDLE;
@@ -73,7 +73,7 @@ ODMSTATUS WINAPI _export ODMGetDMSInfo(ODMHANDLE odmHandle, LPSTR lpszDmsId,
 {
 	LogString("ODMGetDMSInfo\r\n");
 	LogString("\tInput parameters:\r\n");
-	LogParNumber("odmHandle", (ULONG)odmHandle);
+	LogParNumber("odmHandle", (ULONG_PTR)odmHandle);
 
 	ODMSTATUS odm = ODM_E_HANDLE;
 		
@@ -98,7 +98,7 @@ ODMSTATUS WINAPI _export ODMGetDocInfo(ODMHANDLE odmHandle, LPSTR lpszDocId,
 {
 	LogString("ODMGetDocInfo\r\n");
 	LogString("\tInput parameters:\r\n");
-	LogParNumber("odmHandle", (ULONG)odmHandle);
+	LogParNumber("odmHandle", (ULONG_PTR)odmHandle);
 	LogParString("lpszDocId", lpszDocId);
 	LogParNumber("item", item);
 	if(item == ODM_DMS_DEFINED)
@@ -126,7 +126,7 @@ ODMSTATUS WINAPI _export ODMGetLeadMoniker(ODMHANDLE odmHandle, LPSTR lpszDocId,
 {
 	LogString("ODMGetLeadMoniker\r\n");
 	LogString("\tInput parameters:\r\n");
-	LogParNumber("odmHandle", (ULONG)odmHandle);
+	LogParNumber("odmHandle", (ULONG_PTR)odmHandle);
 	LogParString("lpszDocId", lpszDocId);
 
 	ODMSTATUS odm = ODM_E_HANDLE;
@@ -138,7 +138,7 @@ ODMSTATUS WINAPI _export ODMGetLeadMoniker(ODMHANDLE odmHandle, LPSTR lpszDocId,
 	}
 
 	LogString("\tOutput parameters:\r\n");
-	LogParNumber("ppMoniker address", (ULONG)ppMoniker);
+	LogParNumber("ppMoniker address", (ULONG_PTR)ppMoniker);
 	LogParNumber("Return value", odm);
 
 	return odm;
@@ -150,7 +150,7 @@ ODMSTATUS WINAPI _export ODMNewDoc(ODMHANDLE odmHandle, LPSTR lpszDocId,
 {
 	LogString("ODMNewDoc\r\n");
 	LogString("\tInput parameters:\r\n");
-	LogParNumber("odmHandle", (ULONG)odmHandle);
+	LogParNumber("odmHandle", (ULONG_PTR)odmHandle);
 	LogParNumber("dwFlags", dwFlags);
 	LogParString("lpszFormat", lpszFormat);
 	LogParString("lpszDocLocation", lpszDocLocation);
@@ -176,7 +176,7 @@ ODMSTATUS WINAPI _export ODMOpenDoc(ODMHANDLE odmHandle, DWORD flags,
 {
 	LogString("ODMOpenDoc\r\n");
 	LogString("\tInput parameters:\r\n");
-	LogParNumber("odmHandle", (ULONG)odmHandle);
+	LogParNumber("odmHandle", (ULONG_PTR)odmHandle);
 	LogParNumber("flags", flags);
 	LogParString("lpszDocId", lpszDocId);
 
@@ -201,9 +201,9 @@ HRESULT WINAPI _export ODMQueryInterface(ODMHANDLE odmHandle, LPSTR lpszDocId,
 {
 	LogString("ODMQueryInterface\r\n");
 	LogString("\tInput parameters:\r\n");
-	LogParNumber("odmHandle", (ULONG)odmHandle);
+	LogParNumber("odmHandle", (ULONG_PTR)odmHandle);
 	LogParString("lpszDocId", lpszDocId);
-	LogParNumber("riid address", (ULONG)(&riid));
+	LogParNumber("riid address", (ULONG_PTR)(&riid));
 
 	auto hRes = (HRESULT) E_INVALIDARG;
 		
@@ -214,7 +214,7 @@ HRESULT WINAPI _export ODMQueryInterface(ODMHANDLE odmHandle, LPSTR lpszDocId,
 	}
 
 	LogString("\tOutput parameters:\r\n");
-	LogParNumber("ppvObj address", (ULONG)ppvObj);
+	LogParNumber("ppvObj address", (ULONG_PTR)ppvObj);
 	LogParNumber("Return value", (ULONG)hRes);
 
 	return hRes;
@@ -263,7 +263,7 @@ ODMSTATUS WINAPI _export ODMRegisterApp(ODMHANDLE *pOdmHandle,
 		odm = ODM_E_NODMS;
 
 	LogString("\tOutput parameters:\r\n");
-	LogParNumber("odmHandle", (ULONG)*pOdmHandle);
+	LogParNumber("odmHandle", (ULONG_PTR)*pOdmHandle);
 	LogParNumber("Return value", odm);
 
 	return odm;
@@ -276,11 +276,11 @@ ODMSTATUS WINAPI _export ODMSaveAs(ODMHANDLE odmHandle, LPSTR lpszDocId,
 {
 	LogString("ODMSaveAs\r\n");
 	LogString("\tInput parameters:\r\n");
-	LogParNumber("odmHandle", (ULONG)odmHandle);
+	LogParNumber("odmHandle", (ULONG_PTR)odmHandle);
 	LogParString("lpszDocId", lpszDocId);
 	LogParString("lpszFormat", lpszFormat);
-	LogParNumber("pcbCallBack address", (ULONG) pcbCallBack);
-	LogParNumber("pInstanceData address", (ULONG) pInstanceData);
+	LogParNumber("pcbCallBack address", (ULONG_PTR) pcbCallBack);
+	LogParNumber("pInstanceData address", (ULONG_PTR) pInstanceData);
 
 	ODMSTATUS odm = ODM_E_HANDLE;
 		
@@ -304,7 +304,7 @@ ODMSTATUS WINAPI _export ODMSaveDoc(ODMHANDLE odmHandle, LPSTR lpszDocId,
 {
 	LogString("ODMSaveDoc\r\n");
 	LogString("\tInput parameters:\r\n");
-	LogParNumber("odmHandle", (ULONG)odmHandle);
+	LogParNumber("odmHandle", (ULONG_PTR)odmHandle);
 	LogParString("lpszDocId", lpszDocId);
 
 	ODMSTATUS odm = ODM_E_HANDLE;
@@ -328,7 +328,7 @@ ODMSTATUS WINAPI _export ODMSelectDoc(ODMHANDLE odmHandle,
 {
 	LogString("ODMSelectDoc\r\n");
 	LogString("\tInput parameters:\r\n");
-	LogParNumber("odmHandle", (ULONG)odmHandle);
+	LogParNumber("odmHandle", (ULONG_PTR)odmHandle);
 	LogParNumber("pdwFlags", *pdwFlags);
 
 	ODMSTATUS odm = ODM_E_HANDLE;
@@ -353,7 +353,7 @@ ODMSTATUS WINAPI _export ODMSetDocInfo(ODMHANDLE odmHandle, LPSTR lpszDocId,
 {
 	LogString("ODMSetDocInfo\r\n");
 	LogString("\tInput parameters:\r\n");
-	LogParNumber("odmHandle", (ULONG)odmHandle);
+	LogParNumber("odmHandle", (ULONG_PTR)odmHandle);
 	LogParString("lpszDocId", lpszDocId);
 	LogParNumber("item", item);
 	LogParString("lpszData", lpszData);
@@ -377,7 +377,7 @@ void WINAPI _export ODMUnRegisterApp(ODMHANDLE odmHandle)
 {
 	LogString("ODMUnRegisterApp\r\n");
 	LogString("\tInput parameters:\r\n");
-	LogParNumber("odmHandle", (ULONG)odmHandle);
+	LogParNumber("odmHandle", (ULONG_PTR)odmHandle);
 
 	if(odmHandle)
 	{
@@ -461,7 +461,7 @@ ODMSTATUS WINAPI _export ODMQueryExecute(ODMHANDLE odmHandle, LPCSTR lpszQuery,
 {
 	LogString("ODMQueryExecute\r\n");
 	LogString("\tInput parameters:\r\n");
-	LogParNumber("odmHandle", (ULONG)odmHandle);
+	LogParNumber("odmHandle", (ULONG_PTR)odmHandle);
 	LogParString("lpszQuery", lpszQuery);
 	LogParNumber("flags", flags);
 	LogParList("lpszDMSList", lpszDMSList);
@@ -487,7 +487,7 @@ ODMSTATUS WINAPI _export ODMQueryGetResults(ODMHANDLE odmHandle, LPCSTR queryId,
 {
 	LogString("ODMQueryGetResults\r\n");
 	LogString("\tInput parameters:\r\n");
-	LogParNumber("odmHandle", (ULONG)odmHandle);
+	LogParNumber("odmHandle", (ULONG_PTR)odmHandle);
 	LogParString("queryId", queryId);
 	LogParNumber("docNameLen", docNameLen);
 	LogParNumber("docCount", *docCount);
@@ -524,7 +524,7 @@ ODMSTATUS WINAPI _export ODMQueryClose(ODMHANDLE odmHandle, LPCSTR queryId)
 {
 	LogString("ODMQueryClose\r\n");
 	LogString("\tInput parameters:\r\n");
-	LogParNumber("odmHandle", (ULONG)odmHandle);
+	LogParNumber("odmHandle", (ULONG_PTR)odmHandle);
 	LogParString("queryId", queryId);
 
 	ODMSTATUS odm = ODM_E_HANDLE;
@@ -554,12 +554,12 @@ ODMSTATUS WINAPI _export ODMCloseDocEx(ODMHANDLE odmHandle, LPSTR lpszDocId,
 {
 	LogString("ODMCloseDocEx\r\n");
 	LogString("\tInput parameters:\r\n");
-	LogParNumber("Handle", (ULONG)odmHandle);
+	LogParNumber("Handle", (ULONG_PTR)odmHandle);
 	LogParString("lpszDocId", lpszDocId);
 	LogParNumber("pdwFlags", *pdwFlags);
 	LogParNumber("activeTime", activeTime);
 	LogParNumber("pagesPrinted", pagesPrinted);
-	LogParNumber("sessionData address", (ULONG)sessionData);
+	LogParNumber("sessionData address", (ULONG_PTR)sessionData);
 	LogParNumber("dataLen", dataLen);
 	
 	ODMSTATUS odm = ODM_E_HANDLE;
@@ -584,7 +584,7 @@ ODMSTATUS WINAPI _export ODMGetAlternateContent(ODMHANDLE odmHandle, LPSTR lpszD
 {
 	LogString("ODMGetAlternateContent\r\n");
 	LogString("\tInput parameters:\r\n");
-	LogParNumber("odmHandle", (ULONG)odmHandle);
+	LogParNumber("odmHandle", (ULONG_PTR)odmHandle);
 	LogParString("lpszDocId", lpszDocId);
 	LogParNumber("pdwFlags", *pdwFlags);
 	LogParString("lpszFormat", lpszFormat);
@@ -613,7 +613,7 @@ ODMSTATUS WINAPI _export ODMGetDocRelation(ODMHANDLE odmHandle, LPSTR lpszDocId,
 {
 	LogString("ODMGetDocRelation\r\n");
 	LogString("\tInput parameters:\r\n");
-	LogParNumber("odmHandle", (ULONG)odmHandle);
+	LogParNumber("odmHandle", (ULONG_PTR)odmHandle);
 	LogParString("lpszDocId", lpszDocId);
 	LogParNumber("pdwFlags", *pdwFlags);
 	LogParString("lpszFormat", lpszFormat);
@@ -643,7 +643,7 @@ ODMSTATUS WINAPI _export ODMQueryCapability(ODMHANDLE odmHandle, LPCSTR lpszDmsI
 {
 	LogString("ODMQueryCapability\r\n");
 	LogString("\tInput parameters:\r\n");
-	LogParNumber("odmHandle", (ULONG)odmHandle);
+	LogParNumber("odmHandle", (ULONG_PTR)odmHandle);
 	LogParString("lpszDmsId", lpszDmsId);
 	LogParNumber("function", function);
 	LogParNumber("item", item);
@@ -670,11 +670,11 @@ ODMSTATUS WINAPI _export ODMSaveAsEx(ODMHANDLE odmHandle, LPSTR lpszDocId,
 {
 	LogString("ODMSaveAsEx\r\n");
 	LogString("\tInput parameters:\r\n");
-	LogParNumber("odmHandle", (ULONG)odmHandle);
+	LogParNumber("odmHandle", (ULONG_PTR)odmHandle);
 	LogParString("lpszDocId", lpszDocId);
 	LogParString("lpszFormat", lpszFormat);
-	LogParNumber("pcbCallBack address", (ULONG) pcbCallBack);
-	LogParNumber("pInstanceData address", (ULONG) pInstanceData);
+	LogParNumber("pcbCallBack address", (ULONG_PTR) pcbCallBack);
+	LogParNumber("pInstanceData address", (ULONG_PTR) pInstanceData);
 	LogParNumber("pdwFlags", *pdwFlags);
 
 	ODMSTATUS odm = ODM_E_HANDLE;
@@ -700,7 +700,7 @@ ODMSTATUS WINAPI _export ODMSaveDocEx(ODMHANDLE odmHandle, LPSTR lpszDocId,
 {
 	LogString("ODMSaveDocEx\r\n");
 	LogString("\tInput parameters:\r\n");
-	LogParNumber("odmHandle", (ULONG)odmHandle);
+	LogParNumber("odmHandle", (ULONG_PTR)odmHandle);
 	LogParString("lpszDocId", lpszDocId);
 	LogParNumber("pdwFlags", *pdwFlags);
 
@@ -727,7 +727,7 @@ ODMSTATUS WINAPI _export ODMSelectDocEx(ODMHANDLE odmHandle, LPSTR lpszDocIds,
 {
 	LogString("ODMSelectDocEx\r\n");
 	LogString("\tInput parameters:\r\n");
-	LogParNumber("odmHandle", (ULONG)odmHandle);
+	LogParNumber("odmHandle", (ULONG_PTR)odmHandle);
 	LogParNumber("pwDocIdsLen", *pwDocIdsLen);
 	LogParNumber("pwDocCount", *pwDocCount);
 	LogParNumber("pdwFlags", *pdwFlags);
@@ -761,7 +761,7 @@ ODMSTATUS WINAPI _export ODMSetAlternateContent(ODMHANDLE odmHandle, LPSTR lpszD
 {
 	LogString("ODMSetAlternateContent\r\n");
 	LogString("\tInput parameters:\r\n");
-	LogParNumber("odmHandle", (ULONG)odmHandle);
+	LogParNumber("odmHandle", (ULONG_PTR)odmHandle);
 	LogParString("lpszDocId", lpszDocId);
 	LogParNumber("pdwFlags", *pdwFlags);
 	LogParString("lpszFormat", lpszFormat);
@@ -790,11 +790,11 @@ ODMSTATUS WINAPI _export ODMSetDocEvent(ODMHANDLE odmHandle, LPSTR lpszDocId,
 {
 	LogString("ODMSetDocEvent\r\n");
 	LogString("\tInput parameters:\r\n");
-	LogParNumber("odmHandle", (ULONG)odmHandle);
+	LogParNumber("odmHandle", (ULONG_PTR)odmHandle);
 	LogParString("lpszDocId", lpszDocId);
 	LogParNumber("flags", flags);
 	LogParNumber("event", event);
-	LogParNumber("lpData", (ULONG)lpData);
+	LogParNumber("lpData", (ULONG_PTR)lpData);
 	LogParNumber("dwDataLen", dwDataLen);
 	LogParString("lpszComment", lpszComment);
 
@@ -819,7 +819,7 @@ ODMSTATUS WINAPI _export ODMSetDocRelation(ODMHANDLE odmHandle, LPSTR lpszDocId,
 {
 	LogString("ODMSetDocRelation\r\n");
 	LogString("\tInput parameters:\r\n");
-	LogParNumber("odmHandle", (ULONG)odmHandle);
+	LogParNumber("odmHandle", (ULONG_PTR)odmHandle);
 	LogParString("lpszDocId", lpszDocId);
 	LogParNumber("pdwFlags", *pdwFlags);
 	LogParString("lpszLinkedId", lpszLinkedId);
