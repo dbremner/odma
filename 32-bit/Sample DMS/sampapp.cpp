@@ -184,7 +184,7 @@ Document *pDoc;
 		return err;
 
 	LPSTR lp = pDoc->GetId();
-	wsprintf(lpszDocId, "::ODMA\\%s\\%s", (LPSTR) DMSID, lp);
+	wsprintf(lpszDocId, "::ODMA\\%s\\%s", DMSID, lp);
 	return 0;
 }
 
