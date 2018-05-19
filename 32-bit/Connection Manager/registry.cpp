@@ -180,7 +180,7 @@ exceed entryLen.
 ***************************************************************************/
 int ODMRegistry::GetDMSEntry(LPCSTR lpszDmsId, LPSTR lpszDMSEntry, int entryLen)
 {
-	const int len = strlen(lpszDmsId);
+	const size_t len = strlen(lpszDmsId);
 
 	if(len > ODM_DMSID_MAX)
 		return -1;
