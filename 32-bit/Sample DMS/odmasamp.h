@@ -47,9 +47,6 @@ class Application {
 	//----------------------------------------------------------------
 	// IUnknown implementation
 	//----------------------------------------------------------------
-//	class CUnknown : IUnknown 
-//	{
-//	public:
 	struct CUnknown : IUnknown 
 	{
 		CUnknown(Application *pObject) { m_pObject = pObject; }
