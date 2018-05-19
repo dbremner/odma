@@ -3,11 +3,7 @@
 /////////////////////////////////////////////////////////////////////////////
 
 class CODMATestDoc :
-#ifdef WIN32
 	public CRichEditDoc
-#else
-	public CDocument
-#endif
 {
 protected: // create from serialization only
 	CODMATestDoc();
@@ -55,11 +51,7 @@ public:
 // Overloaded function
 protected:
 
-#ifdef WIN32
 	virtual BOOL DoFileSave();
-#else
-	virtual BOOL SaveModified();
-#endif
 
 // Operations with DMS
 public:
@@ -88,11 +80,7 @@ protected:
 
 // For using tow format document
 protected:
-#ifdef WIN32
 	virtual CRichEditCntrItem* CreateClientItem(REOBJECT* preo) const;
-#else
-	BOOL m_bRTF;
-#endif
 };
 
 typedef  CODMATestDoc* LPODMATestDoc;

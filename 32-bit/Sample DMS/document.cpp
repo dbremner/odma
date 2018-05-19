@@ -75,13 +75,7 @@ Document::Document(LPSTR lpszDocId)
 
 void Document::Init(void)
 {
-#ifdef WIN32
 SYSTEMTIME tm;
-#elif __BORLANDC__
-	struct time tm;
-#else
-	struct _dostime_t tm;
-#endif
 
 
 	bEdited = FALSE; //BVG:
@@ -98,20 +92,12 @@ SYSTEMTIME tm;
 
 	DocAccessed = 0;
 
-#ifdef WIN32
 	GetLocalTime(&tm);
 
 	if(tm.wMilliseconds > 99)
 		tm.wMilliseconds /= 10;
 
 	wsprintf(DocId, "%02d-%02d-%02d-%02d", tm.wHour, tm.wMinute, tm.wSecond, tm.wMilliseconds);
-#elif __BORLANDC__
-	gettime(&tm);
-	wsprintf(DocId, "%02d-%02d-%02d-%02d", tm.ti_hour, tm.ti_min, tm.ti_sec, tm.ti_hund);
-#else
-	_dos_gettime(&tm);
-	wsprintf(DocId, "%02d-%02d-%02d-%02d", tm.hour, tm.minute, tm.second, tm.hsecond);
-#endif
 }
 
 
@@ -125,7 +111,6 @@ ODMSTATUS Document::Open(LPSTR lpszFileName)
 
 	if(DocLocation[0][0] == '\0') 
 	{
-	#ifdef WIN32
 		char szTmpPath[256];
 
 		// WIN32 requires you to get a temp path first, then pass it to get
@@ -134,11 +119,6 @@ ODMSTATUS Document::Open(LPSTR lpszFileName)
 		GetTempFileName(szTmpPath, "ODM", 0, DocLocation[0]);
 		_splitpath(DocLocation[0], drive, dir, fname, ext);
 		_makepath(DocLocation[0], drive, dir, fname, "txt");
-	#else
-		GetTempFileName(0, "ODM", 0, DocLocation[0]);
-		_splitpath(DocLocation[0], drive, dir, fname, ext);
-		_makepath(DocLocation[0], drive, dir, fname, "txt");
-	#endif
 	}
 
 	strcpy(lpszFileName, DocLocation[0]);

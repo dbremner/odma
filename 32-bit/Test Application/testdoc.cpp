@@ -4,9 +4,7 @@
 #include "stdafx.h"
 #include "odmatest.h"
 
-#ifdef WIN32
 #include "CntrItem.h"
-#endif
 #include "TestDoc.h"
 #include "DOCFrmt.h"
 
@@ -25,15 +23,9 @@ char CODMATestDoc::Format[] = "";
 /////////////////////////////////////////////////////////////////////////////
 // CODMATestDoc
 
-#ifdef WIN32
 IMPLEMENT_DYNCREATE(CODMATestDoc, CRichEditDoc)
 
 BEGIN_MESSAGE_MAP(CODMATestDoc, CRichEditDoc)
-#else
-IMPLEMENT_DYNCREATE(CODMATestDoc, CDocument)
-
-BEGIN_MESSAGE_MAP(CODMATestDoc, CDocument)
-#endif
 	//{{AFX_MSG_MAP(CODMATestDoc)
 	ON_COMMAND(ID_FILE_SAVE, OnFileSave)
 	ON_COMMAND(ID_FILE_SAVE_AS, OnFileSaveAs)
@@ -56,13 +48,11 @@ CODMATestDoc::~CODMATestDoc()
 {
 }
 
-#ifdef WIN32
 CRichEditCntrItem* CODMATestDoc::CreateClientItem(REOBJECT* preo) const
 {
 	// cast away constness of this
 	return new CODMATestCntrItem(preo, (CODMATestDoc*) this);
 }
-#endif
 
 /////////////////////////////////////////////////////////////////////////////
 // CODMATestDoc commands
@@ -227,11 +217,7 @@ BOOL CODMATestDoc::OnNewDocument()
 	if (!CDocument::OnNewDocument())
 		return FALSE;   
 
-#ifdef WIN32
 	CRichEditDoc::SetPathName("New Text Document", TRUE);
-#else
-	SetTitle("New Text Document");
-#endif
 	
 	return TRUE;
 }
@@ -240,11 +226,7 @@ BOOL CODMATestDoc::OnNewDocument()
 BOOL CODMATestDoc::OnOpenDocument(LPCTSTR lpszPathName) 
 {
 	if(m_bAppSel)
-#ifdef WIN32
 		return CRichEditDoc::OnOpenDocument(lpszPathName);
-#else
-		return CDocument::OnOpenDocument(lpszPathName);
-#endif
 	strcpy(m_Format, Format);
 	strcpy(m_DocId, DocId);
 	GetTitle(m_TitleText, m_DocId, m_Format);
@@ -263,20 +245,12 @@ BOOL CODMATestDoc::OnOpenDocument(LPCTSTR lpszPathName)
 			return FALSE;
 	}
 
-#ifdef WIN32
 	if (!CRichEditDoc::OnOpenDocument(m_FileName))
 		return FALSE;
-#else
-	if (!CDocument::OnOpenDocument(m_FileName))
-		return FALSE;
-    
-	SetTitle(m_TitleText);
-#endif
 
 	return TRUE;
 }
 
-#ifdef WIN32
 
 BOOL CODMATestDoc::DoFileSave()
 {
@@ -284,44 +258,12 @@ BOOL CODMATestDoc::DoFileSave()
 	return TRUE;
 }
 
-#else
-
-BOOL CODMATestDoc::SaveModified()
-{
-	if (!IsModified())
-		return TRUE;        // ok to continue
-
-	// get name/title of document
-	CString name = m_strTitle;
-
-	CString prompt;
-	AfxFormatString1(prompt, AFX_IDP_ASK_TO_SAVE, name);
-	switch (AfxMessageBox(prompt, MB_YESNOCANCEL, AFX_IDP_ASK_TO_SAVE))
-	{
-	case IDCANCEL:
-		return FALSE;       // don't continue
-	case IDYES:
-		OnFileSave();
-		break;
-	case IDNO:
-		break;
-	default:
-		ASSERT(FALSE);
-		break;
-	}
-	return TRUE;    // keep going
-}
-#endif
 
 
 void CODMATestDoc::OnCloseDocument()
 {
 	DMSCloseDoc();
-#ifdef WIN32
 	COleServerDoc::OnCloseDocument();
-#else
-	CDocument::OnCloseDocument();
-#endif
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -338,11 +280,7 @@ void CODMATestDoc::Serialize(CArchive& ar)
 		// TODO: add loading code here
 	}
 
-#ifdef WIN32
 	CRichEditDoc::Serialize(ar);
-#else
-	((CEditView*)m_viewList.GetHead())->SerializeRaw(ar);
-#endif
 }
 
 // Discribe message map functions
@@ -361,16 +299,8 @@ void CODMATestDoc::OnFileSave()
 	
 	if(bOk)
 	{
-#ifdef WIN32
 		DoSave(m_FileName, FALSE);
 		CRichEditDoc::SetPathName(m_TitleText, TRUE);
-#else
-		CDocument::DoSave(m_FileName, FALSE);
-		char UpperPath[ODM_TITLETEXT_MAX];
-		strcpy(UpperPath, m_TitleText);
-		SetPathName(AnsiUpper(UpperPath), TRUE);
-		SetTitle(m_TitleText);
-#endif
 	}
 
 }
@@ -396,16 +326,8 @@ void CODMATestDoc::OnFileSaveAs()
 	
 	if(bOk)
 	{
-#ifdef WIN32
 		DoSave(m_FileName, FALSE);
 		CRichEditDoc::SetPathName(m_TitleText, TRUE);
-#else
-		CDocument::DoSave(m_FileName, FALSE);
-		char UpperPath[ODM_TITLETEXT_MAX];
-		strcpy(UpperPath, m_TitleText);
-		SetPathName(AnsiUpper(UpperPath), TRUE);
-		SetTitle(m_TitleText);
-#endif
 	}
 
 }
@@ -417,20 +339,12 @@ void CODMATestDoc::OnFileSaveAs()
 #ifdef _DEBUG
 void CODMATestDoc::AssertValid() const
 {
-#ifdef WIN32
 	CRichEditDoc::AssertValid();
-#else
-	CDocument::AssertValid();
-#endif
 }
 
 void CODMATestDoc::Dump(CDumpContext& dc) const
 {
-#ifdef WIN32
 	CRichEditDoc::Dump(dc);
-#else
-	CDocument::Dump(dc);
-#endif
 }
 #endif //_DEBUG
 

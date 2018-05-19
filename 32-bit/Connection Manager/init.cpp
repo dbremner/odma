@@ -10,14 +10,7 @@
 
 #include <windows.h>
 
-#ifndef WIN32
-	#include <memory.h>
-	#include <compobj.h>
-	#include <stdlib.h>
-	#include <dos.h>
-#else
 	#include <objbase.h>
-#endif
 
 #include "initguid.h"
 #include "conman.h"
@@ -25,26 +18,11 @@
 ODMRegistry Registry;                  // Global registry object
 HINSTANCE hInst;						// Global App Instance
 
-#ifdef WIN32
 	BOOL WINAPI DllMain(HANDLE hModule, DWORD fdwReason, LPVOID lpvReserved)
 	{
 		hInst = hModule;
 		return 1;
 	}
-#else
-	int WINAPI LibMain(HINSTANCE hInstance, WORD wDataSeg, WORD cbHeapSize, LPSTR lpCmdLine)
-	{
-		hInst = hInstance;
-
-	// Undo the lock on the data segment that was automatically placed by the call to LocalInit()
-	//	in the startup code.
-
-		if(cbHeapSize)
-			UnlockData(0);
-
-		return 1;
-	}
-#endif
                    
 
 /*************************************************************
@@ -54,19 +32,11 @@ ODMA 2.0 1997 Ivan
 
 BOOL TimeBomb(WORD wYear, WORD wMonth)
 {
-#ifdef WIN32
 	SYSTEMTIME tm;
 	GetLocalTime(&tm);
 	
 	if(tm.wYear <= wYear && (tm.wYear != wYear || tm.wMonth < wMonth))
 		return FALSE;
-#else
-	struct _dosdate_t tm;
-	_dos_getdate(&tm);
-
-	if(tm.year <= wYear && (tm.year != wYear || tm.month < wMonth))
-		return FALSE;
-#endif
 	MessageBox(NULL, "This version of the ODMA Connection Manager is expired",
 	"ODMA Connection Manager", MB_ICONSTOP | MB_TASKMODAL);
 	return TRUE;
@@ -172,14 +142,8 @@ void LogString(const char *str)
 		return;
 
 	DWORD bw = 0;
-#ifdef WIN32
 	SetFilePointer(hFile, bw, NULL, FILE_END);
 	WriteFile(hFile, str, (DWORD)strlen(str), &bw, NULL);
 	CloseHandle(hFile);
-#else
-	_llseek(hFile, 0L, 2);
-	_lwrite(hFile, str, (UINT)strlen(str));
-	_lclose(hFile);
-#endif
 }
 

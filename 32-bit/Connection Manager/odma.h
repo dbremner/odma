@@ -17,15 +17,8 @@ typedef int ODMSTATUS;
 /* Constants */
 #define ODM_API_VERSION			200		/* Version of the API */
 
-#ifdef WIN32
 	#define ODM_DOCID_MAX		255		/* Win32 */
 
-#elif defined( _WINDOWS_ ) || defined( _MSDOS )
-	#define ODM_DOCID_MAX		80		/* Windows 3.x */
-
-#else
-	#define ODM_DOCID_MAX		255		/* Other platforms */
-#endif
 
 #define ODM_DMSID_MAX			9		/* Max length of a DMS ID including the 
 										/* terminating NULL character.  */
@@ -43,18 +36,8 @@ typedef int ODMSTATUS;
 // Maximum length of a filename returned by ODMA including the terminating
 //	NULL character.  Platform dependent.
 
-#ifdef WIN32
 	#define ODM_FILENAME_MAX	255		/* Win32 */
 
-#elif defined( _WINDOWS_ ) || defined( _MSDOS )
-	#define ODM_FILENAME_MAX	128		/* Windows 3.x */
-
-#elif defined( unix ) || defined( _UNIX )
-	#define ODM_FILENAME_MAX	1024	/* Unix */
-
-#else
-	#define ODM_FILENAME_MAX	255		/* Other platforms */
-#endif
 
 
 /* Common format type names */

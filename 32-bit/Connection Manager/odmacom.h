@@ -13,25 +13,16 @@
 #include "odma.h"
 #endif
 
-#ifdef WIN32
 #ifndef _OBJBASE_H_
 #include <objbase.h>
 #endif /*!_OBJBASE_H_*/
-#else
-#ifndef _COMPOBJ_H_
-#include <memory.h>
-#include <compobj.h>
-#endif /*!_COMPOBJ_H_*/
-#endif /*WIN32*/
 
 #ifndef _OLE2_H_
 #include <ole2.h>
 #include <moniker.h>
 #endif
 
-#ifdef WIN32
 #define _export
-#endif
 
 // Define the IODMDocMan interface
 DEFINE_OLEGUID(IID_IODMDocMan, 0x22FF0, 0, 0);

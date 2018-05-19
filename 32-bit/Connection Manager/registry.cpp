@@ -20,11 +20,7 @@
 #include <assert.h>
 #include "conman.h"
 
-#ifdef WIN32
 	#define ODMA_KEY	"ODMA32"
-#else
-	#define ODMA_KEY	"ODMA"
-#endif
 
 
 /**********************************
@@ -79,11 +75,7 @@ ODMRegistry::ODMRegistry(){
 		char *lpNewLog = strstr(m_lplistTokens, "NEWLOG");
 		
 		if(lpNewLog != NULL) 
-#ifdef WIN32		
 			DeleteFile(m_lpszLogPath);
-#else
-			_lcreat(m_lpszLogPath, 0);
-#endif
 	}
 	
 	RegCloseKey(hLogKey);
@@ -358,12 +350,8 @@ HANDLE ODMRegistry::GetLogFile()
 	if(!m_bLogEnable || m_lpszLogPath==NULL)
 		return INVALID_HANDLE_VALUE;
 				
-#ifdef WIN32
 	HANDLE hFile = CreateFile(m_lpszLogPath, GENERIC_WRITE, FILE_SHARE_READ,
 							NULL, OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
-#else
-	HANDLE hFile = _lopen(m_lpszLogPath, OF_WRITE);
-#endif
 
 	return hFile;
 }

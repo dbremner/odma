@@ -14,9 +14,6 @@
 
 #define CONMAN_ID "::ODMA\\ODMA_MGR\\" 
 
-#ifndef WIN32
-#define INVALID_HANDLE_VALUE (HANDLE)-1
-#endif
 
 class ODMClient;
 class ODMRegistry;

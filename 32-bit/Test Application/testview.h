@@ -2,16 +2,10 @@
 //
 /////////////////////////////////////////////////////////////////////////////
 
-#ifdef WIN32
 class CODMATestCntrItem;
-#endif
 
 class CODMATestView :
-#ifdef WIN32
 	public CRichEditView
-#else
-	public CEditView
-#endif
 {
 protected: // create from serialization only
 	CODMATestView();

@@ -5,13 +5,8 @@
 	#error include 'stdafx.h' before including this file for PCH
 #endif
 
-#ifdef WIN32
 	#include "Resource32.h"       // main symbols
 	#define ODMA_KEY	"ODMA32"
-#else
-	#include "Resource.h"       // main symbols
-	#define ODMA_KEY	"ODMA"
-#endif
 
 #include "odma.h"       // main symbols
 

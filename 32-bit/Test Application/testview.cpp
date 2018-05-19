@@ -14,15 +14,9 @@ static char BASED_CODE THIS_FILE[] = __FILE__;
 
 /////////////////////////////////////////////////////////////////////////////
 // CODMATestView
-#ifdef WIN32
 IMPLEMENT_DYNCREATE(CODMATestView, CRichEditView)
 
 BEGIN_MESSAGE_MAP(CODMATestView, CRichEditView)
-#else
-IMPLEMENT_DYNCREATE(CODMATestView, CEditView)
-
-BEGIN_MESSAGE_MAP(CODMATestView, CEditView)
-#endif
 	//{{AFX_MSG_MAP(CODMATestView)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
@@ -45,20 +39,12 @@ CODMATestView::~CODMATestView()
 #ifdef _DEBUG
 void CODMATestView::AssertValid() const
 {
-#ifdef WIN32
 	CRichEditView::AssertValid();
-#else
-	CEditView::AssertValid();
-#endif
 }
 
 void CODMATestView::Dump(CDumpContext& dc) const
 {
-#ifdef WIN32	
 	CRichEditView::Dump(dc);
-#else
-	CEditView::Dump(dc);
-#endif
 }
 
 CODMATestDoc* CODMATestView::GetDocument() // non-debug version is inline

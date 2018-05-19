@@ -5,17 +5,12 @@
 #include "ODMATest.h"
 
 #include "MainFrm.h"
-#ifdef WIN32
 #include "ChildFrm.h"
-#endif
 #include "TestDoc.h"
 #include "TestView.h"
 #include "DMSOpt.h"
 #include "DMSQuery.h"
 
-#ifndef WIN32
-#include <dos.h>
-#endif
 
 #ifdef _DEBUG
 //#define new DEBUG_NEW
@@ -64,7 +59,6 @@ BOOL CODMATestApp::InitInstance()
 		return FALSE;
 #endif		
 
-#ifdef WIN32
 	// Initialize OLE libraries
 	if (!AfxOleInit())
 	{
@@ -83,16 +77,6 @@ BOOL CODMATestApp::InitInstance()
 	Enable3dControlsStatic();	// Call this when linking to MFC statically
 #endif
 
-#else
-
-	// Standard initialization
-	// If you are not using these features and wish to reduce the size
-	//  of your final executable, you should remove from the following
-	//  the specific initialization routines you do not need.
-
-	SetDialogBkColor();        // Set dialog background color to gray
-//	EnableVBX();               // Initialize VBX support
-#endif //WIN32
 
 	LoadStdProfileSettings();  // Load standard INI file options (including MRU)
 
@@ -103,16 +87,10 @@ BOOL CODMATestApp::InitInstance()
 	pDocTemplate = new CMultiDocTemplate(
 		IDR_ODMTYPE,
 		RUNTIME_CLASS(CODMATestDoc),
-#ifdef WIN32
 		RUNTIME_CLASS(CChildFrame), // custom MDI child frame
-#else
-		RUNTIME_CLASS(CMDIChildWnd),        // standard MDI child frame
-#endif
 		RUNTIME_CLASS(CODMATestView));
 
-#ifdef WIN32
 	pDocTemplate->SetContainerInfo(IDR_RTFTYPE_CNTR_IP);
-#endif
 
 	AddDocTemplate(pDocTemplate);
 
@@ -125,7 +103,6 @@ BOOL CODMATestApp::InitInstance()
 	// Enable DDE Execute open
 	EnableShellOpen();
 
-#ifdef WIN32
 	RegisterShellFileTypes(TRUE);
 
 	// Parse command line for standard shell commands, DDE, file open
@@ -135,21 +112,6 @@ BOOL CODMATestApp::InitInstance()
 	// Dispatch commands specified on the command line
 	if (!ProcessShellCommand(cmdInfo))
 		return FALSE;
-#else
-	RegisterShellFileTypes();
-
-	// simple command line parsing
-	if (m_lpCmdLine[0] == '\0')
-	{
-		// create a new (empty) document
-		OnFileNew();
-	}
-	else
-	{
-		// open an existing document
-		OpenDocumentFile(m_lpCmdLine);
-	}
-#endif
 
 	// Enable drag/drop open
 	m_pMainWnd->DragAcceptFiles();
@@ -337,19 +299,11 @@ ODMA 2.0 1997 Ivan
 
 BOOL TimeBomb(WORD wYear, WORD wMonth)
 {
-#ifdef WIN32
 	SYSTEMTIME tm;
 	GetLocalTime(&tm);
 	
 	if(tm.wYear <= wYear && (tm.wYear != wYear || tm.wMonth < wMonth))
 			return FALSE;
-#else
-	struct _dosdate_t tm;
-	_dos_getdate(&tm);
-
-	if(tm.year <= wYear && (tm.year != wYear || tm.month < wMonth))
-		return FALSE;
-#endif
 	MessageBox(NULL, "This version of the ODMA Test Application is expired",
 	"ODMA Test Application", MB_ICONSTOP | MB_TASKMODAL);
 	return TRUE;

@@ -103,13 +103,7 @@ void CFrmDMSOptions::OnGetDmsInfo()
 		if(CODMATestDoc::odmHandle)
 			ODMGetDMSInfo(CODMATestDoc::odmHandle, lpszDms, &wVerNo, &dwExtensions);
 
-#ifdef WIN32        
 		m_Version.Format("%4.2f", wVerNo/100.0);
-#else
-		LPSTR lpszVersions = m_Version.GetBuffer(10);
-		sprintf(lpszVersions, "%4.2f", wVerNo/100.0);
-		m_Version.ReleaseBuffer();
-#endif        
 		m_Query = (BOOL) dwExtensions & ODM_EXT_QUERY;
 		m_WorkFlow = (BOOL) dwExtensions & ODM_EXT_WORKFLOW;
 	}

@@ -8,9 +8,6 @@
 #include <windows.h>
 #include <windowsx.h>
 #include "odmasamp.h"
-#ifndef WIN32
-#include <string.h>
-#endif
 
 BOOL CALLBACK _export SelectDocProc(HWND hwndDlg, UINT message, WPARAM wParam,
 LPARAM lParam)

@@ -8,7 +8,6 @@
 #include "resource.h"
 
 
-#ifdef WIN32
 
 #ifndef GET_WM_COMMAND_CMD
 #define GET_WM_COMMAND_CMD(wp, lp)  HIWORD(wp)
@@ -22,21 +21,6 @@
 #define GET_WM_COMMAND_HWND(wp, lp) (HWND)lp)
 #endif
 
-#else
-
-#ifndef GET_WM_COMMAND_CMD
-#define GET_WM_COMMAND_CMD(wp, lp)  HIWORD(lp)
-#endif
-
-#ifndef GET_WM_COMMAND_ID
-#define GET_WM_COMMAND_ID(wp, lp)   (wp)
-#endif
-
-#ifndef GET_WM_COMMAND_HWND
-#define GET_WM_COMMAND_HWND(wp, lp) ((HWND)LOWORD(lp))
-#endif
-
-#endif
 
 
 #define MAXDOCS			20	// Max. # of documents the sample app. supports
