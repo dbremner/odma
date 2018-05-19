@@ -113,7 +113,7 @@ ODMSTATUS Document::Open(LPSTR lpszFileName)
 
 		// WIN32 requires you to get a temp path first, then pass it to get
 		// a temp filename.
-		GetTempPath(256, (LPTSTR) szTmpPath);
+		GetTempPath(256, szTmpPath);
 		GetTempFileName(szTmpPath, "ODM", 0, DocLocation[0]);
 		_splitpath_s(DocLocation[0], drive, dir, fname, ext);
 		_makepath_s(DocLocation[0], drive, dir, fname, "txt");

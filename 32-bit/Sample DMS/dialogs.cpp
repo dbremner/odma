@@ -60,14 +60,14 @@ int ii, index, count;
 				case IDC_SELECT:
 					if(GET_WM_COMMAND_CMD(wParam, lParam) == LBN_DBLCLK) 
 					{
-						SendMessage(hwndDlg, WM_COMMAND, (WPARAM)IDOK, (LPARAM)lParam);
+						SendMessage(hwndDlg, WM_COMMAND, (WPARAM)IDOK, lParam);
 					}
 					break;
 
 				case IDOK:
 					//BVG: Get DocId from List Boxe's ItemData
 					index = (int)SendDlgItemMessage(hwndDlg, IDC_SELECT, LB_GETCURSEL, 0, 0 );
-					wsprintf(DocId, "::ODMA\\%s\\%s", (LPSTR) DMSID,
+					wsprintf(DocId, "::ODMA\\%s\\%s", DMSID,
 						(LPSTR) SendDlgItemMessage(hwndDlg, IDC_SELECT, LB_GETITEMDATA, index, 0) );
 
 
@@ -138,7 +138,7 @@ static char *lpDocList;
 				case IDC_SELECT:
 					if(GET_WM_COMMAND_CMD(wParam, lParam) == LBN_DBLCLK) 
 					{
-						SendMessage(hwndDlg, WM_COMMAND, (WPARAM)IDOK, (LPARAM)lParam);
+						SendMessage(hwndDlg, WM_COMMAND, (WPARAM)IDOK, lParam);
 					}
 					break;
 
@@ -155,7 +155,7 @@ static char *lpDocList;
 					{
 						if(SendDlgItemMessage(hwndDlg, IDC_SELECT, LB_GETSEL, ii, 0))
 						{
-						wsprintf(&szDocId[0], "::ODMA\\%s\\%s", (LPSTR) DMSID,
+						wsprintf(&szDocId[0], "::ODMA\\%s\\%s", DMSID,
 									(LPSTR) SendDlgItemMessage(hwndDlg, IDC_SELECT, 
 														LB_GETITEMDATA, ii, 0) );
 
