@@ -46,7 +46,9 @@ private:
 	//----------------------------------------------------------------
   	struct CUnknown : IUnknown 
 	{
-    	CUnknown(ODMClient *pObject) { m_pObject = pObject; }
+    	CUnknown(ODMClient *pObject)
+			: m_pObject(pObject)
+		{}
 
     	//*** IUnknown ***
     	STDMETHOD(QueryInterface) (REFIID riid, LPVOID FAR* ppvObj);
@@ -63,7 +65,9 @@ private:
 	//----------------------------------------------------------------
   	struct CODMDocMan : IODMDocMan 
 	{
-		CODMDocMan(ODMClient *pObject) { m_pObject = pObject; }
+		CODMDocMan(ODMClient *pObject)
+			:m_pObject(pObject)
+		{}
 		~CODMDocMan() {};
 
     	//*** IUnknown ***
