@@ -41,12 +41,12 @@ LPUNKNOWN pUnkOuter, LPVOID pReserved, LPSTR lpszAppId, DWORD dwEnvData)
 	Application *pApp;
 	HRESULT hRes;
 
-	*ppvObj = NULL;        // Ensure NULL stored here in case of error return.
+	*ppvObj = nullptr;        // Ensure NULL stored here in case of error return.
 
 	// Create a new Application object.
 	pApp = new Application(pUnkOuter, dwEnvData);
 
-	if(pApp == NULL) {
+	if(pApp == nullptr) {
 		MessageBox((HWND)dwEnvData, "Memory allocation failure", DMSNAME, MB_OK );
 		return ResultFromScode(E_OUTOFMEMORY);
 	}
@@ -77,7 +77,7 @@ BOOL TimeBomb(WORD wYear, WORD wMonth)
 	if(tm.wYear <= wYear && (tm.wYear != wYear || tm.wMonth < wMonth))
 		return FALSE;
 
-	MessageBox(NULL, "This version of the ODMA Sample DMS is expired",
+	MessageBox(nullptr, "This version of the ODMA Sample DMS is expired",
 	"ODMA Sample DMS", MB_ICONSTOP | MB_TASKMODAL);
 	return TRUE;
 }

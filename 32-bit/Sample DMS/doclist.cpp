@@ -12,13 +12,13 @@ int i;
 char *buff, *entry;
 
 	for(i=0; i<MAXDOCS; i++)
-		List[i] = NULL;
+		List[i] = nullptr;
 
 	buff = new char[2048];
 
 	if(buff) {
 		// Read in documents from previous session if any.
-		GetPrivateProfileString("DocList", NULL, "", buff, 2048, DMSINI);
+		GetPrivateProfileString("DocList", nullptr, "", buff, 2048, DMSINI);
 
 		for(i=0, entry=buff; *entry; i++, entry += strlen(entry)+1)
 			List[i] = new Document(entry);
@@ -45,7 +45,7 @@ Document* DocumentList::GetDocumentByIndex(int n)
 	if(List[n])
 		return List[n];
 	else
-		return NULL;
+		return nullptr;
 }
 
 
@@ -58,7 +58,7 @@ int i, offset;
 	offset = 7+strlen(DMSID)+1;
 
 	for(i=0; i<MAXDOCS; i++) {
-		if(List[i] == NULL)
+		if(List[i] == nullptr)
 			continue;
 
 		lp = List[i]->GetId();
@@ -79,7 +79,7 @@ int n;
 	n = GetDocumentIndexById(lpszDocId);
 
 	if(n == -1)
-		return NULL;
+		return nullptr;
 	else
 		return List[n];
 }
@@ -92,12 +92,12 @@ int i;
 ODMSTATUS err;
 
 	for(i=0; i<MAXDOCS; i++) {
-		if(List[i] == NULL) 
+		if(List[i] == nullptr) 
 		{
 			// Found an empty slot.
 			List[i] = new Document(lpszFormat, lpszDocLocation);
 
-			if(List[i] == NULL) 
+			if(List[i] == nullptr) 
 			{
 				err = ODM_E_FAIL;
 				break;
@@ -116,7 +116,7 @@ ODMSTATUS err;
 			if(err) 
 			{
 				delete List[i];
-				List[i] = NULL;
+				List[i] = nullptr;
 				break;
 			}
 
@@ -126,7 +126,7 @@ ODMSTATUS err;
 	}//for
 
 	if(i == MAXDOCS) {
-		MessageBox( NULL, "Too many documents", DMSNAME,
+		MessageBox(nullptr, "Too many documents", DMSNAME,
 			MB_OK | MB_ICONEXCLAMATION | MB_TASKMODAL );
 
 		err = ODM_E_FAIL;
@@ -149,11 +149,11 @@ Document *pOldDoc;
 		return ODM_E_DOCID;
 
 	for(i=0; i<MAXDOCS; i++) {
-		if(List[i] == NULL) {
+		if(List[i] == nullptr) {
 			// Found an empty slot.
 			List[i] = new Document(pOldDoc);
 
-			if(List[i] == NULL) {
+			if(List[i] == nullptr) {
 				err = ODM_E_FAIL;
 				break;
 			}
@@ -169,7 +169,7 @@ Document *pOldDoc;
 	}
 
 	if(i == MAXDOCS) {
-		MessageBox( NULL, "Too many documents", DMSNAME,
+		MessageBox(nullptr, "Too many documents", DMSNAME,
 			MB_OK | MB_ICONEXCLAMATION | MB_TASKMODAL );
 
 		err = ODM_E_FAIL;
@@ -189,7 +189,7 @@ int n;
 		return ODM_E_DOCID;
 
 	delete List[n];
-	List[n] = NULL;
+	List[n] = nullptr;
 	return 0;
 }
 
@@ -199,7 +199,7 @@ void DocumentList::SaveList(void)
 int i;
 
 	// First wipe out the previous list
-	WritePrivateProfileString("DocList", NULL, NULL, "ODMASAMP.INI");
+	WritePrivateProfileString("DocList", nullptr, nullptr, "ODMASAMP.INI");
 
 	// Now save each document's info. to the file.
 	for(i=0; i<MAXDOCS; i++) {

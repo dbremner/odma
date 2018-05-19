@@ -14,7 +14,7 @@ Application::Application(LPUNKNOWN pUnkOuter, DWORD dwEnvData)
 {
 	m_dwRefs = 1;
 
-	if(pUnkOuter == NULL) {
+	if(pUnkOuter == nullptr) {
 		m_pUnkOuter = &m_Unknown;
 	}
 	else {
@@ -45,7 +45,7 @@ HRESULT Application::GetInterface(REFIID riid, LPVOID *ppvObj)
 STDMETHODIMP Application::CUnknown::QueryInterface(REFIID riid, LPVOID FAR* ppobj)
 {
 	HRESULT hRes = NOERROR;
-	*ppobj = NULL;
+	*ppobj = nullptr;
 
 	if(riid == IID_IUnknown) {
 		*ppobj = (LPVOID)&m_pObject->m_Unknown;
@@ -60,7 +60,7 @@ STDMETHODIMP Application::CUnknown::QueryInterface(REFIID riid, LPVOID FAR* ppob
 		*ppobj = (LPVOID)&m_pObject->m_ODMQuery;
 	}
 
-	if(*ppobj == NULL) {
+	if(*ppobj == nullptr) {
 		hRes = ResultFromScode(E_NOINTERFACE);
 	}
 	else {
@@ -141,7 +141,7 @@ Document *pDoc;
 
 	pDoc = DocList.GetDocumentById(lpszDocId);
 
-	if(pDoc == NULL)
+	if(pDoc == nullptr)
 		return ODM_E_DOCID;
 
 	// Don't allow the document to be opened in write mode if it's already open.
@@ -157,7 +157,7 @@ LPSTR lpszNewDocId)
 {
 	Document *pDoc = DocList.GetDocumentById(lpszDocId);
 
-	if(pDoc == NULL)
+	if(pDoc == nullptr)
 		return ODM_E_DOCID;
 
 	strcpy(lpszNewDocId, lpszDocId);
@@ -170,7 +170,7 @@ DWORD activeTime, DWORD pagesPrinted, LPVOID sessionData, WORD dataLen)
 {
 	Document *pDoc = DocList.GetDocumentById(lpszDocId);
 
-	if(pDoc == NULL)
+	if(pDoc == nullptr)
 		return ODM_E_DOCID;
 
 	return pDoc->Close(activeTime, pagesPrinted, sessionData, dataLen);
@@ -269,20 +269,20 @@ LPSTR lpszDocId)
 Document *pDoc;
 ODMSTATUS err;
 
-	if(lpszDocId == NULL) {
+	if(lpszDocId == nullptr) {
 		if(action != ODM_NONE)
 			return ODM_E_DOCID;
 	}
 	else {
 		pDoc = DocList.GetDocumentById(lpszDocId);
 
-		if(pDoc == NULL)
+		if(pDoc == nullptr)
 			return ODM_E_DOCID;
 	}
 
 	switch(action) {
 		case ODM_NONE:
-			MessageBox(NULL, "A real DMS would typically display menus or"
+			MessageBox(nullptr, "A real DMS would typically display menus or"
 				" other user interface elements allowing the user to interact"
 				" with the DMS at this point.",
 				DMSNAME, MB_OK | MB_ICONINFORMATION | MB_TASKMODAL);
@@ -302,7 +302,7 @@ ODMSTATUS err;
 			break;
 
 		case ODM_VIEWDOC:
-			MessageBox(NULL, "A real DMS would open the document into a viewer"
+			MessageBox(nullptr, "A real DMS would open the document into a viewer"
 				" window at this point.  This sample doesn't include a file viewer,"
 				" so this is all you get.", DMSNAME,
 				MB_OK  | MB_ICONINFORMATION | MB_TASKMODAL);
@@ -310,7 +310,7 @@ ODMSTATUS err;
 			break;
 
 		case ODM_OPENDOC:
-			MessageBox(NULL, "A real DMS would open the document into its native"
+			MessageBox(nullptr, "A real DMS would open the document into its native"
 				" application at this point.  This sample doesn't include application"
 				" integrations, so this is all you get.", DMSNAME,
 				MB_OK  | MB_ICONINFORMATION | MB_TASKMODAL);
@@ -331,7 +331,7 @@ WORD item, LPSTR lpszData, WORD dataLen)
 {
 	Document *pDoc = DocList.GetDocumentById(lpszDocId);
 
-	if(pDoc == NULL)
+	if(pDoc == nullptr)
 		return ODM_E_DOCID;
 
 	return pDoc->GetInfo(item, lpszData, dataLen);
@@ -343,7 +343,7 @@ WORD item, LPSTR lpszData)
 {
 	Document *pDoc = DocList.GetDocumentById(lpszDocId);
 
-	if(pDoc == NULL)
+	if(pDoc == nullptr)
 		return ODM_E_DOCID;
 
 	return pDoc->SetInfo(item, lpszData);
@@ -369,7 +369,7 @@ STDMETHODIMP_(ODMSTATUS) Application::CODMDocMan::
 GetLeadMoniker(LPSTR lpszDocId, LPMONIKER *ppMoniker)
 {
 	// This sample doesn't support OLE 2.
-	*ppMoniker = NULL;
+	*ppMoniker = nullptr;
 	return ODM_E_FAIL;
 }
 
@@ -405,7 +405,7 @@ ODMSTATUS odmstatus;
 
 	if(*pdwFlags==ODM_SILENT) return ODM_E_USERINT;
 
-	if(lpszDocId!=NULL)
+	if(lpszDocId!= nullptr)
 		return m_pObject->m_ODMDocMan.SaveAs(lpszDocId, lpszNewDocId,
 										lpszFormat, pcbCallBack, pInstanceData);
 	else
@@ -414,7 +414,7 @@ ODMSTATUS odmstatus;
 		lpszTempDocId=new char[ODM_DOCID_MAX];
 
 		odmstatus=m_pObject->m_ODMDocMan.NewDoc(lpszTempDocId, 
-										ODM_SILENT, lpszFormat, NULL);
+										ODM_SILENT, lpszFormat, nullptr);
 		if(odmstatus!=ODM_SUCCESS)
 			odmstatus=ODM_E_FAIL;
 		else
@@ -488,7 +488,7 @@ Document *pDoc;
 
 	pDoc = DocList.GetDocumentById(lpszDocId);
 
-	if(pDoc == NULL)
+	if(pDoc == nullptr)
 		return ODM_E_DOCID;
 
 	return pDoc->GetComponent(lpszFormat, lpszDocLocation);
@@ -502,7 +502,7 @@ Document *pDoc;
 
 	pDoc = DocList.GetDocumentById(lpszDocId);
 
-	if(pDoc == NULL)
+	if(pDoc == nullptr)
 		return ODM_E_DOCID;
 
 	if( *pdwFlags & ODM_ALT_DELETE )
@@ -573,7 +573,7 @@ QueryGetResults( LPCSTR lpszQuery, LPSTR lpszDocId, LPSTR lpszDocName, WORD docN
 	for ( nCount = 0; rnIndex < MAXDOCS && nCount < *docCount; rnIndex++ )
 	{
 		pDoc = DocList.GetDocumentByIndex( rnIndex );
-		if ( pDoc == NULL )
+		if ( pDoc == nullptr )
 			continue;
 		
 		wsprintf( &lpszDocId[ nCount * ODM_DOCID_MAX ], 

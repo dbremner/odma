@@ -208,7 +208,7 @@ char buff[165];
 		}
 		break;
 
-		default: dataSource = NULL;
+		default: dataSource = nullptr;
 	}
 
 	if(dataSource) 
@@ -239,7 +239,7 @@ ODMSTATUS err;
 			target = Format[0]; 
 			len = sizeof(Format[0]);
 			break;
-		default: target = NULL;
+		default: target = nullptr;
 	}
 
 	if(target) 

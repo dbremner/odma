@@ -25,7 +25,7 @@ LPSTR lpNowDocId;
 			{
 				pDoc = DocList.GetDocumentByIndex(ii);
 
-				if(pDoc == NULL)
+				if(pDoc == nullptr)
 					continue;
 
 				//BVG: Set Doc Name into List Box 
@@ -109,7 +109,7 @@ LPSTR lpNowDocId;
 			{
 				pDoc = DocList.GetDocumentByIndex(ii);
 
-				if(pDoc == NULL)
+				if(pDoc == nullptr)
 					continue;
 
 				//BVG: Set Doc Name into List Box 
@@ -195,7 +195,7 @@ char *lp;
 			SendDlgItemMessage(hwndDlg, ST_FORMAT, WM_SETTEXT, 0,
 					(LPARAM)(pSaveAsData->Format));
 
-			if(pSaveAsData->pcbCallBack == NULL)
+			if(pSaveAsData->pcbCallBack == nullptr)
 				ShowWindow(GetDlgItem(hwndDlg, IDC_OPTIONS), SW_HIDE);
 
 			return TRUE;
