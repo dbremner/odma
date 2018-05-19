@@ -891,7 +891,9 @@ ODMSTATUS ODMClient::ClientQueryExecute( LPCSTR lpszQuery, DWORD flags,
 		++m_nQueryCount;
 		strcpy_s(m_szQueryId,CONMAN_ID);
 		char* p = &m_szQueryId[strlen(m_szQueryId)];
+#pragma warning(suppress:4996)
 		_ultoa(m_nQueryCount, p, 16);
+#pragma warning(suppress:4996)
 		strcpy(queryId, m_szQueryId);
 	}
 	

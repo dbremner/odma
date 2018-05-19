@@ -117,6 +117,7 @@ int ODMRegistry::GetAppDefaultDmsId( LPCSTR lpszAppId, LPSTR lpszDmsId )
 		return -1;
 	}
 
+#pragma warning(suppress:4996)
 	strcpy(lpszDmsId, DMSName);
 	delete[] DMSName;
 	
@@ -154,6 +155,7 @@ int ODMRegistry::GetSystemDefaultDmsId( LPSTR lpszDmsId )
 
 		if(err == ERROR_SUCCESS) 
 		{
+#pragma warning(suppress:4996)
 			strcpy(lpszDmsId, strDMS);
 			RegCloseKey(hDefKey);
 			nRet = 0;
