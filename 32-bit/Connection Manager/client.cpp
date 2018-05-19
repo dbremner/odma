@@ -23,7 +23,7 @@ ODMClient::ODMClient(LPSTR lpszAppId, WORD version, DWORD dwEnvData)
 	m_version = version;
 	strcpy_s(m_appid, lpszAppId);
 	m_pDefaultDms = nullptr;
-	m_clientWind = (HWND) dwEnvData;
+	m_clientWind = reinterpret_cast<HWND>(dwEnvData);
 	m_nQueryCount = 0;
 	m_szQueryId[0] = '\0';
 }

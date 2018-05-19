@@ -44,7 +44,7 @@ LPUNKNOWN pUnkOuter, LPVOID pReserved, LPSTR lpszAppId, DWORD dwEnvData)
 	Application *pApp = new Application(pUnkOuter, dwEnvData);
 
 	if(pApp == nullptr) {
-		MessageBox((HWND)dwEnvData, "Memory allocation failure", DMSNAME, MB_OK );
+		MessageBox(reinterpret_cast<HWND>(dwEnvData), "Memory allocation failure", DMSNAME, MB_OK );
 		return ResultFromScode(E_OUTOFMEMORY);
 	}
 

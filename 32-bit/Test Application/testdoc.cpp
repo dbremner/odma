@@ -51,7 +51,7 @@ CODMATestDoc::~CODMATestDoc()
 CRichEditCntrItem* CODMATestDoc::CreateClientItem(REOBJECT* preo) const
 {
 	// cast away constness of this
-	return new CODMATestCntrItem(preo, (CODMATestDoc*) this);
+	return new CODMATestCntrItem(preo, const_cast<CODMATestDoc*>(this));
 }
 
 /////////////////////////////////////////////////////////////////////////////

@@ -68,7 +68,7 @@ int ii, index, count;
 					//BVG: Get DocId from List Boxe's ItemData
 					index = (int)SendDlgItemMessage(hwndDlg, IDC_SELECT, LB_GETCURSEL, 0, 0 );
 					wsprintf(DocId, "::ODMA\\%s\\%s", DMSID,
-						(LPSTR) SendDlgItemMessage(hwndDlg, IDC_SELECT, LB_GETITEMDATA, index, 0) );
+						reinterpret_cast<LPSTR>(SendDlgItemMessage(hwndDlg, IDC_SELECT, LB_GETITEMDATA, index, 0)) );
 
 
 				//Fall through.
@@ -77,7 +77,7 @@ int ii, index, count;
 					//BVG: Memory Clean Up
 					for(ii=0; ii<SendDlgItemMessage(hwndDlg, IDC_SELECT, LB_GETCOUNT, 0, 0); ii++)
 					{
-						lpNowDocId=(LPSTR)SendDlgItemMessage(hwndDlg, IDC_SELECT, LB_GETITEMDATA, ii, 0);
+						lpNowDocId=reinterpret_cast<LPSTR>(SendDlgItemMessage(hwndDlg, IDC_SELECT, LB_GETITEMDATA, ii, 0));
 						delete lpNowDocId;
 					}
 					EndDialog(hwndDlg, wParam);
@@ -158,8 +158,8 @@ static char *lpDocList;
 						if(SendDlgItemMessage(hwndDlg, IDC_SELECT, LB_GETSEL, ii, 0))
 						{
 						sprintf_s(szDocId, "::ODMA\\%s\\%s", DMSID,
-									(LPSTR) SendDlgItemMessage(hwndDlg, IDC_SELECT, 
-														LB_GETITEMDATA, ii, 0) );
+									reinterpret_cast<LPSTR>(SendDlgItemMessage(hwndDlg, IDC_SELECT,
+									                                           LB_GETITEMDATA, ii, 0)) );
 
 						strcpy(lpDocList + end, &szDocId[0]);
 						end += strlen(&szDocId[0]) + 1;
@@ -174,7 +174,7 @@ static char *lpDocList;
 					//BVG: Memory Clean Up
 					for(int ii=0; ii<SendDlgItemMessage(hwndDlg, IDC_SELECT, LB_GETCOUNT, 0, 0); ii++)
 					{
-						lpNowDocId=(LPSTR)SendDlgItemMessage(hwndDlg, IDC_SELECT, LB_GETITEMDATA, ii, 0);
+						lpNowDocId=reinterpret_cast<LPSTR>(SendDlgItemMessage(hwndDlg, IDC_SELECT, LB_GETITEMDATA, ii, 0));
 						delete [] lpNowDocId;
 					}
 					EndDialog(hwndDlg, wParam);

@@ -82,7 +82,7 @@ ODMSTATUS ODMDms::Init(LPCSTR lpszDmsId, LPSTR lpszAppId, WORD version,
 
 	// Load the DMS's DLL and find the entry function. 
 	m_hDms = LoadLibrary(DmsLoc);
-	if((UINT_PTR)m_hDms < HINSTANCE_ERROR) 
+	if(reinterpret_cast<UINT_PTR>(m_hDms) < HINSTANCE_ERROR) 
 	{
 #ifdef DEBUG
 		MessageBox(nullptr, DmsLoc, "ODMDms::Init() - unable to load lib", MB_OK);

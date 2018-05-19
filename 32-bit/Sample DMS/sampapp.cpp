@@ -21,7 +21,7 @@ Application::Application(LPUNKNOWN pUnkOuter, DWORD dwEnvData)
 		m_pUnkOuter = pUnkOuter;
 	}
 
-	m_clientWind = (HWND) dwEnvData;
+	m_clientWind = reinterpret_cast<HWND>(dwEnvData);
 
 	m_szQueryId[0] = '\0';
 	m_nQueryDocListIndex = 0;
