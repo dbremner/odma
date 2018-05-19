@@ -96,6 +96,8 @@ static char *lpDocList;
 	int end;
 	LPSTR lpNowDocId;
 
+	//TODO check ownership rules for LB_GETDATA and LB_SETDATA
+
 	switch(message) {
 		case WM_INITDIALOG:
 			lpDocList = (char *)lParam;
