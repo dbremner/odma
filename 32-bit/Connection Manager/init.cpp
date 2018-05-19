@@ -50,7 +50,7 @@ void ErrorMessage(UINT strId)
 {
 	char strErr[MAXERRSTRING];
 
-	LoadString(hInst, strId, strErr, MAXERRSTRING);
+	LoadString(hInst, strId, strErr, _countof(strErr));
 	MessageBox(NULL, strErr, "ODMA Connection Manager", MB_ICONSTOP | MB_TASKMODAL);
 }
 
