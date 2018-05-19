@@ -249,10 +249,9 @@ WORD item, LPSTR lpszData, WORD dataLen)
 STDMETHODIMP_(ODMSTATUS) ODMClient::CODMDocMan::SetDocInfo(LPSTR lpszDocId,
 WORD item, LPSTR lpszData)
 {
-	ODMSTATUS odm;
 	ODMDms *pDms;
 
-	odm = m_pObject->ConnectDocId(lpszDocId, &pDms);
+	ODMSTATUS odm = m_pObject->ConnectDocId(lpszDocId, &pDms);
 
 	if(odm)
 		return ODM_E_DOCID;
@@ -567,8 +566,6 @@ STDMETHODIMP_(ODMSTATUS) ODMClient::CODMQuery::QueryGetResults( LPCSTR lpszQuery
 
 STDMETHODIMP_(ODMSTATUS) ODMClient::CODMQuery::QueryClose( LPCSTR queryId )
 {
-	ODMDms *pDms;
-
 	if(!queryId || !*queryId || !_stricmp(queryId, m_pObject->m_szQueryId))
 		return ODM_E_FAIL;
 
@@ -576,7 +573,7 @@ STDMETHODIMP_(ODMSTATUS) ODMClient::CODMQuery::QueryClose( LPCSTR queryId )
 	ODMDmsListIterator iterator(m_pObject->m_queryDmss);
 	while( iterator )
 	{
-		pDms = iterator++;
+		ODMDms *pDms = iterator++;
 		pDms->m_pQuery->QueryClose(pDms->QueryId());
 		pDms->QueryId("");
 	}

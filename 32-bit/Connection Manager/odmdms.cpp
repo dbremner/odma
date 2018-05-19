@@ -46,8 +46,6 @@ ODMSTATUS ODMDms::Init(LPCSTR lpszDmsId, LPSTR lpszAppId, WORD version,
 		LPUNKNOWN pUnkOuter, DWORD dwEnvData)
 {
 	ODMSTATUS err;
-	SCODE sc;
-	int ierr;
 	char DmsLoc[80];
 	typedef HRESULT (WINAPI *PFNODMGETODMINTERFACE)(REFIID, LPVOID *,
 		LPUNKNOWN, LPVOID, LPSTR, DWORD);
@@ -72,7 +70,7 @@ ODMSTATUS ODMDms::Init(LPCSTR lpszDmsId, LPSTR lpszAppId, WORD version,
 
 	// Get the DMS Entry point information.  Under Windows this returns the path to the
 	// DLL provided by the DMS that contains the ODMGetODMInterface entry point.
-	ierr = Registry.GetDMSEntry(lpszDmsId, DmsLoc, sizeof(DmsLoc));
+	int ierr = Registry.GetDMSEntry(lpszDmsId, DmsLoc, sizeof(DmsLoc));
 	if(ierr) 
 	{
 #ifdef DEBUG
@@ -103,7 +101,7 @@ ODMSTATUS ODMDms::Init(LPCSTR lpszDmsId, LPSTR lpszAppId, WORD version,
 	}
 
 	// Call the DMS entry function to get an IUnknown interface. */
-	sc = GetScode(lpfnODMGetODMInterface(IID_IUnknown, (LPVOID *)&m_pUnk, pUnkOuter,
+	SCODE sc = GetScode(lpfnODMGetODMInterface(IID_IUnknown, (LPVOID *)&m_pUnk, pUnkOuter,
 		NULL, lpszAppId, dwEnvData ));
 
 	if(sc == S_OK) 
