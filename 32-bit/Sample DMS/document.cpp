@@ -10,6 +10,7 @@
 #include "odmasamp.h"
 #include <stdlib.h>
 #include <assert.h>
+#include <strsafe.h>
 
 Document::Document()
 {
@@ -214,8 +215,7 @@ char buff[165];
 
 	if(dataSource) 
 	{
-		strncpy(lpszData, dataSource, dataLen);
-		lpszData[dataLen-1] = '\0';
+		StringCchCopy(lpszData, dataLen, dataSource);
 		err = ODM_SUCCESS;
 	} else
 		err = ODM_E_ITEM;
@@ -245,8 +245,7 @@ ODMSTATUS err;
 
 	if(target) 
 	{
-		strncpy(target, lpszData, len);
-		target[len-1] = '\0';
+		StringCchCopy(target, len, lpszData);
 		err = 0;
 	} else
 		err = ODM_E_ITEM;
