@@ -15,11 +15,11 @@ TABS(3,3)
 
 ODMDms::ODMDms(void)
 {
-	m_pUnk = NULL;
-	m_pDocMan = NULL;
-	m_pQuery = NULL;
-	m_pDocMan = NULL;
-	m_hDms = NULL;
+	m_pUnk = nullptr;
+	m_pDocMan = nullptr;
+	m_pQuery = nullptr;
+	m_pDocMan = nullptr;
+	m_hDms = nullptr;
 	m_szId[0] = '\0';
 	m_szQueryId[0] = '\0';
 }
@@ -57,7 +57,7 @@ ODMSTATUS ODMDms::Init(LPCSTR lpszDmsId, LPSTR lpszAppId, WORD version,
 	if(strlen( lpszDmsId ) >= ODM_DMSID_MAX)
 	{
 #ifdef DEBUG
-		MessageBox(NULL, lpszDmsId, "ODMDms::Init() - bad size", MB_OK);
+		MessageBox(nullptr, lpszDmsId, "ODMDms::Init() - bad size", MB_OK);
 #endif
 		return ODM_E_NODMS;
 	}
@@ -76,7 +76,7 @@ ODMSTATUS ODMDms::Init(LPCSTR lpszDmsId, LPSTR lpszAppId, WORD version,
 	if(ierr) 
 	{
 #ifdef DEBUG
-		MessageBox(NULL, "GetDMSEntry failed", "ODMDms::Init()", MB_OK);
+		MessageBox(nullptr, "GetDMSEntry failed", "ODMDms::Init()", MB_OK);
 #endif
 		ErrorMessage(IDS_NODMS);
 		return ODM_E_NODMS;
@@ -87,17 +87,17 @@ ODMSTATUS ODMDms::Init(LPCSTR lpszDmsId, LPSTR lpszAppId, WORD version,
 	if((UINT)m_hDms < HINSTANCE_ERROR) 
 	{
 #ifdef DEBUG
-		MessageBox(NULL, DmsLoc, "ODMDms::Init() - unable to load lib", MB_OK);
+		MessageBox(nullptr, DmsLoc, "ODMDms::Init() - unable to load lib", MB_OK);
 #endif
-		m_hDms = NULL;
+		m_hDms = nullptr;
 		return ODM_E_NODMS;
 	}
 
 	lpfnODMGetODMInterface = (PFNODMGETODMINTERFACE) GetProcAddress(m_hDms, "ODMGetODMInterface");
-	if(lpfnODMGetODMInterface == NULL)
+	if(lpfnODMGetODMInterface == nullptr)
 	{
 #ifdef DEBUG
-		MessageBox(NULL, DmsLoc, "ODMDms::Init() - no proc address", MB_OK);
+		MessageBox(nullptr, DmsLoc, "ODMDms::Init() - no proc address", MB_OK);
 #endif
 		return ODM_E_NODMS;
 	}
@@ -123,7 +123,7 @@ ODMSTATUS ODMDms::Init(LPCSTR lpszDmsId, LPSTR lpszAppId, WORD version,
 				m_pQuery->Release();
 #ifdef DEBUG
 			else
-				MessageBox( NULL, "No IID_IODMQuery", "DMS::Init()", MB_OK );
+				MessageBox(nullptr, "No IID_IODMQuery", "DMS::Init()", MB_OK );
 #endif
 		}
 		// Now get the IODMDocMan2 interface.  This interface was added with ODMA 2.0 so we
@@ -135,7 +135,7 @@ ODMSTATUS ODMDms::Init(LPCSTR lpszDmsId, LPSTR lpszAppId, WORD version,
 				m_pDocMan2->Release();
 #ifdef DEBUG
 			else
-				MessageBox( NULL, "No IID_IODMDocMan2", "DMS::Init()", MB_OK );
+				MessageBox(nullptr, "No IID_IODMDocMan2", "DMS::Init()", MB_OK );
 #endif
 		}
 	}

@@ -238,7 +238,7 @@ ODMSTATUS WINAPI _export ODMRegisterApp(ODMHANDLE *pOdmHandle,
 #endif
 
 	char lpszDmsId[ODM_DMSID_MAX];
-	*pOdmHandle = NULL;
+	*pOdmHandle = nullptr;
 
 	// Get the apropriate DMS ID from the registry.
 	odm = Registry.GetDMS(lpszAppId, lpszDmsId);
@@ -249,7 +249,7 @@ ODMSTATUS WINAPI _export ODMRegisterApp(ODMHANDLE *pOdmHandle,
 
 		if(pClient)
 		{
-			ODMDms *pDms = NULL;
+			ODMDms *pDms = nullptr;
 			odm = pClient->ConnectDms(lpszDmsId, &pDms);
 			if(odm == ODM_SUCCESS)
 				*pOdmHandle = (ODMHANDLE) pClient;

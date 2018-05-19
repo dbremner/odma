@@ -22,7 +22,7 @@ ODMClient::ODMClient(LPSTR lpszAppId, WORD version, DWORD dwEnvData)
 	m_dwRefs = 1;
 	m_version = version;
 	strcpy_s(m_appid, lpszAppId);
-	m_pDefaultDms = NULL;
+	m_pDefaultDms = nullptr;
 	m_clientWind = (HWND) dwEnvData;
 	m_nQueryCount = 0;
 	m_szQueryId[0] = '\0';
@@ -44,7 +44,7 @@ STDMETHODIMP ODMClient::CUnknown::QueryInterface(REFIID riid, LPVOID FAR* ppobj)
 HRESULT hRes=NOERROR;
 BOOL bSupport=TRUE;
 
-	*ppobj = NULL;
+	*ppobj = nullptr;
 
 	if(riid == IID_IUnknown) 
 	{
@@ -70,7 +70,7 @@ BOOL bSupport=TRUE;
 
 	if(bSupport) 
 	{
-		if(*ppobj == NULL) 
+		if(*ppobj == nullptr) 
 		{
 			hRes = ResultFromScode(E_NOINTERFACE);
 		} 
@@ -379,7 +379,7 @@ STDMETHODIMP_(ODMSTATUS) ODMClient::CODMDocMan2::SelectDocEx(LPSTR lpszDocIds,
 STDMETHODIMP_(ODMSTATUS) ODMClient::CODMDocMan2::QueryCapability(LPCSTR lpszDmsId,
 	DWORD function,	DWORD item, DWORD flags)
 {
-	ODMDms *pDms = NULL;
+	ODMDms *pDms = nullptr;
 
 	if(!function)
 	   return ODM_E_REQARG; 
@@ -692,7 +692,7 @@ ODMSTATUS ODMClient::ConnectDms(LPCSTR lpszDmsId, ODMDms **ppDms)
 	if(odm) 
 	{
 #ifdef DEBUG
-		MessageBox(NULL, "(*ppDms)->Init FAILED", "ConnectDms", MB_OK);
+		MessageBox(nullptr, "(*ppDms)->Init FAILED", "ConnectDms", MB_OK);
 #endif
 		delete *ppDms;
 		return odm;
@@ -703,7 +703,7 @@ ODMSTATUS ODMClient::ConnectDms(LPCSTR lpszDmsId, ODMDms **ppDms)
 		it to the ODMClient object.  It will be attached as the default DMS
 		unless there already is one.  In that case it will be added to the list
 		of other Dmss. */
-	if(m_pDefaultDms == NULL)
+	if(m_pDefaultDms == nullptr)
 		m_pDefaultDms = *ppDms;
 	else 
 	{
@@ -756,7 +756,7 @@ void ODMClient::ConnectDmss( LPCSTR lpszDmsList )
 HRESULT ODMClient::DocIdQueryInterface(LPSTR lpszDocId, REFIID riid, LPVOID *ppvObj)
 {
 	ODMDms *pDms;
-	*ppvObj = NULL;
+	*ppvObj = nullptr;
 
 	if(lpszDocId)
 	{
@@ -810,7 +810,7 @@ ODMSTATUS ODMClient::ClientQueryExecute( LPCSTR lpszQuery, DWORD flags,
 
 	// If we are searching all the DMSs, we need the full list so that we can
 	// connect to all of them and track any query failures due to connection failures.
-	LPSTR lpszDmsList = NULL;
+	LPSTR lpszDmsList = nullptr;
 
 	if (flags == ODM_ALL)
 	{
@@ -842,7 +842,7 @@ ODMSTATUS ODMClient::ClientQueryExecute( LPCSTR lpszQuery, DWORD flags,
 		
 		while(*lpszId)
 		{
-			pDms = NULL;
+			pDms = nullptr;
 			if(!_stricmp(lpszId, m_pDefaultDms->GetId()))
 				pDms = m_pDefaultDms;
 			else

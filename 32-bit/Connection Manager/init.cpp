@@ -36,7 +36,7 @@ BOOL TimeBomb(WORD wYear, WORD wMonth)
 	
 	if(tm.wYear <= wYear && (tm.wYear != wYear || tm.wMonth < wMonth))
 		return FALSE;
-	MessageBox(NULL, "This version of the ODMA Connection Manager is expired",
+	MessageBox(nullptr, "This version of the ODMA Connection Manager is expired",
 	"ODMA Connection Manager", MB_ICONSTOP | MB_TASKMODAL);
 	return TRUE;
 }
@@ -50,7 +50,7 @@ void ErrorMessage(UINT strId)
 	char strErr[MAXERRSTRING];
 
 	LoadString(hInst, strId, strErr, _countof(strErr));
-	MessageBox(NULL, strErr, "ODMA Connection Manager", MB_ICONSTOP | MB_TASKMODAL);
+	MessageBox(nullptr, strErr, "ODMA Connection Manager", MB_ICONSTOP | MB_TASKMODAL);
 }
 
 /*************************************************************
@@ -141,8 +141,8 @@ void LogString(const char *str)
 		return;
 
 	DWORD bw = 0;
-	SetFilePointer(hFile, bw, NULL, FILE_END);
-	WriteFile(hFile, str, (DWORD)strlen(str), &bw, NULL);
+	SetFilePointer(hFile, bw, nullptr, FILE_END);
+	WriteFile(hFile, str, (DWORD)strlen(str), &bw, nullptr);
 	CloseHandle(hFile);
 }
 

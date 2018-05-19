@@ -73,7 +73,7 @@ ODMRegistry::ODMRegistry(){
 	{
 		char *lpNewLog = strstr(m_lplistTokens, "NEWLOG");
 		
-		if(lpNewLog != NULL) 
+		if(lpNewLog != nullptr) 
 			DeleteFile(m_lpszLogPath);
 	}
 	
@@ -237,7 +237,7 @@ WORD ODMRegistry::GetDMSList( LPSTR buffer, WORD buffer_size )
 {
 	// Check for valid parameters.  Must have a buffer to write to and it must 
 	// be large enough	to hold atleast one DMS ID.
-	if ( buffer == NULL || buffer_size < ODM_DMSID_MAX )
+	if ( buffer == nullptr || buffer_size < ODM_DMSID_MAX )
 		return 0;
 	
 	WORD iSubKey = 0;
@@ -343,7 +343,7 @@ HANDLE ODMRegistry::GetLogFile()
 		return INVALID_HANDLE_VALUE;
 				
 	HANDLE hFile = CreateFile(m_lpszLogPath, GENERIC_WRITE, FILE_SHARE_READ,
-							NULL, OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
+	                          nullptr, OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, nullptr);
 
 	return hFile;
 }
