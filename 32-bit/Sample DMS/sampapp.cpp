@@ -246,7 +246,7 @@ SaveAsData saData;
 		{
 			lp = pDoc->GetId();
 			pDoc->SetInfo(ODM_CONTENTFORMAT, saData.Format);
-			wsprintf(lpszNewDocId, "::ODMA\\%s\\%s", (LPSTR) DMSID, lp);
+			wsprintf(lpszNewDocId, "::ODMA\\%s\\%s", DMSID, lp);
 		}
 
 	}

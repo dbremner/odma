@@ -390,7 +390,7 @@ BOOL CODMATestDoc::DMSOpenDoc(LPSTR FileName)
 
 	DWORD dwFlag = 0;
 
-	ODMSTATUS odm = ODMOpenDoc(odmHandle, dwFlag, (LPSTR)m_DocId, FileName);
+	ODMSTATUS odm = ODMOpenDoc(odmHandle, dwFlag, m_DocId, FileName);
 	switch(odm)
 	{
 	case ODM_SUCCESS:
@@ -427,8 +427,8 @@ BOOL CODMATestDoc::DMSOpenAlter(LPSTR FileName)
 	if(!strFormat.CompareNoCase(ODM_FORMAT_RTF))
 	{
 		DWORD dwFlags = 0;
-		ODMSTATUS odm = ODMGetAlternateContent(odmHandle, (LPSTR)m_DocId,
-			&dwFlags, (LPSTR)m_Format, FileName);
+		ODMSTATUS odm = ODMGetAlternateContent(odmHandle, m_DocId,
+			&dwFlags, m_Format, FileName);
 		switch (odm)
 		{
 		case ODM_SUCCESS:

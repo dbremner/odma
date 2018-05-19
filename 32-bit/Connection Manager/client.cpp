@@ -814,7 +814,7 @@ ODMSTATUS ODMClient::ClientQueryExecute( LPCSTR lpszQuery, DWORD flags,
 		const int nBufSize = ODM_DMSID_MAX * ODMGetDMSCount() + 1;
 		lpszDmsList = new char[nBufSize];
 		if(lpszDmsList)
-			ODMGetDMSList((char*)lpszDmsList, nBufSize);
+			ODMGetDMSList(lpszDmsList, nBufSize);
 	}
 	else if(flags == ODM_SPECIFIC)
 		lpszDmsList = (LPSTR)lpszList;
@@ -871,7 +871,7 @@ ODMSTATUS ODMClient::ClientQueryExecute( LPCSTR lpszQuery, DWORD flags,
 		odm = ODM_E_FAIL;	// Invalid parameters
 
 	if (flags == ODM_ALL && lpszDmsList)
-		delete[] (char*)lpszDmsList;
+		delete[] lpszDmsList;
 
 	// Set the error code/return value
 	if(odm == ODM_SUCCESS)				// We had valid parameter

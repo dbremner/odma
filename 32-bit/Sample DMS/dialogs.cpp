@@ -60,7 +60,7 @@ int ii, index, count;
 				case IDC_SELECT:
 					if(GET_WM_COMMAND_CMD(wParam, lParam) == LBN_DBLCLK) 
 					{
-						SendMessage(hwndDlg, WM_COMMAND, (WPARAM)IDOK, lParam);
+						SendMessage(hwndDlg, WM_COMMAND, IDOK, lParam);
 					}
 					break;
 
@@ -139,7 +139,7 @@ static char *lpDocList;
 				case IDC_SELECT:
 					if(GET_WM_COMMAND_CMD(wParam, lParam) == LBN_DBLCLK) 
 					{
-						SendMessage(hwndDlg, WM_COMMAND, (WPARAM)IDOK, lParam);
+						SendMessage(hwndDlg, WM_COMMAND, IDOK, lParam);
 					}
 					break;
 
