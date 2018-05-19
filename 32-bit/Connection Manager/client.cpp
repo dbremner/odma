@@ -87,7 +87,7 @@ BOOL bSupport=TRUE;
 
 STDMETHODIMP_(ULONG) ODMClient::CUnknown::AddRef(VOID)
 {
-	ULONG dwRefs = ++m_pObject->m_dwRefs;
+	const ULONG dwRefs = ++m_pObject->m_dwRefs;
 
 	return dwRefs;
 } /* AddRef() */
@@ -95,7 +95,7 @@ STDMETHODIMP_(ULONG) ODMClient::CUnknown::AddRef(VOID)
 
 STDMETHODIMP_(ULONG) ODMClient::CUnknown::Release(VOID)
 {
-	ULONG dwRefs = --m_pObject->m_dwRefs;
+	const ULONG dwRefs = --m_pObject->m_dwRefs;
   
 	if(dwRefs == 0) {
 		delete m_pObject;
@@ -538,9 +538,9 @@ STDMETHODIMP_(ODMSTATUS) ODMClient::CODMQuery::QueryGetResults( LPCSTR lpszQuery
 		// The number of results to retrieve
 		WORD nSingleRetrieve = *docCount - nTotalRetrieved;	
 		// Index where a DMS should start writing its DocId results
-		WORD nWriteIdNdx = ODM_DOCID_MAX * nTotalRetrieved; 
+		const WORD nWriteIdNdx = ODM_DOCID_MAX * nTotalRetrieved; 
 		// Index where a DMS should start its DocName results
-		WORD nWriteNameNdx = docNameLen * nTotalRetrieved;
+		const WORD nWriteNameNdx = docNameLen * nTotalRetrieved;
 		
 		odm = pDms->m_pQuery->QueryGetResults( pDms->QueryId(), 
 												&lpszDocId[ nWriteIdNdx ], 
@@ -687,7 +687,7 @@ ODMSTATUS ODMClient::ConnectDms(LPCSTR lpszDmsId, ODMDms **ppDms)
 		at its interfaces.  It can still call ODMQueryInterface to go through the
 		connection manager. */
 
-	ODMSTATUS odm = (*ppDms)->Init(lpszDmsId, m_appid, m_version, NULL,
+	const ODMSTATUS odm = (*ppDms)->Init(lpszDmsId, m_appid, m_version, NULL,
 		(DWORD)m_clientWind);
 	if(odm) 
 	{
@@ -760,7 +760,7 @@ HRESULT ODMClient::DocIdQueryInterface(LPSTR lpszDocId, REFIID riid, LPVOID *ppv
 
 	if(lpszDocId)
 	{
-		ODMSTATUS odm = ConnectDocId(lpszDocId, &pDms);
+		const ODMSTATUS odm = ConnectDocId(lpszDocId, &pDms);
 		if(odm == ODM_E_DOCID)
 			return ResultFromScode(E_INVALIDARG);
 		else if (odm != ODM_SUCCESS)
@@ -814,7 +814,7 @@ ODMSTATUS ODMClient::ClientQueryExecute( LPCSTR lpszQuery, DWORD flags,
 
 	if (flags == ODM_ALL)
 	{
-		int nBufSize = ODM_DMSID_MAX * ODMGetDMSCount() + 1;
+		const int nBufSize = ODM_DMSID_MAX * ODMGetDMSCount() + 1;
 		lpszDmsList = new char[nBufSize];
 		if(lpszDmsList)
 			ODMGetDMSList((char*)lpszDmsList, nBufSize);

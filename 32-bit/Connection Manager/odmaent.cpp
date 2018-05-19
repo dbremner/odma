@@ -398,7 +398,7 @@ WORD WINAPI _export ODMGetDMSCount()
 {
 	LogString("ODMGetDMSCount\r\n");
 
-	WORD odm = Registry.GetDMSCount();
+	const WORD odm = Registry.GetDMSCount();
 
 	LogParNumber("Return value", odm);
 
@@ -408,8 +408,8 @@ WORD WINAPI _export ODMGetDMSCount()
 WORD WINAPI _export ODMGetDMSList(LPSTR buffer, WORD buffer_size )
 {
 	LogString("ODMGetDMSList \r\n");
-	
-	WORD odm = Registry.GetDMSList(buffer, buffer_size);
+
+	const WORD odm = Registry.GetDMSList(buffer, buffer_size);
 
 	LogString("\tOutput parameters:\r\n");
 	if(odm)
@@ -427,8 +427,8 @@ ODMSTATUS WINAPI _export ODMGetDMS( LPCSTR lpszAppId, LPSTR lpszDMSId)
 	LogString("ODMGetDMS\r\n");
 	LogString("\tInput parameters:\r\n");
 	LogParString("lpszAppId", lpszAppId);
-	
-	ODMSTATUS odm = Registry.GetDMS(lpszAppId, lpszDMSId);
+
+	const ODMSTATUS odm = Registry.GetDMS(lpszAppId, lpszDMSId);
 	
 	LogString("\tOutput parameters:\r\n");
 	LogParString("lpszDMSId", lpszDMSId);
@@ -444,7 +444,7 @@ ODMSTATUS WINAPI _export ODMSetDMS(LPCSTR lpszAppId, LPCSTR lpszDMSId)
 	LogParString("lpszAppId", lpszAppId);
 	LogParString("lpszDMSId", lpszDMSId);
 
-	ODMSTATUS odm = Registry.SetDMS(lpszAppId, lpszDMSId);
+	const ODMSTATUS odm = Registry.SetDMS(lpszAppId, lpszDMSId);
 	
 	LogParNumber("Return value", odm);
 
