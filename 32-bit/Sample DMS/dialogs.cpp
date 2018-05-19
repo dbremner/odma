@@ -155,7 +155,7 @@ static char *lpDocList;
 					{
 						if(SendDlgItemMessage(hwndDlg, IDC_SELECT, LB_GETSEL, ii, 0))
 						{
-						wsprintf(&szDocId[0], "::ODMA\\%s\\%s", DMSID,
+						sprintf_s(szDocId, "::ODMA\\%s\\%s", DMSID,
 									(LPSTR) SendDlgItemMessage(hwndDlg, IDC_SELECT, 
 														LB_GETITEMDATA, ii, 0) );
 
