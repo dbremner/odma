@@ -63,6 +63,10 @@ public:
 	
 	BOOL IsEmpty(){ return m_pListHead == nullptr; }
 
+	/*
+	 * This code doesn't make sense.
+	 * We check if the list contains the pointer and then reassign it if it does.
+	 */
 	BOOL Add( const ODMDms* rItem )
 	{
 		if ( UpdateList( rItem ) )
