@@ -885,7 +885,7 @@ ODMSTATUS ODMClient::ClientQueryExecute( LPCSTR lpszQuery, DWORD flags,
 			else
 				odm = ODM_E_CANCEL;			// All the queries were cancelled
 		else
-			odm == ODM_E_PARTIALSUCCESS;	// Atleast one successful query and
+			odm = ODM_E_PARTIALSUCCESS;	// Atleast one successful query and
 											// one or more failures or cancels
 
 	// We have query results.  Build the query handle string for this query.
