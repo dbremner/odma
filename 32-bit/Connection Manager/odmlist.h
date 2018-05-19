@@ -106,11 +106,10 @@ public:
 	}
 
 	void ClearList()
-	{ 
-		ListNode* pTemp;
+	{
 		while( m_pListHead )
 		{
-			pTemp = m_pListHead->m_pNext;
+			ListNode * pTemp = m_pListHead->m_pNext;
 			delete m_pListHead;
 			m_pListHead = pTemp;
 		}
@@ -235,11 +234,10 @@ public:
 	}
 
 	void ClearList()
-	{ 
-		ListNode* pTemp;
+	{
 		while( m_pListHead )
 		{
-			pTemp = m_pListHead->m_pNext;
+			ListNode * pTemp = m_pListHead->m_pNext;
 			delete m_pListHead;
 			m_pListHead = pTemp;
 		}
