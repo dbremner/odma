@@ -44,12 +44,12 @@ class ODMDmsList
 
 	ListNode* m_pListHead;
 
-	BOOL UpdateList( const ODMDms*& rItem )
+	BOOL UpdateList( const ODMDms* rItem )
 	{
 		ODMDms** pItem = Find( rItem );
 		if ( pItem )
 		{
-			*pItem = (ODMDms*&)rItem;
+			*pItem = (ODMDms*)rItem;
 			return TRUE;
 		}
 
@@ -63,7 +63,7 @@ public:
 	
 	BOOL IsEmpty(){ return m_pListHead == nullptr; }
 
-	BOOL Add( const ODMDms*& rItem )
+	BOOL Add( const ODMDms* rItem )
 	{
 		if ( UpdateList( rItem ) )
 			return TRUE;
@@ -71,7 +71,7 @@ public:
 		return nullptr != new ListNode( rItem, m_pListHead );
 	}
 
-	ODMDms** Find( const ODMDms*& rItem )
+	ODMDms** Find( const ODMDms* rItem )
 	{
 		ListNode* pTestNode = m_pListHead;
 		while ( pTestNode )
@@ -84,7 +84,7 @@ public:
 		return &pTestNode->m_item;
 	}
 
-	void Remove( const ODMDms*& rItem )
+	void Remove( const ODMDms* rItem )
 	{
 		ListNode* pPreviousNode = nullptr;
 		ListNode* pRemoveNode = m_pListHead;
