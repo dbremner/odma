@@ -35,12 +35,10 @@ ODMRegistry::ODMRegistry(){
 
 	m_bLogEnable = FALSE;
 
-	char szLogKey[255];
-	strcpy_s(szLogKey, ODMA_KEY);
-	strcat_s(szLogKey,".ConnectionManager\\Logging");
-
+	CString logKey{ODMA_KEY};
+	logKey += ".ConnectionManager\\Logging";
 	HKEY hLogKey;
-	LONG err = RegOpenKey(HKEY_CLASSES_ROOT, szLogKey, &hLogKey);
+	LONG err = RegOpenKey(HKEY_CLASSES_ROOT, logKey, &hLogKey);
 	if(err != ERROR_SUCCESS)
 	{
 		RegCloseKey(hLogKey);
