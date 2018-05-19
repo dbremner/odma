@@ -20,7 +20,7 @@ HINSTANCE hInst;
 DocumentList DocList;
 
 
-BOOL WINAPI DllMain(HANDLE hModule, DWORD fdwReason, LPVOID lpvReserved)
+BOOL WINAPI DllMain(HINSTANCE hModule, DWORD fdwReason, LPVOID lpvReserved)
 {
 	hInst = hModule;
 	return 1;
