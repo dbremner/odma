@@ -180,7 +180,6 @@ exceed entryLen.
 ***************************************************************************/
 int ODMRegistry::GetDMSEntry(LPCSTR lpszDmsId, LPSTR lpszDMSEntry, int entryLen)
 {
-char key[ sizeof(ODMA_KEY) + 1 + ODM_DMSID_MAX ];
 int len;
 LONG err, vlen;
 
@@ -189,9 +188,9 @@ LONG err, vlen;
 	if(len > ODM_DMSID_MAX)
 		return -1;
 
-	strcpy_s(key, ODMA_KEY);
-	strcat_s(key, "\\");
-	strcat_s(key, lpszDmsId);
+	CString key{ ODMA_KEY };
+	key += "\\";
+	key += lpszDmsId;
 	vlen = entryLen;
 	err = RegQueryValue(HKEY_CLASSES_ROOT, key, lpszDMSEntry, &vlen);
 
