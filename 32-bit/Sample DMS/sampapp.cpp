@@ -538,7 +538,7 @@ QueryExecute( LPCSTR lpszSearchCriteria, LPSTR queryId )
 		QueryClose( m_pObject->m_szQueryId );
 
 	m_pObject->m_nQueryDocListIndex = 0;
-	wsprintf( m_pObject->m_szQueryId, "::ODMA\\%s\\%X", DMSID, ++m_pObject->m_nQuery );
+	sprintf_s( m_pObject->m_szQueryId, "::ODMA\\%s\\%X", DMSID, ++m_pObject->m_nQuery );
 	strcpy( queryId, m_pObject->m_szQueryId );
 	
 	return ODM_SUCCESS;
