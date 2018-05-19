@@ -173,7 +173,7 @@ static char *lpDocList;
 					for(ii=0; ii<SendDlgItemMessage(hwndDlg, IDC_SELECT, LB_GETCOUNT, 0, 0); ii++)
 					{
 						lpNowDocId=(LPSTR)SendDlgItemMessage(hwndDlg, IDC_SELECT, LB_GETITEMDATA, ii, 0);
-						delete lpNowDocId;
+						delete [] lpNowDocId;
 					}
 					EndDialog(hwndDlg, wParam);
 					return TRUE;
