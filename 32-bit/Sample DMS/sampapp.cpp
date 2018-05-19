@@ -217,7 +217,7 @@ SaveAsData saData;
 						Just present the application's options if any. */
 		if(pcbCallBack) 
 		{
-			lp = pcbCallBack((DWORD)m_pObject->m_clientWind, lpszFormat, pInstanceData);
+			lp = pcbCallBack((DWORD_PTR)m_pObject->m_clientWind, lpszFormat, pInstanceData);
 			strcpy_s(saData.Format, lp);
 			err = IDOK;
 		}

@@ -205,7 +205,7 @@ char *lp;
 		case WM_COMMAND:
 			switch(LOWORD(wParam)) {
 				case IDC_OPTIONS:
-					lp = pSaveAsData->pcbCallBack((DWORD)hwndDlg, pSaveAsData->Format,
+					lp = pSaveAsData->pcbCallBack((DWORD_PTR)hwndDlg, pSaveAsData->Format,
 						pSaveAsData->pInstanceData);
 
 					strcpy_s(pSaveAsData->Format, lp);

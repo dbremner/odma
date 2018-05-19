@@ -685,7 +685,7 @@ ODMSTATUS ODMClient::ConnectDms(LPCSTR lpszDmsId, ODMDms **ppDms)
 		connection manager. */
 
 	const ODMSTATUS odm = (*ppDms)->Init(lpszDmsId, m_appid, m_version, NULL,
-		(DWORD)m_clientWind);
+		(DWORD_PTR)m_clientWind);
 	if(odm) 
 	{
 #ifdef DEBUG
