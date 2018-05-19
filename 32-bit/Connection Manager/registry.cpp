@@ -180,7 +180,7 @@ exceed entryLen.
 ***************************************************************************/
 int ODMRegistry::GetDMSEntry(LPCSTR lpszDmsId, LPSTR lpszDMSEntry, int entryLen)
 {
-	int len = strlen(lpszDmsId);
+	const int len = strlen(lpszDmsId);
 
 	if(len > ODM_DMSID_MAX)
 		return -1;
@@ -189,7 +189,7 @@ int ODMRegistry::GetDMSEntry(LPCSTR lpszDmsId, LPSTR lpszDMSEntry, int entryLen)
 	key += "\\";
 	key += lpszDmsId;
 	LONG vlen = entryLen;
-	LONG err = RegQueryValue(HKEY_CLASSES_ROOT, key, lpszDMSEntry, &vlen);
+	const LONG err = RegQueryValue(HKEY_CLASSES_ROOT, key, lpszDMSEntry, &vlen);
 
 	if(err == ERROR_SUCCESS)
 		return 0;
