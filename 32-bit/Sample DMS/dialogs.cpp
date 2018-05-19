@@ -91,7 +91,6 @@ BOOL CALLBACK _export SelectDocProcEx(HWND hwndDlg, UINT message, WPARAM wParam,
 LPARAM lParam)
 {
 static char *lpDocList;
-	int ii;
 	int count = 0;
 	int end;
 	LPSTR lpNowDocId;
@@ -107,7 +106,7 @@ static char *lpDocList;
 			//lStile |= LBS_MULTIPLESEL;
 			//SetWindowLong(hLBWnd, GWL_STYLE, lStile);
 
-			for(ii=0; ii<MAXDOCS; ii++) 
+			for(int ii=0; ii<MAXDOCS; ii++) 
 			{
 				Document *pDoc = DocList.GetDocumentByIndex(ii);
 
@@ -153,7 +152,8 @@ static char *lpDocList;
 					strcpy(lpDocList, "");
 					char	szDocId[ODM_DOCID_MAX];
 
-					for(ii=0, end=0; ii<count; ii++)
+					end = 0;
+					for(int ii=0; ii<count; ii++)
 					{
 						if(SendDlgItemMessage(hwndDlg, IDC_SELECT, LB_GETSEL, ii, 0))
 						{
@@ -172,7 +172,7 @@ static char *lpDocList;
 				case IDCANCEL:
 				case IDAPPSELECT:
 					//BVG: Memory Clean Up
-					for(ii=0; ii<SendDlgItemMessage(hwndDlg, IDC_SELECT, LB_GETCOUNT, 0, 0); ii++)
+					for(int ii=0; ii<SendDlgItemMessage(hwndDlg, IDC_SELECT, LB_GETCOUNT, 0, 0); ii++)
 					{
 						lpNowDocId=(LPSTR)SendDlgItemMessage(hwndDlg, IDC_SELECT, LB_GETITEMDATA, ii, 0);
 						delete [] lpNowDocId;
