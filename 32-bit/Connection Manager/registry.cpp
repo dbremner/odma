@@ -338,7 +338,7 @@ ODMSTATUS ODMRegistry::GetDMS( LPCSTR lpszAppId, LPSTR lpszDMSId )
 
 HANDLE ODMRegistry::GetLogFile()
 {
-	if(!m_bLogEnable || m_lpszLogPath==NULL)
+	if(!m_bLogEnable || strlen(m_lpszLogPath))
 		return INVALID_HANDLE_VALUE;
 				
 	HANDLE hFile = CreateFile(m_lpszLogPath, GENERIC_WRITE, FILE_SHARE_READ,
