@@ -3,11 +3,7 @@
 
 #include "stdafx.h"
 #include "ODMATest.h"
-//#ifdef WIN32
-//#include "ODMATestDoc.h"
-//#else
 #include "TestDoc.h"
-//#endif
 #include "DMSOpt.h"
 
 #ifdef _DEBUG
