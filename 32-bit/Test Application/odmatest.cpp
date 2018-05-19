@@ -83,7 +83,7 @@ BOOL CODMATestApp::InitInstance()
 	AddDocTemplate(pDocTemplate);
 
 	// create main MDI Frame window
-	CMainFrame* pMainFrame = new CMainFrame;
+	auto* pMainFrame = new CMainFrame;
 	if (!pMainFrame->LoadFrame(IDR_MAINFRAME))
 		return FALSE;
 	m_pMainWnd = pMainFrame;

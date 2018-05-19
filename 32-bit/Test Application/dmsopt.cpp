@@ -158,7 +158,7 @@ void CFrmDMSOptions::OnRegistryDefault()
 	const char *lpszAppId = AfxGetAppName();
 	const char *DMSName = m_SetDms;
 
-	char *DMSKey = new char[ODM_APPID_MAX + 1 + sizeof(ODMA_KEY)];
+	auto *DMSKey = new char[ODM_APPID_MAX + 1 + sizeof(ODMA_KEY)];
 	strncpy(DMSKey, lpszAppId, ODM_APPID_MAX);
 	DMSKey[ODM_APPID_MAX - 1 ] = '\0';     // ensure NULL termination
 	strcat(DMSKey, "\\" );

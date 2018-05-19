@@ -105,7 +105,7 @@ int ODMRegistry::GetAppDefaultDmsId( LPCSTR lpszAppId, LPSTR lpszDmsId )
 		return 0;
 
 
-	char * DMSKey = new char[ODM_APPID_MAX + 1 + sizeof(ODMA_KEY)];
+	auto * DMSKey = new char[ODM_APPID_MAX + 1 + sizeof(ODMA_KEY)];
 	strncpy(DMSKey, lpszAppId, ODM_APPID_MAX);
 	DMSKey[ODM_APPID_MAX - 1 ] = '\0';     // ensure NULL termination
 	strcat(DMSKey, "\\" );
