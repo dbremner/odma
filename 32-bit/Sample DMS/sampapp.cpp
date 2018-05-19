@@ -206,8 +206,7 @@ SaveAsData saData;
 	{
 		saData.pcbCallBack = pcbCallBack;
 		saData.pInstanceData = pInstanceData;
-		strncpy(saData.Format, lpszFormat, sizeof(saData.Format));
-		saData.Format[sizeof(saData.Format)-1] = '\0';
+		strcpy_s(saData.Format, lpszFormat);
 
 		err = DialogBoxParam(hInst, MAKEINTRESOURCE(SAVEAS_DIALOG),
 					m_pObject->m_clientWind, (DLGPROC)SaveAsProc, (LPARAM)&saData);
@@ -219,13 +218,12 @@ SaveAsData saData;
 		if(pcbCallBack) 
 		{
 			lp = pcbCallBack((DWORD)m_pObject->m_clientWind, lpszFormat, pInstanceData);
-			strncpy(saData.Format, lp, strlen(lp));
-			saData.Format[strlen(lp)] = '\0';
+			strcpy_s(saData.Format, lp);
 			err = IDOK;
 		}
 		else 
 		{
-			strcpy(saData.Format, lpszFormat);
+			strcpy_s(saData.Format, lpszFormat);
 			err = IDOK;
 		}
 	}

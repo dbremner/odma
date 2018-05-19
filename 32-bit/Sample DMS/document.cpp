@@ -19,13 +19,11 @@ Document::Document()
 Document::Document(LPSTR lpszFormat, LPSTR lpszDocLocation)
 {
 	Init();
-	strncpy(Format[0], lpszFormat, sizeof(Format[0]));
-	Format[0][sizeof(Format[0])-1] = '\0';
+	strcpy_s(Format[0], lpszFormat);
 
 	if(lpszDocLocation) 
 	{
-		strncpy(DocLocation[0], lpszDocLocation, sizeof(DocLocation[0]));
-		DocLocation[0][sizeof(DocLocation[0])-1] = '\0';
+		strcpy_s(DocLocation[0], lpszDocLocation);
 		DocAccessed = 1;
 	}
 }
@@ -41,7 +39,7 @@ Document::Document(Document *pOldDoc)
 
 	//BVG Copy first component attributes
 	iComponents = 1;
-	strcpy(Format[0], pOldDoc->Format[0]);
+	strcpy_s(Format[0], pOldDoc->Format[0]);
 }
 
 
@@ -117,8 +115,8 @@ ODMSTATUS Document::Open(LPSTR lpszFileName)
 		// a temp filename.
 		GetTempPath(256, (LPTSTR) szTmpPath);
 		GetTempFileName(szTmpPath, "ODM", 0, DocLocation[0]);
-		_splitpath(DocLocation[0], drive, dir, fname, ext);
-		_makepath(DocLocation[0], drive, dir, fname, "txt");
+		_splitpath_s(DocLocation[0], drive, dir, fname, ext);
+		_makepath_s(DocLocation[0], drive, dir, fname, "txt");
 	}
 
 	strcpy(lpszFileName, DocLocation[0]);
@@ -195,11 +193,11 @@ char buff[165];
 		//BVG: Build comma-separated list of content format names  
 		case ODM_ALTERNATE_RENDERINGS:
 		{
-			strcpy(szFormatNames, "");
+			strcpy_s(szFormatNames, "");
 			for(int ii=0; ii<iComponents; ii++)
 			{
-				strcat(szFormatNames, Format[ii]);
-				strcat(szFormatNames, ",");
+				strcat_s(szFormatNames, Format[ii]);
+				strcat_s(szFormatNames, ",");
 				if(strlen(szFormatNames) > dataLen) return ODM_E_TRUNCATED;
 			}
 			strcpy(szFormatNames+strlen(szFormatNames)-1, "");
@@ -269,13 +267,13 @@ void Document::SaveInfo(void)
 		char	szValue[20];
 		char	szKey[20];
 
-		sprintf(szValue, "%d", iComponents);
+		sprintf_s(szValue, "%d", iComponents);
 		WritePrivateProfileString(DocId, "Components", szValue, DMSINI);
 
-		sprintf(szKey, "%s%d", "Format", ii);
+		sprintf_s(szKey, "%s%d", "Format", ii);
 		WritePrivateProfileString(DocId, szKey, Format[ii], DMSINI);
 
-		sprintf(szKey, "%s%d", "DocLocation", ii);
+		sprintf_s(szKey, "%s%d", "DocLocation", ii);
 		WritePrivateProfileString(DocId, szKey, DocLocation[ii], DMSINI);
 	}
 }
@@ -287,8 +285,8 @@ ODMSTATUS Document::AddComponent(LPSTR lpszFormat, LPSTR lpszDocLocation)
 	if(iComponents==MAXCOMPONENTS) return ODM_E_FAIL;
 
 	iComponents++;
-	strcpy(Format[iComponents-1], lpszFormat);
-	strcpy(DocLocation[iComponents-1], lpszDocLocation);
+	strcpy_s(Format[iComponents-1], lpszFormat);
+	strcpy_s(DocLocation[iComponents-1], lpszDocLocation);
 	return ODM_SUCCESS;
 }
 
@@ -300,7 +298,7 @@ ODMSTATUS Document::SetComponent(LPSTR lpszFormat, LPSTR lpszDocLocation)
 	{
 		if( strcmp(Format[ii], lpszFormat) == 0 )
 		{
-			strcpy(DocLocation[ii], lpszDocLocation);
+			strcpy_s(DocLocation[ii], lpszDocLocation);
 			return ODM_SUCCESS;
 		}
 	}
@@ -317,8 +315,8 @@ ODMSTATUS Document::DeleteComponent(LPSTR lpszFormat)
 		{
 			for(int jj=ii; jj<iComponents-1; jj++)
 			{
-				strcpy(DocLocation[jj], DocLocation[jj+1]);
-				strcpy(Format[jj], Format[jj+1]);
+				strcpy_s(DocLocation[jj], DocLocation[jj+1]);
+				strcpy_s(Format[jj], Format[jj+1]);
 			}
 			iComponents--;
 			return ODM_SUCCESS;

@@ -206,7 +206,7 @@ char *lp;
 					lp = pSaveAsData->pcbCallBack((DWORD)hwndDlg, pSaveAsData->Format,
 						pSaveAsData->pInstanceData);
 
-					strncpy(pSaveAsData->Format, lp, sizeof(pSaveAsData->Format));
+					strcpy_s(pSaveAsData->Format, lp);
 					pSaveAsData->Format[sizeof(pSaveAsData->Format)-1] = '\0';
 					SendDlgItemMessage(hwndDlg, ST_FORMAT, WM_SETTEXT, 0,
 						(LPARAM)(pSaveAsData->Format));
