@@ -61,7 +61,7 @@ ODMRegistry::ODMRegistry(){
 	long Len = ODM_FILENAME_MAX;
 	
 	err = RegQueryValue(hLogKey, "File", m_lpszLogPath, &Len);
-	if(err != ERROR_SUCCESS || sizeof(m_lpszLogPath) == 0)
+	if(err != ERROR_SUCCESS || strlen(m_lpszLogPath) == 0)
 	{
 		strcpy_s(m_lpszLogPath, "C:\\");
 		strcat_s(m_lpszLogPath, ODMA_KEY);
