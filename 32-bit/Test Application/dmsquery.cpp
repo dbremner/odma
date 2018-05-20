@@ -105,7 +105,7 @@ void CFrmDMSQuery::OnGo()
 	for(UINT i = 0; i<m_wCount; i++)
 	{
 		char buffer[255];
-		sprintf(buffer,"%s   %s", &lpszDocName[ODM_NAME_MAX*i], &lpszDocId[ODM_DOCID_MAX*i]);
+		sprintf_s(buffer,"%s   %s", &lpszDocName[ODM_NAME_MAX*i], &lpszDocId[ODM_DOCID_MAX*i]);
 		m_ListResult.AddString(buffer);
 	}
 
