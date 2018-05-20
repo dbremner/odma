@@ -240,7 +240,7 @@ ODMSTATUS err;
 			target = Format[0]; 
 			len = sizeof(Format[0]);
 			break;
-		default: target = nullptr;
+		default: target = nullptr; len = 0;
 	}
 
 	if(target) 

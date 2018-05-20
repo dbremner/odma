@@ -260,7 +260,7 @@ SaveAsData saData;
 STDMETHODIMP_(ODMSTATUS) Application::CODMDocMan::Activate(WORD action,
 LPSTR lpszDocId)
 {
-Document *pDoc;
+Document *pDoc = nullptr;
 ODMSTATUS err;
 
 	if(lpszDocId == nullptr) {
