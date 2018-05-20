@@ -162,11 +162,8 @@ BOOL CODMATestDoc::OnSelectType(LPCSTR DocId, LPSTR lpszFormat, LPSTR lpszListFr
 			strcpy(lpszFormat, frmDOCFormat.m_FrmName);
 			return TRUE;
 		}
-		else
-		{
-			strcpy(lpszFormat, "");
-			return FALSE;
-		}
+		strcpy(lpszFormat, "");
+		return FALSE;
 	}
 	
 	return TRUE;

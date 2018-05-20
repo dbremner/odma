@@ -139,8 +139,7 @@ STDMETHODIMP_(ODMSTATUS) ODMClient::CODMDocMan::OpenDoc(DWORD flags,
 
 	if(odm == ODM_E_DOCID)
 		return ODM_E_DOCID;
-
-	else if(odm != ODM_SUCCESS)
+	if(odm != ODM_SUCCESS)
 		return ODM_E_FAIL;
 
 	odm = pDms->m_pDocMan->OpenDoc(flags, lpszDocId, lpszDocLocation);
