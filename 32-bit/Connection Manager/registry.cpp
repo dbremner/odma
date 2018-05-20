@@ -195,8 +195,7 @@ int ODMRegistry::GetDMSEntry(LPCSTR lpszDmsId, LPSTR lpszDMSEntry, int entryLen)
 
 	if(err == ERROR_SUCCESS)
 		return 0;
-	else
-		return -1;
+	return -1;
 }
 
 /********************************************************
