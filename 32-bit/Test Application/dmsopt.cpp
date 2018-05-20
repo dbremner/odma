@@ -161,7 +161,7 @@ void CFrmDMSOptions::OnRegistryDefault()
 	strcat_s(DMSKey, len, "\\" );
 	strcat_s(DMSKey, len, ODMA_KEY);
 
-	RegSetValue(HKEY_CLASSES_ROOT, DMSKey, REG_SZ, DMSName,	sizeof(DMSName));
+	RegSetValue(HKEY_CLASSES_ROOT, DMSKey, REG_SZ, DMSName,	sizeof(DMSName)); //TODO last sizeof is wrong
 
 	delete[] DMSKey;
 	
