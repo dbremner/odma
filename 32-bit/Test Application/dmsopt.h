@@ -10,7 +10,7 @@ class CFrmDMSOptions : public CDialog
 {
 // Construction
 public:
-	CFrmDMSOptions(CWnd* pParent = NULL);   // standard constructor
+	CFrmDMSOptions(CWnd* pParent = nullptr);   // standard constructor
 
 // Dialog Data
 	//{{AFX_DATA(CFrmDMSOptions)

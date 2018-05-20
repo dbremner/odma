@@ -33,7 +33,7 @@ protected:
 public:
 	static BOOL OnSelectDoc(LPSTR lpszTitle);
 	static BOOL OnSelectDocEx(LPSTR lpszDocIds, LPWORD wDocCount);
-	static BOOL OnSelectType(LPCSTR DocId, LPSTR lpszFormat, LPSTR lpszListFrm = NULL);
+	static BOOL OnSelectType(LPCSTR DocId, LPSTR lpszFormat, LPSTR lpszListFrm = nullptr);
 	static void GetDocInfo(WORD wItem, LPSTR lpszData, WORD dataLen, LPCSTR DocId);
 	static void GetTitle(LPSTR lpszTitle, LPCSTR DocId, LPCSTR lpszFormat);
 
@@ -61,7 +61,7 @@ public:
 	virtual BOOL DMSSaveAsDoc();
 	virtual BOOL DMSSaveDoc();
 	virtual BOOL DMSSaveAlter();
-	virtual void DMSCloseDoc(LPSTR DocId = NULL);
+	virtual void DMSCloseDoc(LPSTR DocId = nullptr);
 
 // Implementation
 public:

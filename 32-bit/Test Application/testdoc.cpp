@@ -13,7 +13,7 @@
 static char BASED_CODE THIS_FILE[] = __FILE__;
 #endif
 
-ODMHANDLE CODMATestDoc::odmHandle = NULL;
+ODMHANDLE CODMATestDoc::odmHandle = nullptr;
 BOOL CODMATestDoc::m_bUseEx = FALSE;
 BOOL CODMATestDoc::m_bAlter = FALSE;
 BOOL CODMATestDoc::m_bAppSel = FALSE;
@@ -80,7 +80,7 @@ BOOL CODMATestDoc::OnSelectDoc(LPSTR lpszTitle)
 		strcpy(lpszTitle, "");
 		return TRUE;
 	case ODM_E_HANDLE:
-		odmHandle = NULL;
+		odmHandle = nullptr;
 		return FALSE;
 	default:
 		return FALSE;
@@ -106,7 +106,7 @@ BOOL CODMATestDoc::OnSelectDocEx(LPSTR lpszDocIds, LPWORD wDocCount)
 	
 	WORD wDocIdsLen = ODM_DOCID_MAX * (*wDocCount);
 	const ODMSTATUS odm = ODMSelectDocEx(odmHandle, lpszDocIds,	&wDocIdsLen,
-			wDocCount, &dwFlags, NULL);
+			wDocCount, &dwFlags, nullptr);
 	switch(odm)
 	{
 	case ODM_SUCCESS:
@@ -120,7 +120,7 @@ BOOL CODMATestDoc::OnSelectDocEx(LPSTR lpszDocIds, LPWORD wDocCount)
 		strcpy(lpszDocIds, "");
 		return TRUE;
 	case ODM_E_HANDLE:
-		odmHandle = NULL;
+		odmHandle = nullptr;
 		return FALSE;
 	default:
 		return FALSE;
@@ -190,7 +190,7 @@ void CODMATestDoc::GetDocInfo(WORD wItem, LPSTR lpszData, WORD dataLen, LPCSTR D
 	case ODM_E_ITEM:
 		break;
 	case ODM_E_HANDLE:
-		odmHandle = NULL;
+		odmHandle = nullptr;
 		break;
 	default:
 		break;
@@ -356,7 +356,7 @@ BOOL CODMATestDoc::DMSNewDoc(LPSTR DocId)
 	if(m_bUseEx)
 		return TRUE;
 
-	const ODMSTATUS odm = ODMNewDoc(odmHandle, DocId, ODM_SILENT, ODM_FORMAT_TEXT, NULL);
+	const ODMSTATUS odm = ODMNewDoc(odmHandle, DocId, ODM_SILENT, ODM_FORMAT_TEXT, nullptr);
 	switch(odm)
 	{
 	case ODM_SUCCESS:
@@ -370,7 +370,7 @@ BOOL CODMATestDoc::DMSNewDoc(LPSTR DocId)
 	case ODM_E_APPSELECT:
 		break;
 	case ODM_E_HANDLE:
-		odmHandle = NULL;
+		odmHandle = nullptr;
 		break;
 	default:
 		break;
@@ -401,7 +401,7 @@ BOOL CODMATestDoc::DMSOpenDoc(LPSTR FileName)
 	case ODM_E_FAIL:
 		return FALSE;
 	case ODM_E_HANDLE:
-		odmHandle = NULL;
+		odmHandle = nullptr;
 		return FALSE;
 	default:
 		return FALSE;
@@ -449,7 +449,7 @@ BOOL CODMATestDoc::DMSOpenAlter(LPSTR FileName)
 		case ODM_E_FAIL:
 			return FALSE;
 		case ODM_E_HANDLE:
-			odmHandle = NULL;
+			odmHandle = nullptr;
 			return FALSE;
 		default:
 			return FALSE;
@@ -474,8 +474,8 @@ void CODMATestDoc::DMSCloseDoc(LPSTR DocId)
 
 	DWORD dwFlags = ODM_SILENT;
 
-	const ODMSTATUS odm = m_bUseEx ? ODMCloseDocEx(odmHandle, DocId, &dwFlags, 0xFFFFFFFF,0xFFFFFFFF,	NULL, NULL)
-			:ODMCloseDoc(odmHandle, DocId, 0xFFFFFFFF, 0xFFFFFFFF, NULL, NULL);
+	const ODMSTATUS odm = m_bUseEx ? ODMCloseDocEx(odmHandle, DocId, &dwFlags, 0xFFFFFFFF,0xFFFFFFFF, nullptr, NULL)
+			:ODMCloseDoc(odmHandle, DocId, 0xFFFFFFFF, 0xFFFFFFFF, nullptr, NULL);
 	switch (odm)
 	{
 	case ODM_SUCCESS:
@@ -483,7 +483,7 @@ void CODMATestDoc::DMSCloseDoc(LPSTR DocId)
 	case ODM_E_NOOPEN:
 		break;
 	case ODM_E_HANDLE:
-		odmHandle = NULL;
+		odmHandle = nullptr;
 		break;
 	default:
 		break;
@@ -516,7 +516,7 @@ BOOL CODMATestDoc::DMSSaveDoc()
 	case ODM_E_FAIL:
 		return FALSE;
 	case ODM_E_HANDLE:
-		odmHandle = NULL;
+		odmHandle = nullptr;
 		return FALSE;
 	case ODM_E_CANCEL:  // -Ex function
 		return FALSE;
@@ -544,9 +544,9 @@ BOOL CODMATestDoc::DMSSaveAsDoc()
 		return FALSE;
   
 	DWORD dwFlags = 0;
-	const ODMSTATUS odm = m_bUseEx ? ODMSaveAsEx(odmHandle, *DocId ? DocId : NULL,
-		m_DocId, ODM_FORMAT_TEXT, NULL, NULL, &dwFlags)
-		:ODMSaveAs(odmHandle, DocId, m_DocId, ODM_FORMAT_TEXT, NULL, NULL);
+	const ODMSTATUS odm = m_bUseEx ? ODMSaveAsEx(odmHandle, *DocId ? DocId : nullptr,
+		m_DocId, ODM_FORMAT_TEXT, nullptr, nullptr, &dwFlags)
+		:ODMSaveAs(odmHandle, DocId, m_DocId, ODM_FORMAT_TEXT, nullptr, nullptr);
 	switch (odm)
 	{
 	case ODM_SUCCESS:
@@ -564,7 +564,7 @@ BOOL CODMATestDoc::DMSSaveAsDoc()
 	case ODM_E_FAIL:
 		return FALSE;
 	case ODM_E_HANDLE:
-		odmHandle = NULL;
+		odmHandle = nullptr;
 		return FALSE;
 	default:
 		return FALSE;
@@ -656,7 +656,7 @@ BOOL CODMATestDoc::DMSSaveAlter()
 		m_bRTF = bRTF;
 		return FALSE;
 	case ODM_E_HANDLE:
-		odmHandle = NULL;
+		odmHandle = nullptr;
 		m_bRTF = bRTF;
 		return FALSE;
 	default:

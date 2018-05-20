@@ -15,7 +15,7 @@ class CFrmDOCFormat : public CDialog
 {
 // Construction
 public:
-	CFrmDOCFormat(LPSTR szListFrm, CWnd* pParent = NULL);
+	CFrmDOCFormat(LPSTR szListFrm, CWnd* pParent = nullptr);
 
 // Dialog Data
 	//{{AFX_DATA(CFrmDOCFormat)

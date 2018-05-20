@@ -188,7 +188,7 @@ void CODMATestApp::OnRegisterApp()
 	OnUnRegisterApp();
 
 	const ODMSTATUS odm = ODMRegisterApp(&CODMATestDoc::odmHandle, ODM_API_VERSION,
-		(LPSTR) lpszAppId, (WORD)AfxGetMainWnd()->m_hWnd, NULL);
+		(LPSTR) lpszAppId, (WORD)AfxGetMainWnd()->m_hWnd, nullptr);
 	switch(odm)
 	{
 	case ODM_SUCCESS:
@@ -209,7 +209,7 @@ void CODMATestApp::OnUnRegisterApp()
    if (CODMATestDoc::odmHandle)
 	   ODMUnRegisterApp(CODMATestDoc::odmHandle);
 
-   CODMATestDoc::odmHandle = NULL;
+   CODMATestDoc::odmHandle = nullptr;
 }
 
 void CODMATestApp::OnFileOpen() 
@@ -289,7 +289,7 @@ BOOL TimeBomb(WORD wYear, WORD wMonth)
 	
 	if(tm.wYear <= wYear && (tm.wYear != wYear || tm.wMonth < wMonth))
 			return FALSE;
-	MessageBox(NULL, "This version of the ODMA Test Application is expired",
+	MessageBox(nullptr, "This version of the ODMA Test Application is expired",
 	"ODMA Test Application", MB_ICONSTOP | MB_TASKMODAL);
 	return TRUE;
 }

@@ -8,7 +8,7 @@ class CFrmDMSQuery : public CDialog
 {
 // Construction
 public:
-	CFrmDMSQuery(CWnd* pParent = NULL);   // standard constructor
+	CFrmDMSQuery(CWnd* pParent = nullptr);   // standard constructor
 	~CFrmDMSQuery();   // standard destructor
 
 // Dialog Data
