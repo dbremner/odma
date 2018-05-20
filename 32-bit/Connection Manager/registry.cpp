@@ -69,7 +69,7 @@ ODMRegistry::ODMRegistry(){
 
 	err = RegQueryValue(hLogKey, "Options", m_lplistTokens, &Len);
   
-	if(sizeof(m_lplistTokens) != 0)
+	if(strlen(m_lplistTokens) != 0)
 	{
 		char *lpNewLog = strstr(m_lplistTokens, "NEWLOG");
 		
