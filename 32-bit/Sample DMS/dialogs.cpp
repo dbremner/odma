@@ -8,6 +8,7 @@
 #include <windows.h>
 #include <windowsx.h>
 #include "odmasamp.h"
+#include <strsafe.h>
 
 BOOL CALLBACK _export SelectDocProc(HWND hwndDlg, UINT message, WPARAM wParam,
 LPARAM lParam)
@@ -35,7 +36,7 @@ int ii, index, count;
 
 				//BVG: Save DocId as ItemData
 				lpNowDocId=new char[ODM_DOCID_MAX];
-				lstrcpy(lpNowDocId, pDoc->GetId());
+				StringCchCopy(lpNowDocId, ODM_DOCID_MAX, pDoc->GetId());
 				SendDlgItemMessage(hwndDlg, IDC_SELECT, LB_SETITEMDATA, index, reinterpret_cast<LPARAM>(lpNowDocId));
 
 				count++;
@@ -120,7 +121,7 @@ static char *lpDocList;
 
 				//BVG: Save DocId as ItemData
 				lpNowDocId=new char[ODM_DOCID_MAX];
-				lstrcpy(lpNowDocId, pDoc->GetId());
+				StringCchCopy(lpNowDocId, ODM_DOCID_MAX, pDoc->GetId());
 				SendDlgItemMessage(hwndDlg, IDC_SELECT, LB_SETITEMDATA, index, reinterpret_cast<LPARAM>(lpNowDocId));
 
 				count++;
