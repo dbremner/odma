@@ -77,13 +77,15 @@ void CFrmDMSQuery::OnGo()
 	CString strQuery;
 	LPTSTR lpszQuery = strQuery.GetBufferSetLength(ODM_QUERY_MAX);
 	
-	strcpy(lpszQuery, "SELECT ODM_DOCID, ODM_NAME");
+	const size_t query_len = ODM_QUERY_MAX;
+
+	strcpy_s(lpszQuery, query_len, "SELECT ODM_DOCID, ODM_NAME");
 	if(!m_txtWhere.IsEmpty())
-		strcat(lpszQuery, " where ");
-	strcat(lpszQuery, m_txtWhere);
+		strcat_s(lpszQuery, query_len, " where ");
+	strcat_s(lpszQuery, query_len, m_txtWhere);
 	if(!m_txtSearch.IsEmpty())
-		strcat(lpszQuery, " search ");
-	strcat(lpszQuery, m_txtSearch);
+		strcat_s(lpszQuery, query_len, " search ");
+	strcat_s(lpszQuery, query_len, m_txtSearch);
 	
 	DWORD dwFlags = ODM_SPECIFIC;
 	odm = ODMQueryExecute(CODMATestDoc::odmHandle, lpszQuery,
