@@ -5,6 +5,7 @@
 #include "ODMATest.h"
 #include "TestDoc.h"
 #include "DMSOpt.h"
+#include <strsafe.h>
 
 #ifdef _DEBUG
 //#define new DEBUG_NEW
@@ -156,8 +157,7 @@ void CFrmDMSOptions::OnRegistryDefault()
 
 	const size_t len = ODM_APPID_MAX + 1 + sizeof(ODMA_KEY);
 	auto *DMSKey = new char[len];
-	strncpy(DMSKey, lpszAppId, ODM_APPID_MAX);
-	DMSKey[ODM_APPID_MAX - 1 ] = '\0';     // ensure NULL termination
+	StringCchCopyN(DMSKey, len, lpszAppId, ODM_APPID_MAX);
 	strcat_s(DMSKey, len, "\\" );
 	strcat_s(DMSKey, len, ODMA_KEY);
 
