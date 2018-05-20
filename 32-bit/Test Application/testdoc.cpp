@@ -149,7 +149,7 @@ BOOL CODMATestDoc::OnSelectType(LPCSTR DocId, LPSTR lpszFormat, LPSTR lpszListFr
 	}
 	else
 	{
-		strcpy(lpszList,lpszListFrm);
+		strcpy_s(lpszList, dataLen, lpszListFrm);
 	}
 	
 	if(*lpszList)
