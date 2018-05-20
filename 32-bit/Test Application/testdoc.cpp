@@ -65,8 +65,8 @@ BOOL CODMATestDoc::OnSelectDoc(LPSTR lpszTitle)
 		return FALSE;
   
 	DWORD dwFlag = 0;
-	
-	ODMSTATUS odm = ODMSelectDoc(odmHandle, DocId, &dwFlag);
+
+	const ODMSTATUS odm = ODMSelectDoc(odmHandle, DocId, &dwFlag);
 	switch(odm)
 	{
 	case ODM_SUCCESS:
@@ -105,7 +105,7 @@ BOOL CODMATestDoc::OnSelectDocEx(LPSTR lpszDocIds, LPWORD wDocCount)
 	DWORD dwFlags = 0;
 	
 	WORD wDocIdsLen = ODM_DOCID_MAX * (*wDocCount);
-	ODMSTATUS odm = ODMSelectDocEx(odmHandle, lpszDocIds,	&wDocIdsLen,
+	const ODMSTATUS odm = ODMSelectDocEx(odmHandle, lpszDocIds,	&wDocIdsLen,
 			wDocCount, &dwFlags, NULL);
 	switch(odm)
 	{
@@ -138,7 +138,7 @@ BOOL CODMATestDoc::OnSelectType(LPCSTR DocId, LPSTR lpszFormat, LPSTR lpszListFr
 		return TRUE;
 
 	CString strFrmList;
-	WORD dataLen = ODM_FORMAT_MAX*5;
+	const WORD dataLen = ODM_FORMAT_MAX*5;
 	LPSTR lpszList = strFrmList.GetBuffer(dataLen);
 
 	if(!lpszListFrm)
@@ -155,7 +155,7 @@ BOOL CODMATestDoc::OnSelectType(LPCSTR DocId, LPSTR lpszFormat, LPSTR lpszListFr
 	if(*lpszList)
 	{
 		CFrmDOCFormat frmDOCFormat(lpszList);
-		int iRet = frmDOCFormat.DoModal();
+		const int iRet = frmDOCFormat.DoModal();
 
 		if(iRet == IDOK)
 		{
@@ -180,7 +180,7 @@ void CODMATestDoc::GetDocInfo(WORD wItem, LPSTR lpszData, WORD dataLen, LPCSTR D
 	// ODM_DMS_DEFINED - The lpszData parameter contains a DMS-specific indication of the data to be returned. Note that an application must know which DMS it is talking to and must understand the data.
 	// ODM_ALTERNATE_RENDERINGS - return a comma-separated list of format names representing the alternate formats it can return in ODMGetAlternateContent. 
 
-	ODMSTATUS odm = ODMGetDocInfo(odmHandle, (LPSTR) DocId, wItem, lpszData, dataLen);
+	const ODMSTATUS odm = ODMGetDocInfo(odmHandle, (LPSTR) DocId, wItem, lpszData, dataLen);
 	switch(odm)
 	{
 	case ODM_SUCCESS:
@@ -356,7 +356,7 @@ BOOL CODMATestDoc::DMSNewDoc(LPSTR DocId)
 	if(m_bUseEx)
 		return TRUE;
 
-	ODMSTATUS odm = ODMNewDoc(odmHandle, DocId, ODM_SILENT, ODM_FORMAT_TEXT, NULL);
+	const ODMSTATUS odm = ODMNewDoc(odmHandle, DocId, ODM_SILENT, ODM_FORMAT_TEXT, NULL);
 	switch(odm)
 	{
 	case ODM_SUCCESS:
@@ -383,9 +383,9 @@ BOOL CODMATestDoc::DMSOpenDoc(LPSTR FileName)
 	if (!odmHandle || !*m_DocId)
 		return FALSE;
 
-	DWORD dwFlag = 0;
+	const DWORD dwFlag = 0;
 
-	ODMSTATUS odm = ODMOpenDoc(odmHandle, dwFlag, m_DocId, FileName);
+	const ODMSTATUS odm = ODMOpenDoc(odmHandle, dwFlag, m_DocId, FileName);
 	switch(odm)
 	{
 	case ODM_SUCCESS:
@@ -422,7 +422,7 @@ BOOL CODMATestDoc::DMSOpenAlter(LPSTR FileName)
 	if(!strFormat.CompareNoCase(ODM_FORMAT_RTF))
 	{
 		DWORD dwFlags = 0;
-		ODMSTATUS odm = ODMGetAlternateContent(odmHandle, m_DocId,
+		const ODMSTATUS odm = ODMGetAlternateContent(odmHandle, m_DocId,
 			&dwFlags, m_Format, FileName);
 		switch (odm)
 		{
@@ -474,7 +474,7 @@ void CODMATestDoc::DMSCloseDoc(LPSTR DocId)
 
 	DWORD dwFlags = ODM_SILENT;
 
-	ODMSTATUS odm = m_bUseEx ? ODMCloseDocEx(odmHandle, DocId, &dwFlags, 0xFFFFFFFF,0xFFFFFFFF,	NULL, NULL)
+	const ODMSTATUS odm = m_bUseEx ? ODMCloseDocEx(odmHandle, DocId, &dwFlags, 0xFFFFFFFF,0xFFFFFFFF,	NULL, NULL)
 			:ODMCloseDoc(odmHandle, DocId, 0xFFFFFFFF, 0xFFFFFFFF, NULL, NULL);
 	switch (odm)
 	{
@@ -501,8 +501,8 @@ BOOL CODMATestDoc::DMSSaveDoc()
 
 	char DocId[ODM_DOCID_MAX];
 	DWORD dwFlags = ODM_SILENT;
-  
-	ODMSTATUS odm = m_bUseEx ? ODMSaveDocEx(odmHandle, m_DocId, DocId, &dwFlags)
+
+	const ODMSTATUS odm = m_bUseEx ? ODMSaveDocEx(odmHandle, m_DocId, DocId, &dwFlags)
 				:ODMSaveDoc(odmHandle, m_DocId, DocId);
 	switch (odm)
 	{
@@ -544,7 +544,7 @@ BOOL CODMATestDoc::DMSSaveAsDoc()
 		return FALSE;
   
 	DWORD dwFlags = 0;
-	ODMSTATUS odm = m_bUseEx ? ODMSaveAsEx(odmHandle, *DocId ? DocId : NULL,
+	const ODMSTATUS odm = m_bUseEx ? ODMSaveAsEx(odmHandle, *DocId ? DocId : NULL,
 		m_DocId, ODM_FORMAT_TEXT, NULL, NULL, &dwFlags)
 		:ODMSaveAs(odmHandle, DocId, m_DocId, ODM_FORMAT_TEXT, NULL, NULL);
 	switch (odm)
@@ -596,12 +596,12 @@ BOOL CODMATestDoc::DMSSaveAlter()
 	if(!m_bAlter)
 		return FALSE;
 
-	BOOL bRTF = m_bRTF;
+	const BOOL bRTF = m_bRTF;
 	
 	if(!m_bRTF)
 	{
 		CString strFrmList;
-		WORD dataLen = ODM_FORMAT_MAX*5;
+		const WORD dataLen = ODM_FORMAT_MAX*5;
 		LPSTR lpszListFrm = strFrmList.GetBuffer(dataLen);
 		*lpszListFrm = NULL;
 
@@ -623,7 +623,7 @@ BOOL CODMATestDoc::DMSSaveAlter()
 	}
 
 	DWORD dwFlags = 0;
-	ODMSTATUS odm = ODMSetAlternateContent(odmHandle, m_DocId,
+	const ODMSTATUS odm = ODMSetAlternateContent(odmHandle, m_DocId,
 				&dwFlags, ODM_FORMAT_RTF, m_FileName);
 	switch (odm)
 	{
