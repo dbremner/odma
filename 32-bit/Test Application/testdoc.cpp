@@ -615,8 +615,8 @@ BOOL CODMATestDoc::DMSSaveAlter()
 			char dir[_MAX_DIR];
 			char fname[_MAX_FNAME];
 			char ext[_MAX_EXT];
-			_splitpath(m_FileName, drive, dir, fname, ext);
-			_makepath(m_FileName, drive, dir, fname, "rtf");
+			_splitpath_s(m_FileName, drive, dir, fname, ext);
+			_makepath_s(m_FileName, drive, dir, fname, "rtf");
 		}
 
 		m_bRTF = TRUE;
