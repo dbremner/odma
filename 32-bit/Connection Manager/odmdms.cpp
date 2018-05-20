@@ -13,7 +13,7 @@ TABS(3,3)
 #include "conman.h"
 
 
-ODMDms::ODMDms(void)
+ODMDms::ODMDms()
 {
 	m_pUnk = nullptr;
 	m_pDocMan = nullptr;
@@ -24,7 +24,7 @@ ODMDms::ODMDms(void)
 	m_szQueryId[0] = '\0';
 }
 
-ODMDms::~ODMDms(void)
+ODMDms::~ODMDms()
 {
 	if(m_pUnk)
 		m_pUnk->Release();

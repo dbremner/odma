@@ -73,7 +73,7 @@ Document::Document(LPSTR lpszDocId)
 }
 
 
-void Document::Init(void)
+void Document::Init()
 {
 SYSTEMTIME tm;
 
@@ -254,7 +254,7 @@ ODMSTATUS err;
 }
 
 
-void Document::SaveInfo(void)
+void Document::SaveInfo()
 {
 	// Put the docId into the DocList section.
 	WritePrivateProfileString("DocList", DocId, "", DMSINI);

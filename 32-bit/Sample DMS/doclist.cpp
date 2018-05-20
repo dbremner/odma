@@ -6,7 +6,7 @@
 #include "odmasamp.h"
 
 
-DocumentList::DocumentList(void)
+DocumentList::DocumentList()
 {
 int i;
 	char *entry;
@@ -28,7 +28,7 @@ int i;
 }
 
 
-DocumentList::~DocumentList(void)
+DocumentList::~DocumentList()
 {
 	// Delete all the document objects in the list.
 	for(int i = 0; i<MAXDOCS; i++) {
@@ -184,7 +184,7 @@ ODMSTATUS DocumentList::DeleteDocument( LPSTR lpszDocId )
 }
 
 
-void DocumentList::SaveList(void)
+void DocumentList::SaveList()
 {
 	// First wipe out the previous list
 	WritePrivateProfileString("DocList", nullptr, nullptr, "ODMASAMP.INI");

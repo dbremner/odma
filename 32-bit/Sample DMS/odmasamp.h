@@ -218,7 +218,7 @@ class Document {
 	char	Format[MAXCOMPONENTS][ODM_FORMAT_MAX];
 	char	DocLocation[MAXCOMPONENTS][ODM_FILENAME_MAX];
 
-	void Init(void);
+	void Init();
 
 	friend BOOL CALLBACK _export ProfileProc(HWND hwndDlg, UINT message, WPARAM wParam,
 		LPARAM lParam);
@@ -233,8 +233,8 @@ class Document {
 	Document(LPSTR lpszFormat, LPSTR lpszDocLocation);
 	Document(Document *pOldDoc);
 	Document(LPSTR lpszDocId);
-	char *GetId(void) { return DocId; };
-	int GetOpenCount(void) { return OpenCount; };
+	char *GetId() { return DocId; };
+	int GetOpenCount() { return OpenCount; };
 	ODMSTATUS Open(LPSTR lpszFileName);
 	ODMSTATUS Save() { SaveFlag = 1; return 0; };
 	ODMSTATUS Close(DWORD activeTime, DWORD pagesPrinted,
@@ -243,12 +243,12 @@ class Document {
 	ODMSTATUS ShowAttributes(HWND hParent);
 	ODMSTATUS GetInfo(WORD item, LPSTR lpszData, WORD dataLen);
 	ODMSTATUS SetInfo(WORD item, LPSTR lpszData);
-	void SaveInfo(void);
-	int HasBeenAccessed(void) 
+	void SaveInfo();
+	int HasBeenAccessed() 
 		{ return DocAccessed; };
 
 	//BVG:
-	int HasBeenEdited(void) 
+	int HasBeenEdited() 
 		{ return bEdited; }; 
 };
 
