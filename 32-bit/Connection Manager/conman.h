@@ -185,7 +185,7 @@ private:
 
 	ODMDmsList m_queryDmss;
 	DWORD m_nQueryCount;
-	char m_szQueryId[ sizeof( CONMAN_ID ) + 2 * sizeof( long ) ];
+	char m_szQueryId[ _countof( CONMAN_ID ) + 2 * sizeof( long ) ];
 };	/* ODMClient */
 
 

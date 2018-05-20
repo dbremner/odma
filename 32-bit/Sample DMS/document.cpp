@@ -56,19 +56,19 @@ Document::Document(LPSTR lpszDocId)
 	//BVG: assunption: that all profiles has been edited at previous seseion 
 	bEdited=TRUE;
 
-	GetPrivateProfileString(DocId, "Author", "", Author, sizeof(Author), DMSINI);
-	GetPrivateProfileString(DocId, "Name", "", Name, sizeof(Name), DMSINI);
-	GetPrivateProfileString(DocId, "DocType", "", DocType, sizeof(DocType), DMSINI);
+	GetPrivateProfileString(DocId, "Author", "", Author, _countof(Author), DMSINI);
+	GetPrivateProfileString(DocId, "Name", "", Name, _countof(Name), DMSINI);
+	GetPrivateProfileString(DocId, "DocType", "", DocType, _countof(DocType), DMSINI);
 
 	//BVG: Load components properties
 	iComponents = GetPrivateProfileInt(DocId, "Components", 0, DMSINI);
 	for( int ii=0; ii<iComponents; ii++)
 	{
 		char szKey[20];
-		snprintf(szKey, sizeof(szKey), "%s%d", "Format", ii);
-		GetPrivateProfileString(DocId, szKey, "", Format[ii], sizeof(Format[ii]), DMSINI);
-		snprintf(szKey, sizeof(szKey), "%s%d", "DocLocation", ii);
-		GetPrivateProfileString(DocId, szKey, "", DocLocation[ii], sizeof(DocLocation[ii]), DMSINI);
+		snprintf(szKey, _countof(szKey), "%s%d", "Format", ii);
+		GetPrivateProfileString(DocId, szKey, "", Format[ii], _countof(Format[ii]), DMSINI);
+		snprintf(szKey, _countof(szKey), "%s%d", "DocLocation", ii);
+		GetPrivateProfileString(DocId, szKey, "", DocLocation[ii], _countof(DocLocation[ii]), DMSINI);
 	}
 }
 
@@ -232,13 +232,13 @@ ODMSTATUS err;
 
 	switch(item) 
 	{
-		case ODM_AUTHOR: target = Author; len = sizeof(Author); break;
-		case ODM_NAME: target = Name; len = sizeof(Name); break;
-		case ODM_TYPE: target = DocType; len = sizeof(DocType); break;
+		case ODM_AUTHOR: target = Author; len = _countof(Author); break;
+		case ODM_NAME: target = Name; len = _countof(Name); break;
+		case ODM_TYPE: target = DocType; len = _countof(DocType); break;
 		case ODM_CONTENTFORMAT:
 			//BVG:
 			target = Format[0]; 
-			len = sizeof(Format[0]);
+			len = _countof(Format[0]);
 			break;
 		default: target = nullptr; len = 0;
 	}

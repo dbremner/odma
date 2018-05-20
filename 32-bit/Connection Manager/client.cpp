@@ -615,7 +615,7 @@ ODMSTATUS ODMClient::ConnectDocId(LPSTR lpszDocId, ODMDms **ppDms)
 	
 	char *s = lpszDocId+7;
 	size_t i;
-	for(i=0; *s && *s != '\\' && i < sizeof(DmsId)-1; i++, s++)
+	for(i=0; *s && *s != '\\' && i < _countof(DmsId)-1; i++, s++)
 		DmsId[i] = *s;
 
 	DmsId[i] = '\0';

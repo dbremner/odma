@@ -70,7 +70,7 @@ ODMSTATUS ODMDms::Init(LPCSTR lpszDmsId, LPSTR lpszAppId, WORD version,
 
 	// Get the DMS Entry point information.  Under Windows this returns the path to the
 	// DLL provided by the DMS that contains the ODMGetODMInterface entry point.
-	const int ierr = Registry.GetDMSEntry(lpszDmsId, DmsLoc, sizeof(DmsLoc));
+	const int ierr = Registry.GetDMSEntry(lpszDmsId, DmsLoc, _countof(DmsLoc));
 	if(ierr) 
 	{
 #ifdef DEBUG
