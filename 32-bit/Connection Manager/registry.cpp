@@ -104,8 +104,8 @@ int ODMRegistry::GetAppDefaultDmsId( LPCSTR lpszAppId, LPSTR lpszDmsId )
 	if ( m_overrideList.GetDMS( lpszAppId, lpszDmsId ) )
 		return 0;
 
-
-	auto * DMSKey = new char[ODM_APPID_MAX + 1 + sizeof(ODMA_KEY)];
+	const size_t key_len = ODM_APPID_MAX + 1 + sizeof(ODMA_KEY);
+	auto * DMSKey = new char[key_len];
 	strncpy(DMSKey, lpszAppId, ODM_APPID_MAX);
 	DMSKey[ODM_APPID_MAX - 1 ] = '\0';     // ensure NULL termination
 	strcat(DMSKey, "\\" );
