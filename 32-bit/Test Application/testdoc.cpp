@@ -38,10 +38,10 @@ END_MESSAGE_MAP()
 
 CODMATestDoc::CODMATestDoc()
 {
-	*m_DocId = NULL;
-	*m_FileName = NULL;
-	*m_Format = NULL;
-	*m_TitleText = NULL;
+	m_DocId[0] = '\0';
+	m_FileName[0] = '\0';
+	m_Format[0] = '\0';
+	m_TitleText[0] = '\0';
 }
 
 CODMATestDoc::~CODMATestDoc()
