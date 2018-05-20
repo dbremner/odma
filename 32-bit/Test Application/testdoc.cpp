@@ -489,7 +489,6 @@ void CODMATestDoc::DMSCloseDoc(LPSTR DocId)
 		break;
 	}
 	*DocId = NULL;
-	return;
 }
 
 

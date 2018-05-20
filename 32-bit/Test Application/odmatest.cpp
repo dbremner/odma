@@ -268,14 +268,12 @@ void CODMATestApp::OnToolsDmsInfo()
 {
 	CFrmDMSOptions frmDMSOptions(m_pMainWnd);
 	frmDMSOptions.DoModal();
-	return;	
 }
 
 void CODMATestApp::OnToolsQuery() 
 {
 	CFrmDMSQuery frmDMSQuery(m_pMainWnd);
 	frmDMSQuery.DoModal();
-	return;	
 }
 
 
