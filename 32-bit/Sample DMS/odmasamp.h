@@ -194,7 +194,7 @@ class Application {
 	LPUNKNOWN m_pUnkOuter;      // controlling IUnknown
 	HWND m_clientWind;			// window handle from client
 
-	char m_szQueryId[ODM_DOCID_MAX];
+	char m_szQueryId[ODM_QUERYID_MAX];
 	WORD m_nQueryDocListIndex;
 	DWORD m_nQuery;
 };  // Application
