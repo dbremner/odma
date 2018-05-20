@@ -404,7 +404,7 @@ ODMSTATUS odmstatus;
 										lpszFormat, pcbCallBack, pInstanceData);
 	else
 	{
-		LPSTR lpszTempDocId = new char[ODM_DOCID_MAX];
+		auto lpszTempDocId = new char[ODM_DOCID_MAX];
 
 		odmstatus=m_pObject->m_ODMDocMan.NewDoc(lpszTempDocId, 
 										ODM_SILENT, lpszFormat, nullptr);
