@@ -262,15 +262,15 @@ static ProDlgData *pDlgData;
 				case IDOK:
 					if(pDlgData->Mode & PROFILE_EDIT) {
 						SendDlgItemMessage(hwndDlg, IDC_NAME, WM_GETTEXT,
-							sizeof(pDlgData->pDocument->Name),
+							_countof(pDlgData->pDocument->Name),
 							reinterpret_cast<LPARAM>(pDlgData->pDocument->Name));
 
 						SendDlgItemMessage(hwndDlg, IDC_AUTHOR, WM_GETTEXT,
-							sizeof(pDlgData->pDocument->Author),
+							_countof(pDlgData->pDocument->Author),
 							reinterpret_cast<LPARAM>(pDlgData->pDocument->Author));
 
 						SendDlgItemMessage(hwndDlg, IDC_TYPE, WM_GETTEXT,
-							sizeof(pDlgData->pDocument->DocType),
+							_countof(pDlgData->pDocument->DocType),
 							reinterpret_cast<LPARAM>(pDlgData->pDocument->DocType));
 					}
 
