@@ -833,13 +833,12 @@ ODMSTATUS ODMClient::ClientQueryExecute( LPCSTR lpszQuery, DWORD flags,
 
 	if(lpszDmsList && *lpszDmsList)
 	{
-		ODMDms* pDms;
 		ODMDmsListIterator itrOtherDmss(m_otherDmss);
 		const char* lpszId = lpszDmsList;
 		
 		while(*lpszId)
 		{
-			pDms = nullptr;
+			ODMDms * pDms = nullptr;
 			if(!_stricmp(lpszId, m_pDefaultDms->GetId()))
 				pDms = m_pDefaultDms;
 			else

@@ -71,8 +71,7 @@ BOOL CODMATestApp::InitInstance()
 	// Register the application's document templates.  Document templates
 	//  serve as the connection between documents, frame windows and views.
 
-	CMultiDocTemplate* pDocTemplate;
-	pDocTemplate = new CMultiDocTemplate(
+	CMultiDocTemplate * pDocTemplate = new CMultiDocTemplate(
 		IDR_ODMTYPE,
 		RUNTIME_CLASS(CODMATestDoc),
 		RUNTIME_CLASS(CChildFrame), // custom MDI child frame

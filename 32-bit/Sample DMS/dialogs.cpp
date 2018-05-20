@@ -92,7 +92,6 @@ LPARAM lParam)
 {
 static char *lpDocList;
 	int count = 0;
-	int end;
 	LPSTR lpNowDocId;
 
 	//TODO check ownership rules for LB_GETDATA and LB_SETDATA
@@ -152,7 +151,7 @@ static char *lpDocList;
 					strcpy(lpDocList, "");
 					char	szDocId[ODM_DOCID_MAX];
 
-					end = 0;
+					int end = 0;
 					for(int ii=0; ii<count; ii++)
 					{
 						if(SendDlgItemMessage(hwndDlg, IDC_SELECT, LB_GETSEL, ii, 0))
