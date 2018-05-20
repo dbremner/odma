@@ -185,9 +185,10 @@ int ODMRegistry::GetDMSEntry(LPCSTR lpszDmsId, LPSTR lpszDMSEntry, int entryLen)
 	if(len > ODM_DMSID_MAX)
 		return -1;
 
-	CString key{ ODMA_KEY };
-	key += "\\";
-	key += lpszDmsId;
+	char key[ sizeof(ODMA_KEY) + 1 + ODM_DMSID_MAX ];
+	strcpy_s(key, ODMA_KEY);
+	strcat_s(key, "\\");
+	strcat_s(key, lpszDmsId);
 	LONG vlen = entryLen;
 	const LONG err = RegQueryValue(HKEY_CLASSES_ROOT, key, lpszDMSEntry, &vlen);
 
