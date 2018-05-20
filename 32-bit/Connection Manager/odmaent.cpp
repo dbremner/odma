@@ -222,7 +222,7 @@ HRESULT WINAPI _export ODMQueryInterface(ODMHANDLE odmHandle, LPSTR lpszDocId,
 
 
 ODMSTATUS WINAPI _export ODMRegisterApp(ODMHANDLE *pOdmHandle,
-		WORD version, LPSTR lpszAppId, DWORD dwEnvData, LPVOID pReserved)
+		WORD version, LPSTR lpszAppId, DWORD dwEnvData, LPVOID /*pReserved*/)
 {
 	LogString("ODMRegisterApp\r\n");
 	LogString("\tInput parameters:\r\n");

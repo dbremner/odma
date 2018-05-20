@@ -17,7 +17,7 @@
 ODMRegistry Registry;                  // Global registry object
 HINSTANCE hInst;						// Global App Instance
 
-BOOL WINAPI DllMain(HINSTANCE hModule, DWORD fdwReason, LPVOID lpvReserved)
+BOOL WINAPI DllMain(HINSTANCE hModule, DWORD /*fdwReason*/, LPVOID /*lpvReserved*/)
 {
 	hInst = hModule;
 	return 1;

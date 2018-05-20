@@ -127,8 +127,8 @@ ODMSTATUS Document::Open(LPSTR lpszFileName)
 }
 
 
-ODMSTATUS Document::Close(DWORD activeTime, DWORD pagesPrinted,
-LPVOID sessionData, WORD dataLen)
+ODMSTATUS Document::Close(DWORD /*activeTime*/, DWORD /*pagesPrinted*/,
+LPVOID /*sessionData*/, WORD /*dataLen*/)
 {
 	OpenCount--;
 	return 0;

@@ -512,7 +512,7 @@ STDMETHODIMP_(ULONG) ODMClient::CODMQuery::Release(VOID)
 
 // Should never get called?
 STDMETHODIMP_(ODMSTATUS) ODMClient::CODMQuery
-		::QueryExecute(LPCSTR lpszSearchCriteria, LPSTR queryId )
+		::QueryExecute(LPCSTR /*lpszSearchCriteria*/, LPSTR /*queryId*/ )
 {
 	//Call function ClientQueryExecute;
 	return ODM_E_FAIL;

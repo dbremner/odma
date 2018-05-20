@@ -360,7 +360,7 @@ GetDMSInfo(LPSTR lpszDmsId, LPWORD pwVerNo, LPDWORD pdwExtensions)
 
 
 STDMETHODIMP_(ODMSTATUS) Application::CODMDocMan::
-GetLeadMoniker(LPSTR lpszDocId, LPMONIKER *ppMoniker)
+GetLeadMoniker(LPSTR /*lpszDocId*/, LPMONIKER *ppMoniker)
 {
 	// This sample doesn't support OLE 2.
 	*ppMoniker = nullptr;
@@ -384,7 +384,7 @@ STDMETHODIMP_(ULONG) Application::CODMDocMan2::Release(VOID)
 	return m_pObject->m_pUnkOuter->Release();
 }
 
-STDMETHODIMP_(ODMSTATUS) Application::CODMDocMan2::CloseDocEx(LPSTR lpszDocId, LPDWORD pdwFlags,
+STDMETHODIMP_(ODMSTATUS) Application::CODMDocMan2::CloseDocEx(LPSTR lpszDocId, LPDWORD /*pdwFlags*/,
 		DWORD activeTime, DWORD pagesPrinted, LPVOID sessionData, WORD dataLen)
 {
 	return m_pObject->m_ODMDocMan.CloseDoc(lpszDocId, activeTime, pagesPrinted, sessionData, dataLen);
@@ -437,8 +437,8 @@ STDMETHODIMP_(ODMSTATUS) Application::CODMDocMan2::SaveDocEx(LPSTR lpszDocId,
 return ODM_E_NOSUPPORT; 
 }
 	
-STDMETHODIMP_(ODMSTATUS) Application::CODMDocMan2::SelectDocEx(LPSTR lpszDocIds, LPWORD pwDocIdsLen,
-		LPWORD pwDocCount, LPDWORD pdwFlags, LPSTR lpszFormatFilter)
+STDMETHODIMP_(ODMSTATUS) Application::CODMDocMan2::SelectDocEx(LPSTR lpszDocIds, LPWORD /*pwDocIdsLen*/,
+		LPWORD /*pwDocCount*/, LPDWORD pdwFlags, LPSTR /*lpszFormatFilter*/)
 {
 	if(*pdwFlags & ODM_SILENT)
 		return ODM_E_USERINT;   // This DMS can't make a selection without user input.
@@ -458,19 +458,19 @@ STDMETHODIMP_(ODMSTATUS) Application::CODMDocMan2::SelectDocEx(LPSTR lpszDocIds,
 return odmstatus;
 }
 	
-STDMETHODIMP_(ODMSTATUS) Application::CODMDocMan2::QueryCapability( LPCSTR lpszDmsId, DWORD function,
-		DWORD item,	DWORD flags )
+STDMETHODIMP_(ODMSTATUS) Application::CODMDocMan2::QueryCapability( LPCSTR /*lpszDmsId*/, DWORD /*function*/,
+		DWORD /*item*/,	DWORD /*flags*/ )
 {
 	return ODM_E_NOSUPPORT; 
 }
 		
-STDMETHODIMP_(ODMSTATUS) Application::CODMDocMan2::SetDocEvent(LPSTR lpszDocId, DWORD flags, DWORD event,
-		LPVOID lpData, DWORD dwDataLen, LPSTR lpszComment)
+STDMETHODIMP_(ODMSTATUS) Application::CODMDocMan2::SetDocEvent(LPSTR /*lpszDocId*/, DWORD /*flags*/, DWORD /*event*/,
+		LPVOID /*lpData*/, DWORD /*dwDataLen*/, LPSTR /*lpszComment*/)
 {
 	return ODM_E_NOSUPPORT; 
 }
 			
-STDMETHODIMP_(ODMSTATUS) Application::CODMDocMan2::GetAlternateContent(LPSTR lpszDocId, LPDWORD pdwFlags,
+STDMETHODIMP_(ODMSTATUS) Application::CODMDocMan2::GetAlternateContent(LPSTR lpszDocId, LPDWORD /*pdwFlags*/,
 		LPSTR lpszFormat, LPSTR lpszDocLocation)
 {
 	Document *pDoc = DocList.GetDocumentById(lpszDocId);
@@ -497,14 +497,14 @@ STDMETHODIMP_(ODMSTATUS) Application::CODMDocMan2::SetAlternateContent(LPSTR lps
 }
 
 		
-STDMETHODIMP_(ODMSTATUS) Application::CODMDocMan2::GetDocRelation(LPSTR lpszDocId,	LPDWORD pdwFlags, 
-		LPSTR lpszLinkedId,	LPSTR lpszFormat, LPSTR lpszPreviousId )
+STDMETHODIMP_(ODMSTATUS) Application::CODMDocMan2::GetDocRelation(LPSTR /*lpszDocId*/,	LPDWORD /*pdwFlags*/, 
+		LPSTR /*lpszLinkedId*/,	LPSTR /*lpszFormat*/, LPSTR /*lpszPreviousId*/ )
 {
 	return ODM_E_NOSUPPORT; 
 }
 		
-STDMETHODIMP_(ODMSTATUS) Application::CODMDocMan2::SetDocRelation(LPSTR lpszDocId,	LPDWORD pdwFlags,
-		LPSTR lpszLinkedId,	LPSTR lpszFormat, LPSTR lpszPreviousId )
+STDMETHODIMP_(ODMSTATUS) Application::CODMDocMan2::SetDocRelation(LPSTR /*lpszDocId*/,	LPDWORD /*pdwFlags*/,
+		LPSTR /*lpszLinkedId*/,	LPSTR /*lpszFormat*/, LPSTR /*lpszPreviousId*/ )
 {
 	return ODM_E_NOSUPPORT; 
 }
@@ -527,7 +527,7 @@ STDMETHODIMP_(ULONG) Application::CODMQuery::Release(VOID)
 }
 
 STDMETHODIMP_(ODMSTATUS) Application::CODMQuery::
-QueryExecute( LPCSTR lpszSearchCriteria, LPSTR queryId )
+QueryExecute( LPCSTR /*lpszSearchCriteria*/, LPSTR queryId )
 {
 	// A real DMS will process the lpszSearchCriteria string.  We are going to 
 	// ignore the search string and say that all of our document match the search.

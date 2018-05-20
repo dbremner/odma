@@ -20,7 +20,7 @@ HINSTANCE hInst;
 DocumentList DocList;
 
 
-BOOL WINAPI DllMain(HINSTANCE hModule, DWORD fdwReason, LPVOID lpvReserved)
+BOOL WINAPI DllMain(HINSTANCE hModule, DWORD /*fdwReason*/, LPVOID /*lpvReserved*/)
 {
 	hInst = hModule;
 	return 1;
@@ -30,7 +30,7 @@ BOOL WINAPI DllMain(HINSTANCE hModule, DWORD fdwReason, LPVOID lpvReserved)
 /* ODMGetODMInterface - This is the main entry point for the ODMA connection
 	manager. */
 HRESULT WINAPI _export ODMGetODMInterface(REFIID riid, LPVOID *ppvObj,
-LPUNKNOWN pUnkOuter, LPVOID pReserved, LPSTR lpszAppId, DWORD dwEnvData)
+LPUNKNOWN pUnkOuter, LPVOID /*pReserved*/, LPSTR /*lpszAppId*/, DWORD dwEnvData)
 {            
 
 #ifdef _TIME_BOMB	
