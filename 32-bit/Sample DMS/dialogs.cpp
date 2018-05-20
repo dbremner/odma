@@ -209,7 +209,6 @@ char *lp;
 						pSaveAsData->pInstanceData);
 
 					strcpy_s(pSaveAsData->Format, lp);
-					pSaveAsData->Format[sizeof(pSaveAsData->Format)-1] = '\0';
 					SendDlgItemMessage(hwndDlg, ST_FORMAT, WM_SETTEXT, 0,
 						reinterpret_cast<LPARAM>(pSaveAsData->Format));
 
