@@ -132,7 +132,7 @@ BOOL CODMATestDoc::OnSelectDocEx(LPSTR lpszDocIds, LPWORD wDocCount)
 
 BOOL CODMATestDoc::OnSelectType(LPCSTR DocId, LPSTR lpszFormat, LPSTR lpszListFrm)
 {
-	strcpy(lpszFormat, ODM_FORMAT_TEXT);
+	strcpy_s(lpszFormat, ODM_FORMAT_MAX, ODM_FORMAT_TEXT);
 
 	if(!m_bAlter)
 		return TRUE;
@@ -159,10 +159,10 @@ BOOL CODMATestDoc::OnSelectType(LPCSTR DocId, LPSTR lpszFormat, LPSTR lpszListFr
 
 		if(iRet == IDOK)
 		{
-			strcpy(lpszFormat, frmDOCFormat.m_FrmName);
+			strcpy_s(lpszFormat, ODM_FORMAT_MAX, frmDOCFormat.m_FrmName);
 			return TRUE;
 		}
-		strcpy(lpszFormat, "");
+		strcpy_s(lpszFormat, ODM_FORMAT_MAX, "");
 		return FALSE;
 	}
 	

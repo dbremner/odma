@@ -156,7 +156,7 @@ LPSTR lpszNewDocId)
 	if(pDoc == nullptr)
 		return ODM_E_DOCID;
 
-	strcpy(lpszNewDocId, lpszDocId);
+	strcpy_s(lpszNewDocId, ODM_DOCID_MAX, lpszDocId);
 	return pDoc->Save();
 }
 
@@ -539,7 +539,7 @@ QueryExecute( LPCSTR /*lpszSearchCriteria*/, LPSTR queryId )
 
 	m_pObject->m_nQueryDocListIndex = 0;
 	sprintf_s( m_pObject->m_szQueryId, "::ODMA\\%s\\%X", DMSID, ++m_pObject->m_nQuery );
-	strcpy( queryId, m_pObject->m_szQueryId );
+	strcpy_s( queryId, ODM_QUERYID_MAX, m_pObject->m_szQueryId );
 	
 	return ODM_SUCCESS;
 }
