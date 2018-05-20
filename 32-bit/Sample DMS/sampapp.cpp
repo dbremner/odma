@@ -560,6 +560,7 @@ QueryGetResults( LPCSTR lpszQuery, LPSTR lpszDocId, LPSTR lpszDocName, WORD docN
 		if ( pDoc == nullptr )
 			continue;
 		
+		//TODO fix this
 		wsprintf( &lpszDocId[ nCount * ODM_DOCID_MAX ], 
 						"::ODMA\\%s\\%s", DMSID, pDoc->GetId() );
 		pDoc->GetInfo( ODM_NAME, &lpszDocName[ nCount * docNameLen ], docNameLen );
