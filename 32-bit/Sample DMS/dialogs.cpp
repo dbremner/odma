@@ -144,28 +144,30 @@ static char *lpDocList;
 					break;
 
 				case IDOK:
+				{
 					//Get DocIds from List Boxe's ItemData
-					if(SendDlgItemMessage(hwndDlg, IDC_SELECT, LB_GETSELCOUNT, 0, 0)==0) break;
-			
-					count = (int)SendDlgItemMessage(hwndDlg, IDC_SELECT, LB_GETCOUNT, 0, 0 );
+					if (SendDlgItemMessage(hwndDlg, IDC_SELECT, LB_GETSELCOUNT, 0, 0) == 0) break;
+
+					count = (int)SendDlgItemMessage(hwndDlg, IDC_SELECT, LB_GETCOUNT, 0, 0);
 
 					strcpy(lpDocList, "");
 					char	szDocId[ODM_DOCID_MAX];
 
 					int end = 0;
-					for(int ii=0; ii<count; ii++)
+					for (int ii = 0; ii < count; ii++)
 					{
-						if(SendDlgItemMessage(hwndDlg, IDC_SELECT, LB_GETSEL, ii, 0))
+						if (SendDlgItemMessage(hwndDlg, IDC_SELECT, LB_GETSEL, ii, 0))
 						{
-						sprintf_s(szDocId, "::ODMA\\%s\\%s", DMSID,
-									reinterpret_cast<LPSTR>(SendDlgItemMessage(hwndDlg, IDC_SELECT,
-									                                           LB_GETITEMDATA, ii, 0)) );
+							sprintf_s(szDocId, "::ODMA\\%s\\%s", DMSID,
+								reinterpret_cast<LPSTR>(SendDlgItemMessage(hwndDlg, IDC_SELECT,
+									LB_GETITEMDATA, ii, 0)));
 
-						strcpy(lpDocList + end, &szDocId[0]);
-						end += strlen(&szDocId[0]) + 1;
+							strcpy(lpDocList + end, &szDocId[0]);
+							end += strlen(&szDocId[0]) + 1;
 						}
 					}
 					strcpy(lpDocList + end, "");
+				}
 
 
 				//Fall through.
