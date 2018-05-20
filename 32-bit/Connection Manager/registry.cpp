@@ -296,10 +296,13 @@ ODMSTATUS ODMRegistry::SetDMS( LPCSTR lpszAppId, LPCSTR lpszDMSId )
 		return ODM_E_NODMS;
 	
 	HKEY hkey;
-	CString key{ ODMA_KEY };
-	key += "\\";
-	key += lpszDMSId;
-	if(RegOpenKey( HKEY_CLASSES_ROOT, key, &hkey ) == ERROR_SUCCESS)
+	char szKey[sizeof(ODMA_KEY) + 1 + ODM_DMSID_MAX];
+
+	strcpy_s( szKey, ODMA_KEY );
+	strcat_s( szKey, "\\" );
+	strcat_s( szKey, lpszDMSId );
+
+	if(RegOpenKey( HKEY_CLASSES_ROOT, szKey, &hkey ) == ERROR_SUCCESS)
 		RegCloseKey( hkey );
 	else
 		return ODM_E_NODMS;
