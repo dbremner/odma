@@ -70,7 +70,7 @@ class Application {
 	struct CODMDocMan : IODMDocMan 
 	{
 		CODMDocMan(Application *pObject) { m_pObject = pObject; }
-		~CODMDocMan() {};
+		~CODMDocMan() {}
 
 		//*** IUnknown ***
 		STDMETHOD(QueryInterface) (REFIID riid, LPVOID FAR* ppvObj);
@@ -113,7 +113,7 @@ class Application {
 	struct CODMDocMan2 : IODMDocMan2 
 	{
 		CODMDocMan2(Application *pObject) { m_pObject = pObject; }
-		~CODMDocMan2() {};
+		~CODMDocMan2() {}
 
 		//*** IUnknown ***
 		STDMETHOD(QueryInterface) (REFIID riid, LPVOID FAR* ppvObj);
@@ -229,14 +229,14 @@ class Document {
 	ODMSTATUS SetComponent(LPSTR lpszFormat, LPSTR lpszDocLocation);
 	ODMSTATUS AddComponent(LPSTR lpszFormat, LPSTR lpszDocLocation);
 	Document();
-	~Document() {};
+	~Document() {}
 	Document(LPSTR lpszFormat, LPSTR lpszDocLocation);
 	Document(Document *pOldDoc);
 	Document(LPSTR lpszDocId);
-	char *GetId() { return DocId; };
-	int GetOpenCount() { return OpenCount; };
+	char *GetId() { return DocId; }
+	int GetOpenCount() { return OpenCount; }
 	ODMSTATUS Open(LPSTR lpszFileName);
-	ODMSTATUS Save() { SaveFlag = 1; return 0; };
+	ODMSTATUS Save() { SaveFlag = 1; return 0; }
 	ODMSTATUS Close(DWORD activeTime, DWORD pagesPrinted,
 		LPVOID sessionData, WORD dataLen);
 	ODMSTATUS EditAttributes(HWND hParent);
@@ -245,11 +245,11 @@ class Document {
 	ODMSTATUS SetInfo(WORD item, LPSTR lpszData);
 	void SaveInfo();
 	int HasBeenAccessed() 
-		{ return DocAccessed; };
+		{ return DocAccessed; }
 
 	//BVG:
 	int HasBeenEdited() 
-		{ return bEdited; }; 
+		{ return bEdited; } 
 };
 
 class DocumentList {

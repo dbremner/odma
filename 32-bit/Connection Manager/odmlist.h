@@ -129,7 +129,7 @@ class ODMDmsListIterator
 public:
 	ODMDmsListIterator( ODMDmsList& rList ) : m_rList( rList ) { m_pCurrent = rList.m_pListHead; }
 	ODMDms*& Current(){ return m_pCurrent->m_item; }
-	void Restart(){ m_pCurrent = m_rList.m_pListHead; };
+	void Restart(){ m_pCurrent = m_rList.m_pListHead; }
 	operator int(){ return m_pCurrent != nullptr; }
 	ODMDms*& operator ++(){ m_pCurrent = m_pCurrent->m_pNext; return m_pCurrent->m_item; }
 	ODMDms*& operator ++( int )
@@ -285,7 +285,7 @@ public:
 		m_pCurrent = rList.m_pListHead; 
 	}
 	AppDmsOverrideItem& Current(){ return m_pCurrent->m_item; }
-	void Restart(){ m_pCurrent = m_rList.m_pListHead; };
+	void Restart(){ m_pCurrent = m_rList.m_pListHead; }
 	operator int(){ return m_pCurrent != nullptr; }
 	AppDmsOverrideItem& operator ++(){ m_pCurrent = m_pCurrent->m_pNext; return m_pCurrent->m_item; }
 	AppDmsOverrideItem& operator ++( int )

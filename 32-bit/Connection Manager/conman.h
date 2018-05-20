@@ -68,7 +68,7 @@ private:
 		CODMDocMan(ODMClient *pObject)
 			:m_pObject(pObject)
 		{}
-		~CODMDocMan() {};
+		~CODMDocMan() {}
 
     	//*** IUnknown ***
 		STDMETHOD(QueryInterface) (REFIID riid, LPVOID FAR* ppvObj);
@@ -104,7 +104,7 @@ private:
 	struct CODMDocMan2 : IODMDocMan2 
 	{
 		CODMDocMan2(ODMClient *pObject) { m_pObject = pObject; }
-		~CODMDocMan2() {};
+		~CODMDocMan2() {}
 
     //*** IUnknown ***
 		STDMETHOD(QueryInterface) (REFIID riid, LPVOID FAR* ppvObj);

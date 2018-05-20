@@ -7,7 +7,7 @@ class CODMATestDoc :
 {
 protected: // create from serialization only
 	CODMATestDoc();
-	DECLARE_DYNCREATE(CODMATestDoc);
+	DECLARE_DYNCREATE(CODMATestDoc)
 
 public:
 	virtual ~CODMATestDoc();
