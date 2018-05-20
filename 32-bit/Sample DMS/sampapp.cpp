@@ -347,7 +347,7 @@ WORD item, LPSTR lpszData)
 STDMETHODIMP_(ODMSTATUS) Application::CODMDocMan::
 GetDMSInfo(LPSTR lpszDmsId, LPWORD pwVerNo, LPDWORD pdwExtensions)
 {
-	strcpy(lpszDmsId, DMSID);
+	strcpy_s(lpszDmsId, ODM_DMSID_MAX, DMSID);
 
 	if(pwVerNo)
 		*pwVerNo = ODM_API_VERSION;
@@ -418,7 +418,7 @@ ODMSTATUS odmstatus;
 			DocList.DeleteDocument(lpszTempDocId);
 
 		else if(lpszNewDocId[0] == '\0')
-			strcpy(lpszNewDocId, lpszTempDocId);
+			strcpy_s(lpszNewDocId, ODM_DOCID_MAX, lpszTempDocId);
 
 		delete[] lpszTempDocId;
 	}
