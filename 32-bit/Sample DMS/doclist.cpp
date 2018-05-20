@@ -4,6 +4,7 @@
 
 #include <windows.h>
 #include "odmasamp.h"
+#include <assert.h>
 
 
 DocumentList::DocumentList()
@@ -39,6 +40,8 @@ DocumentList::~DocumentList()
 
 Document* DocumentList::GetDocumentByIndex(int n)
 {
+	assert(n > 0);
+	assert(n < _countof(List));
 	if(List[n])
 		return List[n];
 	else
