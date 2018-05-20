@@ -615,7 +615,7 @@ ODMSTATUS ODMClient::ConnectDocId(LPSTR lpszDocId, ODMDms **ppDms)
 	}
 	
 	char *s = lpszDocId+7;
-	size_t i = 0;
+	size_t i;
 	for(i=0; *s && *s != '\\' && i < sizeof(DmsId)-1; i++, s++)
 		DmsId[i] = *s;
 
@@ -807,7 +807,7 @@ ODMSTATUS ODMClient::ClientQueryExecute( LPCSTR lpszQuery, DWORD flags,
 
 	// If we are searching all the DMSs, we need the full list so that we can
 	// connect to all of them and track any query failures due to connection failures.
-	LPSTR lpszDmsList = nullptr;
+	LPSTR lpszDmsList;
 
 	if (flags == ODM_ALL)
 	{

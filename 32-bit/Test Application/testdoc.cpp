@@ -285,7 +285,7 @@ void CODMATestDoc::Serialize(CArchive& ar)
 
 void CODMATestDoc::OnFileSave()
 {
-	BOOL bOk = FALSE;
+	BOOL bOk;
 	
 	if(!*m_DocId)
 		bOk = DMSSaveAsDoc();
