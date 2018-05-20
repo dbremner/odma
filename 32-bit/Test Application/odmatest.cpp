@@ -251,8 +251,8 @@ void CODMATestApp::OnFileOpenEx()
 	LPSTR lpPosDoc = lpszDocIdList;
 	while(*lpPosDoc) 
 	{
-		strcpy(CODMATestDoc::DocId, lpPosDoc);
-		strcpy(CODMATestDoc::Format, ODM_FORMAT_TEXT);
+		strcpy_s(CODMATestDoc::DocId, lpPosDoc);
+		strcpy_s(CODMATestDoc::Format, ODM_FORMAT_TEXT);
 		CODMATestDoc::GetTitle(Title, CODMATestDoc::DocId, CODMATestDoc::Format);
 
 		CDocument* pDocument = AfxGetApp()->OpenDocumentFile(Title);

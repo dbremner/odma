@@ -222,8 +222,8 @@ BOOL CODMATestDoc::OnOpenDocument(LPCTSTR lpszPathName)
 {
 	if(m_bAppSel)
 		return CRichEditDoc::OnOpenDocument(lpszPathName);
-	strcpy(m_Format, Format);
-	strcpy(m_DocId, DocId);
+	strcpy_s(m_Format, Format);
+	strcpy_s(m_DocId, DocId);
 	GetTitle(m_TitleText, m_DocId, m_Format);
 //	strcpy(m_TitleText, lpszPathName);
 	
@@ -507,7 +507,7 @@ BOOL CODMATestDoc::DMSSaveDoc()
 	switch (odm)
 	{
 	case ODM_SUCCESS:
-		strcpy(m_DocId, DocId);
+		strcpy_s(m_DocId, DocId);
 		break;
 	case ODM_E_NOOPEN:
 		return FALSE;
@@ -538,7 +538,7 @@ BOOL CODMATestDoc::DMSSaveAsDoc()
  	if(!odmHandle)
 		return FALSE;
   
-	strcpy(DocId, m_DocId);
+	strcpy_s(DocId, m_DocId);
 	
 	if (!*DocId && !DMSNewDoc(DocId))
 		return FALSE;
@@ -572,11 +572,11 @@ BOOL CODMATestDoc::DMSSaveAsDoc()
   
 	if(!*m_DocId)
 	{
-		strcpy(m_DocId, DocId);
+		strcpy_s(m_DocId, DocId);
 		*DocId = NULL;
 	}
 
-	strcpy(m_Format, ODM_FORMAT_TEXT);
+	strcpy_s(m_Format, ODM_FORMAT_TEXT);
 	GetTitle(m_TitleText, m_DocId, m_Format);
 	
 	if(!DMSOpenDoc(m_FileName))
@@ -664,7 +664,7 @@ BOOL CODMATestDoc::DMSSaveAlter()
 		return FALSE;
 	}
 	
-	strcpy(m_Format, ODM_FORMAT_RTF);
+	strcpy_s(m_Format, ODM_FORMAT_RTF);
 	GetTitle(m_TitleText, m_DocId, m_Format);
  	return TRUE;
 }
