@@ -16,6 +16,8 @@
 #ifndef __ODMULIST_H
 #define __ODMULIST_H
 
+#include <strsafe.h>
+
 class ODMDms; // This class is declared in conman.h
 
 class ODMDmsList;
@@ -146,8 +148,8 @@ class AppDmsOverrideItem
 public:
 	AppDmsOverrideItem( LPCSTR lpszAppId, LPCSTR lpszDmsId )
 	{
-		strcpy_s(szAppId, lpszAppId);
-		strcpy_s(szDmsId, lpszDmsId);
+		StringCchCopyN( szAppId, _countof(szAppId), lpszAppId, ODM_APPID_MAX);
+		StringCchCopyN(szDmsId, _countof(szDmsId), lpszDmsId, ODM_DMSID_MAX);
 	}
 	BOOL operator ==( const	AppDmsOverrideItem& rOther ) const
 	{ 
