@@ -152,8 +152,6 @@ BOOL CODMATestDoc::OnSelectType(LPCSTR DocId, LPSTR lpszFormat, LPSTR lpszListFr
 		strcpy(lpszList,lpszListFrm);
 	}
 	
-	int Count = 0;
-	
 	if(*lpszList)
 	{
 		CFrmDOCFormat frmDOCFormat(lpszList);
