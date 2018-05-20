@@ -68,7 +68,7 @@ int ii, index, count;
 				case IDOK:
 					//BVG: Get DocId from List Boxe's ItemData
 					index = (int)SendDlgItemMessage(hwndDlg, IDC_SELECT, LB_GETCURSEL, 0, 0 );
-					wsprintf(DocId, "::ODMA\\%s\\%s", DMSID,
+					sprintf_s(DocId, ODM_DOCID_MAX, "::ODMA\\%s\\%s", DMSID,
 						reinterpret_cast<LPSTR>(SendDlgItemMessage(hwndDlg, IDC_SELECT, LB_GETITEMDATA, index, 0)) );
 
 

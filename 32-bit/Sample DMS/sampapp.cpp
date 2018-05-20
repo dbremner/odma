@@ -184,7 +184,7 @@ Document *pDoc;
 		return err;
 
 	LPSTR lp = pDoc->GetId();
-	wsprintf(lpszDocId, "::ODMA\\%s\\%s", DMSID, lp);
+	sprintf_s(lpszDocId, ODM_DOCID_MAX, "::ODMA\\%s\\%s", DMSID, lp);
 	return 0;
 }
 
@@ -246,7 +246,7 @@ SaveAsData saData;
 		{
 			lp = pDoc->GetId();
 			pDoc->SetInfo(ODM_CONTENTFORMAT, saData.Format);
-			wsprintf(lpszNewDocId, "::ODMA\\%s\\%s", DMSID, lp);
+			sprintf_s(lpszNewDocId, ODM_DOCID_MAX, "::ODMA\\%s\\%s", DMSID, lp);
 		}
 
 	}
