@@ -31,9 +31,9 @@ int i;
 DocumentList::~DocumentList()
 {
 	// Delete all the document objects in the list.
-	for(int i = 0; i<MAXDOCS; i++) {
-		if(List[i])
-			delete List[i];
+	for(auto & i : List) {
+		if(i)
+			delete i;
 	}
 }
 
@@ -190,9 +190,9 @@ void DocumentList::SaveList()
 	WritePrivateProfileString("DocList", nullptr, nullptr, "ODMASAMP.INI");
 
 	// Now save each document's info. to the file.
-	for(int i = 0; i<MAXDOCS; i++) {
-		if(List[i])
-			List[i]->SaveInfo();
+	for(auto & i : List) {
+		if(i)
+			i->SaveInfo();
 	}
 }
 
