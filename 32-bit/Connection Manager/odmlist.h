@@ -264,8 +264,7 @@ public:
 		AppDmsOverrideItem* pItem = Find( AppDmsOverrideItem( lpszAppId, "" ) );
 		if ( pItem )
 		{
-#pragma warning(suppress:4996)
-			strcpy( lpszDMSId, pItem->DmsId() );
+			strcpy_s(lpszDMSId, ODM_DMSID_MAX, pItem->DmsId() );
 			return TRUE;
 		}
 
