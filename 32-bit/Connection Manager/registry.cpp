@@ -15,6 +15,7 @@
 
 #include <windows.h>
 #include <shellapi.h>
+#include <strsafe.h>
 #include <string.h>
 #include <limits.h>
 #include <assert.h>
@@ -106,8 +107,7 @@ int ODMRegistry::GetAppDefaultDmsId( LPCSTR lpszAppId, LPSTR lpszDmsId )
 
 	const size_t key_len = ODM_APPID_MAX + 1 + sizeof(ODMA_KEY);
 	auto * DMSKey = new char[key_len];
-	strncpy(DMSKey, lpszAppId, ODM_APPID_MAX);
-	DMSKey[ODM_APPID_MAX - 1 ] = '\0';     // ensure NULL termination
+	StringCchCopyN(DMSKey, key_len, lpszAppId, ODM_APPID_MAX);
 	strcat(DMSKey, "\\" );
 	strcat(DMSKey, ODMA_KEY);
 	
