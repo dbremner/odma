@@ -154,11 +154,12 @@ void CFrmDMSOptions::OnRegistryDefault()
 	const char *lpszAppId = AfxGetAppName();
 	const char *DMSName = m_SetDms;
 
-	auto *DMSKey = new char[ODM_APPID_MAX + 1 + sizeof(ODMA_KEY)];
+	const size_t len = ODM_APPID_MAX + 1 + sizeof(ODMA_KEY);
+	auto *DMSKey = new char[len];
 	strncpy(DMSKey, lpszAppId, ODM_APPID_MAX);
 	DMSKey[ODM_APPID_MAX - 1 ] = '\0';     // ensure NULL termination
-	strcat(DMSKey, "\\" );
-	strcat(DMSKey, ODMA_KEY);
+	strcat_s(DMSKey, len, "\\" );
+	strcat_s(DMSKey, len, ODMA_KEY);
 
 	RegSetValue(HKEY_CLASSES_ROOT, DMSKey, REG_SZ, DMSName,	sizeof(DMSName));
 
