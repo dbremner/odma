@@ -65,9 +65,9 @@ Document::Document(LPSTR lpszDocId)
 	for( int ii=0; ii<iComponents; ii++)
 	{
 		char szKey[20];
-		snprintf(szKey, _countof(szKey), "%s%d", "Format", ii);
+		StringCchPrintf(szKey, _countof(szKey), "%s%d", "Format", ii);
 		GetPrivateProfileString(DocId, szKey, "", Format[ii], _countof(Format[ii]), DMSINI);
-		snprintf(szKey, _countof(szKey), "%s%d", "DocLocation", ii);
+		StringCchPrintf(szKey, _countof(szKey), "%s%d", "DocLocation", ii);
 		GetPrivateProfileString(DocId, szKey, "", DocLocation[ii], _countof(DocLocation[ii]), DMSINI);
 	}
 }
