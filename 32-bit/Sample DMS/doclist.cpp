@@ -32,8 +32,7 @@ DocumentList::~DocumentList()
 {
 	// Delete all the document objects in the list.
 	for(auto & i : List) {
-		if(i)
-			delete i;
+		delete i;
 	}
 }
 
