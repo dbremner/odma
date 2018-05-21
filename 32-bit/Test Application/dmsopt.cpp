@@ -160,7 +160,8 @@ void CFrmDMSOptions::OnRegistryDefault()
 	StringCchCat(DMSKey, _countof(DMSKey), "\\" );
 	StringCchCat(DMSKey, _countof(DMSKey), ODMA_KEY);
 
-	RegSetValue(HKEY_CLASSES_ROOT, DMSKey, REG_SZ, m_SetDms, m_SetDms.GetLength());
+	const DWORD set_dms_length = m_SetDms.GetLength() + 1; //account for null terminator
+	RegSetValue(HKEY_CLASSES_ROOT, DMSKey, REG_SZ, m_SetDms, set_dms_length);
 }
 
 
