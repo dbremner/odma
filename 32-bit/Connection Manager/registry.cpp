@@ -112,17 +112,14 @@ int ODMRegistry::GetAppDefaultDmsId( LPCSTR lpszAppId, LPSTR lpszDmsId )
 	StringCchCat(DMSKey, _countof(DMSKey), ODMA_KEY);
 	
 	LONG nLen = ODM_DMSID_MAX;
-	char *DMSName = new char[nLen];
+	char DMSName[ODM_DMSID_MAX];
 
 	if (RegQueryValue(HKEY_CLASSES_ROOT, DMSKey, DMSName, &nLen) != ERROR_SUCCESS )
 	{
-		delete[] DMSName;
 		return -1;
 	}
 
 	StringCchCopy(lpszDmsId, ODM_DMSID_MAX, DMSName);
-	delete[] DMSName;
-	
 	return 0;
 }
 ///////////////////////////////////////////////////////////////////////////////
