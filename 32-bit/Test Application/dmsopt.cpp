@@ -155,15 +155,12 @@ void CFrmDMSOptions::OnRegistryDefault()
 	const char *lpszAppId = AfxGetAppName();
 
 	const size_t len = ODM_APPID_MAX + 1 + _countof(ODMA_KEY);
-	auto *DMSKey = new char[len];
+	char DMSKey[len];
 	StringCchCopyN(DMSKey, len, lpszAppId, ODM_APPID_MAX);
 	StringCchCat(DMSKey, len, "\\" );
 	StringCchCat(DMSKey, len, ODMA_KEY);
 
 	RegSetValue(HKEY_CLASSES_ROOT, DMSKey, REG_SZ, m_SetDms, m_SetDms.GetLength());
-
-	delete[] DMSKey;
-	
 }
 
 
