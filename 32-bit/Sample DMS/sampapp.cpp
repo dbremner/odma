@@ -157,7 +157,7 @@ LPSTR lpszNewDocId)
 	if(pDoc == nullptr)
 		return ODM_E_DOCID;
 
-	strcpy_s(lpszNewDocId, ODM_DOCID_MAX, lpszDocId);
+	StringCchCopy(lpszNewDocId, ODM_DOCID_MAX, lpszDocId);
 	return pDoc->Save();
 }
 
@@ -348,7 +348,7 @@ WORD item, LPSTR lpszData)
 STDMETHODIMP_(ODMSTATUS) Application::CODMDocMan::
 GetDMSInfo(LPSTR lpszDmsId, LPWORD pwVerNo, LPDWORD pdwExtensions)
 {
-	strcpy_s(lpszDmsId, ODM_DMSID_MAX, DMSID);
+	StringCchCopy(lpszDmsId, ODM_DMSID_MAX, DMSID);
 
 	if(pwVerNo)
 		*pwVerNo = ODM_API_VERSION;
@@ -419,7 +419,7 @@ ODMSTATUS odmstatus;
 			DocList.DeleteDocument(lpszTempDocId);
 
 		else if(lpszNewDocId[0] == '\0')
-			strcpy_s(lpszNewDocId, ODM_DOCID_MAX, lpszTempDocId);
+			StringCchCopy(lpszNewDocId, ODM_DOCID_MAX, lpszTempDocId);
 
 		delete[] lpszTempDocId;
 	}
@@ -540,7 +540,7 @@ QueryExecute( LPCSTR /*lpszSearchCriteria*/, LPSTR queryId )
 
 	m_pObject->m_nQueryDocListIndex = 0;
 	sprintf_s( m_pObject->m_szQueryId, "::ODMA\\%s\\%X", DMSID, ++m_pObject->m_nQuery );
-	strcpy_s( queryId, ODM_QUERYID_MAX, m_pObject->m_szQueryId );
+	StringCchCopy( queryId, ODM_QUERYID_MAX, m_pObject->m_szQueryId );
 	
 	return ODM_SUCCESS;
 }

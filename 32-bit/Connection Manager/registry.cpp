@@ -121,7 +121,7 @@ int ODMRegistry::GetAppDefaultDmsId( LPCSTR lpszAppId, LPSTR lpszDmsId )
 		return -1;
 	}
 
-	strcpy_s(lpszDmsId, ODM_DMSID_MAX, DMSName);
+	StringCchCopy(lpszDmsId, ODM_DMSID_MAX, DMSName);
 	delete[] DMSKey;
 	delete[] DMSName;
 	
@@ -159,7 +159,7 @@ int ODMRegistry::GetSystemDefaultDmsId( LPSTR lpszDmsId )
 
 		if(err == ERROR_SUCCESS) 
 		{
-			strcpy_s(lpszDmsId, ODM_DMSID_MAX, strDMS);
+			StringCchCopy(lpszDmsId, ODM_DMSID_MAX, strDMS);
 			RegCloseKey(hDefKey);
 			nRet = 0;
 			break;

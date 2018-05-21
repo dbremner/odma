@@ -5,6 +5,7 @@
 #include "ODMATest.h"
 #include "TestDoc.h"
 #include "DMSQuery.h"
+#include <strsafe.h>
 
 #ifdef _DEBUG
 //#define new DEBUG_NEW
@@ -79,7 +80,7 @@ void CFrmDMSQuery::OnGo()
 	
 	const size_t query_len = ODM_QUERY_MAX;
 
-	strcpy_s(lpszQuery, query_len, "SELECT ODM_DOCID, ODM_NAME");
+	StringCchCopy(lpszQuery, query_len, "SELECT ODM_DOCID, ODM_NAME");
 	if(!m_txtWhere.IsEmpty())
 		strcat_s(lpszQuery, query_len, " where ");
 	strcat_s(lpszQuery, query_len, m_txtWhere);

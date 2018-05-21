@@ -7,6 +7,7 @@
 #include "CntrItem.h"
 #include "TestDoc.h"
 #include "DOCFrmt.h"
+#include <strsafe.h>
 
 #ifdef _DEBUG
 #undef THIS_FILE
@@ -132,7 +133,7 @@ BOOL CODMATestDoc::OnSelectDocEx(LPSTR lpszDocIds, LPWORD wDocCount)
 
 BOOL CODMATestDoc::OnSelectType(LPCSTR DocId, LPSTR lpszFormat, LPSTR lpszListFrm)
 {
-	strcpy_s(lpszFormat, ODM_FORMAT_MAX, ODM_FORMAT_TEXT);
+	StringCchCopy(lpszFormat, ODM_FORMAT_MAX, ODM_FORMAT_TEXT);
 
 	if(!m_bAlter)
 		return TRUE;
@@ -149,7 +150,7 @@ BOOL CODMATestDoc::OnSelectType(LPCSTR DocId, LPSTR lpszFormat, LPSTR lpszListFr
 	}
 	else
 	{
-		strcpy_s(lpszList, dataLen, lpszListFrm);
+		StringCchCopy(lpszList, dataLen, lpszListFrm);
 	}
 	
 	if(*lpszList)
@@ -159,10 +160,10 @@ BOOL CODMATestDoc::OnSelectType(LPCSTR DocId, LPSTR lpszFormat, LPSTR lpszListFr
 
 		if(iRet == IDOK)
 		{
-			strcpy_s(lpszFormat, ODM_FORMAT_MAX, frmDOCFormat.m_FrmName);
+			StringCchCopy(lpszFormat, ODM_FORMAT_MAX, frmDOCFormat.m_FrmName);
 			return TRUE;
 		}
-		strcpy_s(lpszFormat, ODM_FORMAT_MAX, "");
+		StringCchCopy(lpszFormat, ODM_FORMAT_MAX, "");
 		return FALSE;
 	}
 	
