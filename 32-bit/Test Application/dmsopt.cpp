@@ -153,7 +153,6 @@ void CFrmDMSOptions::OnRegistryDefault()
 	OnSessionDefault();
 
 	const char *lpszAppId = AfxGetAppName();
-	const char *DMSName = m_SetDms;
 
 	const size_t len = ODM_APPID_MAX + 1 + _countof(ODMA_KEY);
 	auto *DMSKey = new char[len];
@@ -161,7 +160,7 @@ void CFrmDMSOptions::OnRegistryDefault()
 	StringCchCat(DMSKey, len, "\\" );
 	StringCchCat(DMSKey, len, ODMA_KEY);
 
-	RegSetValue(HKEY_CLASSES_ROOT, DMSKey, REG_SZ, DMSName,	sizeof(DMSName)); //TODO last sizeof is wrong
+	RegSetValue(HKEY_CLASSES_ROOT, DMSKey, REG_SZ, m_SetDms, m_SetDms.GetLength());
 
 	delete[] DMSKey;
 	
