@@ -82,11 +82,11 @@ void CFrmDMSQuery::OnGo()
 
 	StringCchCopy(lpszQuery, query_len, "SELECT ODM_DOCID, ODM_NAME");
 	if(!m_txtWhere.IsEmpty())
-		strcat_s(lpszQuery, query_len, " where ");
-	strcat_s(lpszQuery, query_len, m_txtWhere);
+		StringCchCat(lpszQuery, query_len, " where ");
+	StringCchCat(lpszQuery, query_len, m_txtWhere);
 	if(!m_txtSearch.IsEmpty())
-		strcat_s(lpszQuery, query_len, " search ");
-	strcat_s(lpszQuery, query_len, m_txtSearch);
+		StringCchCat(lpszQuery, query_len, " search ");
+	StringCchCat(lpszQuery, query_len, m_txtSearch);
 	
 	DWORD dwFlags = ODM_SPECIFIC;
 	odm = ODMQueryExecute(CODMATestDoc::odmHandle, lpszQuery,

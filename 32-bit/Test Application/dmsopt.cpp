@@ -158,8 +158,8 @@ void CFrmDMSOptions::OnRegistryDefault()
 	const size_t len = ODM_APPID_MAX + 1 + _countof(ODMA_KEY);
 	auto *DMSKey = new char[len];
 	StringCchCopyN(DMSKey, len, lpszAppId, ODM_APPID_MAX);
-	strcat_s(DMSKey, len, "\\" );
-	strcat_s(DMSKey, len, ODMA_KEY);
+	StringCchCat(DMSKey, len, "\\" );
+	StringCchCat(DMSKey, len, ODMA_KEY);
 
 	RegSetValue(HKEY_CLASSES_ROOT, DMSKey, REG_SZ, DMSName,	sizeof(DMSName)); //TODO last sizeof is wrong
 

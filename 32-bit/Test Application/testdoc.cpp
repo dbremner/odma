@@ -203,9 +203,9 @@ void CODMATestDoc::GetTitle(LPSTR lpszTitle, LPCSTR DocId, LPCSTR lpszFormat)
 {
 	GetDocInfo(ODM_TITLETEXT, lpszTitle, ODM_TITLETEXT_MAX, DocId);
 	const size_t len = ODM_TITLETEXT_MAX;
-	strcat_s(lpszTitle, len, " ("); 
-	strcat_s(lpszTitle, len, lpszFormat);
-	strcat_s(lpszTitle, len, ")");
+	StringCchCat(lpszTitle, len, " (");
+	StringCchCat(lpszTitle, len, lpszFormat);
+	StringCchCat(lpszTitle, len, ")");
 }
 
 //Overrides
