@@ -118,7 +118,7 @@ BOOL CODMATestDoc::OnSelectDocEx(LPSTR lpszDocIds, LPWORD wDocCount)
 		return FALSE;
 	case ODM_E_APPSELECT:
 		m_bAppSel = TRUE;
-		strcpy(lpszDocIds, "");
+		StringCchCopy(lpszDocIds, wDocIdsLen, "");
 		return TRUE;
 	case ODM_E_HANDLE:
 		odmHandle = nullptr;
@@ -214,7 +214,7 @@ BOOL CODMATestDoc::OnNewDocument()
 	if (!CDocument::OnNewDocument())
 		return FALSE;   
 
-	CRichEditDoc::SetPathName("New Text Document", TRUE);
+	CRichEditDoc::SetPathName("C:\\temp\\New Text Document", TRUE);
 	
 	return TRUE;
 }

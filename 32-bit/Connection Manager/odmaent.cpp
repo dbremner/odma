@@ -231,12 +231,6 @@ ODMSTATUS WINAPI _export ODMRegisterApp(ODMHANDLE *pOdmHandle,
 	LogParNumber("dwEnvData", dwEnvData);
 
 	ODMSTATUS odm;
-
-#ifdef __TIME_BOMB__
-	if(TimeBomb(1998,3))
-		return ODM_E_VERSION;
-#endif
-
 	char lpszDmsId[ODM_DMSID_MAX];
 	*pOdmHandle = nullptr;
 

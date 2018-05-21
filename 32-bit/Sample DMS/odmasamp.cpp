@@ -31,13 +31,7 @@ BOOL WINAPI DllMain(HINSTANCE hModule, DWORD /*fdwReason*/, LPVOID /*lpvReserved
 	manager. */
 HRESULT WINAPI _export ODMGetODMInterface(REFIID riid, LPVOID *ppvObj,
 LPUNKNOWN pUnkOuter, LPVOID /*pReserved*/, LPSTR /*lpszAppId*/, DWORD dwEnvData)
-{            
-
-#ifdef _TIME_BOMB	
-	if(TimeBomb(1998, 3))
-		return (HRESULT) E_FAIL;
-#endif
-
+{
 	*ppvObj = nullptr;        // Ensure NULL stored here in case of error return.
 
 	// Create a new Application object.
@@ -57,24 +51,4 @@ LPUNKNOWN pUnkOuter, LPVOID /*pReserved*/, LPSTR /*lpszAppId*/, DWORD dwEnvData)
 		delete pApp;
 
 	return hRes;
-}
-
-
-
-/*************************************************************
-Function for check time for use.
-ODMA 2.0 1997 Ivan
-*************************************************************/
-
-BOOL TimeBomb(WORD wYear, WORD wMonth)
-{
-	SYSTEMTIME tm;
-	GetLocalTime(&tm);
-	
-	if(tm.wYear <= wYear && (tm.wYear != wYear || tm.wMonth < wMonth))
-		return FALSE;
-
-	MessageBox(nullptr, "This version of the ODMA Sample DMS is expired",
-	"ODMA Sample DMS", MB_ICONSTOP | MB_TASKMODAL);
-	return TRUE;
 }

@@ -294,8 +294,3 @@ BOOL CALLBACK _export SaveAsProc(HWND hwndDlg, UINT message, WPARAM wParam,
 	LPARAM lParam);
 BOOL CALLBACK _export ProfileProc(HWND hwndDlg, UINT message, WPARAM wParam,
 	LPARAM lParam);
-
-BOOL TimeBomb(WORD wYear, WORD wMonth);
-
-
-

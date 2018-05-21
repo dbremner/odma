@@ -53,11 +53,6 @@ CODMATestApp theApp;
 
 BOOL CODMATestApp::InitInstance()
 {             
-#ifdef _TIME_BOMB
-	// Testing time experient
-	if (TimeBomb(1998, 3))
-		return FALSE;
-#endif		
 
 	// Initialize OLE libraries
 	if (!AfxOleInit())
@@ -275,22 +270,3 @@ void CODMATestApp::OnToolsQuery()
 	CFrmDMSQuery frmDMSQuery(m_pMainWnd);
 	frmDMSQuery.DoModal();
 }
-
-
-/*************************************************************
-Function for check time for use.
-ODMA 2.0 1997 Ivan
-*************************************************************/
-
-BOOL TimeBomb(WORD wYear, WORD wMonth)
-{
-	SYSTEMTIME tm;
-	GetLocalTime(&tm);
-	
-	if(tm.wYear <= wYear && (tm.wYear != wYear || tm.wMonth < wMonth))
-			return FALSE;
-	MessageBox(nullptr, "This version of the ODMA Test Application is expired",
-	"ODMA Test Application", MB_ICONSTOP | MB_TASKMODAL);
-	return TRUE;
-}
-

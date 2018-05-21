@@ -22,24 +22,6 @@ BOOL WINAPI DllMain(HINSTANCE hModule, DWORD /*fdwReason*/, LPVOID /*lpvReserved
 	hInst = hModule;
 	return 1;
 }
-                   
-
-/*************************************************************
-Function for check time for use.
-ODMA 2.0 1997 Ivan
-*************************************************************/
-
-BOOL TimeBomb(WORD wYear, WORD wMonth)
-{
-	SYSTEMTIME tm;
-	GetLocalTime(&tm);
-	
-	if(tm.wYear <= wYear && (tm.wYear != wYear || tm.wMonth < wMonth))
-		return FALSE;
-	MessageBox(nullptr, "This version of the ODMA Connection Manager is expired",
-	"ODMA Connection Manager", MB_ICONSTOP | MB_TASKMODAL);
-	return TRUE;
-}
 
 /*************************************************************
 Function for display an error message.

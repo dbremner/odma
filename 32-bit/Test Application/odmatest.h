@@ -22,8 +22,6 @@
 // See ODMATest.cpp for the implementation of this class
 //
 
-BOOL TimeBomb(WORD wYear, WORD wMonth);
-
 class CODMATestApp : public CWinApp
 {
 public:

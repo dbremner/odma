@@ -248,7 +248,6 @@ extern HINSTANCE hInst;
 extern ODMRegistry Registry;
 
 // Prototypes
-BOOL TimeBomb(WORD wYear, WORD wMonth);
 void ErrorMessage(UINT stringId);
 
 void LogString(const char *s);
