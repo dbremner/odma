@@ -105,7 +105,7 @@ int ODMRegistry::GetAppDefaultDmsId( LPCSTR lpszAppId, LPSTR lpszDmsId )
 	if ( m_overrideList.GetDMS( lpszAppId, lpszDmsId ) )
 		return 0;
 
-	const size_t key_len = ODM_APPID_MAX + 1 + sizeof(ODMA_KEY);
+	const size_t key_len = ODM_APPID_MAX + 1 + _countof(ODMA_KEY);
 	char DMSKey[key_len];
 	StringCchCopyN(DMSKey, _countof(DMSKey), lpszAppId, ODM_APPID_MAX);
 	StringCchCat(DMSKey, _countof(DMSKey), "\\" );
