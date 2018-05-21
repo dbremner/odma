@@ -156,9 +156,9 @@ void CFrmDMSOptions::OnRegistryDefault()
 
 	const size_t len = ODM_APPID_MAX + 1 + _countof(ODMA_KEY);
 	char DMSKey[len];
-	StringCchCopyN(DMSKey, len, lpszAppId, ODM_APPID_MAX);
-	StringCchCat(DMSKey, len, "\\" );
-	StringCchCat(DMSKey, len, ODMA_KEY);
+	StringCchCopyN(DMSKey, _countof(DMSKey), lpszAppId, ODM_APPID_MAX);
+	StringCchCat(DMSKey, _countof(DMSKey), "\\" );
+	StringCchCat(DMSKey, _countof(DMSKey), ODMA_KEY);
 
 	RegSetValue(HKEY_CLASSES_ROOT, DMSKey, REG_SZ, m_SetDms, m_SetDms.GetLength());
 }
