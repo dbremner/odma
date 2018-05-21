@@ -59,7 +59,7 @@ ODMRegistry::ODMRegistry(){
 	m_bLogEnable = TRUE;
 	RegCloseKey(hKey);
 	
-	long Len = ODM_FILENAME_MAX;
+	long Len = _countof(m_lpszLogPath);
 	
 	err = RegQueryValue(hLogKey, "File", m_lpszLogPath, &Len);
 	if(err != ERROR_SUCCESS || strlen(m_lpszLogPath) == 0)
