@@ -106,7 +106,7 @@ int ODMRegistry::GetAppDefaultDmsId( LPCSTR lpszAppId, LPSTR lpszDmsId )
 		return 0;
 
 	const size_t key_len = ODM_APPID_MAX + 1 + sizeof(ODMA_KEY);
-	auto * DMSKey = new char[key_len];
+	char DMSKey[key_len];
 	StringCchCopyN(DMSKey, key_len, lpszAppId, ODM_APPID_MAX);
 	StringCchCat(DMSKey, key_len, "\\" );
 	StringCchCat(DMSKey, key_len, ODMA_KEY);
@@ -116,13 +116,11 @@ int ODMRegistry::GetAppDefaultDmsId( LPCSTR lpszAppId, LPSTR lpszDmsId )
 
 	if (RegQueryValue(HKEY_CLASSES_ROOT, DMSKey, DMSName, &nLen) != ERROR_SUCCESS )
 	{
-		delete[] DMSKey;
 		delete[] DMSName;
 		return -1;
 	}
 
 	StringCchCopy(lpszDmsId, ODM_DMSID_MAX, DMSName);
-	delete[] DMSKey;
 	delete[] DMSName;
 	
 	return 0;
