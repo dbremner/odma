@@ -107,9 +107,9 @@ int ODMRegistry::GetAppDefaultDmsId( LPCSTR lpszAppId, LPSTR lpszDmsId )
 
 	const size_t key_len = ODM_APPID_MAX + 1 + sizeof(ODMA_KEY);
 	char DMSKey[key_len];
-	StringCchCopyN(DMSKey, key_len, lpszAppId, ODM_APPID_MAX);
-	StringCchCat(DMSKey, key_len, "\\" );
-	StringCchCat(DMSKey, key_len, ODMA_KEY);
+	StringCchCopyN(DMSKey, _countof(DMSKey), lpszAppId, ODM_APPID_MAX);
+	StringCchCat(DMSKey, _countof(DMSKey), "\\" );
+	StringCchCat(DMSKey, _countof(DMSKey), ODMA_KEY);
 	
 	LONG nLen = ODM_DMSID_MAX;
 	char *DMSName = new char[nLen];
