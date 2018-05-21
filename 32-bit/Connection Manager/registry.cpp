@@ -112,7 +112,7 @@ int ODMRegistry::GetAppDefaultDmsId( LPCSTR lpszAppId, LPSTR lpszDmsId )
 	StringCchCat(DMSKey, _countof(DMSKey), ODMA_KEY);
 	
 	char DMSName[ODM_DMSID_MAX];
-	LONG nLen = ODM_DMSID_MAX;
+	LONG nLen = _countof(DMSName);
 
 	if (RegQueryValue(HKEY_CLASSES_ROOT, DMSKey, DMSName, &nLen) != ERROR_SUCCESS )
 	{
