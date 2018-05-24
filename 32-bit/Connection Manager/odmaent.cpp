@@ -231,11 +231,11 @@ ODMSTATUS WINAPI _export ODMRegisterApp(ODMHANDLE *pOdmHandle,
 	LogParNumber("dwEnvData", dwEnvData);
 
 	ODMSTATUS odm;
-	char lpszDmsId[ODM_DMSID_MAX];
+	char dms_id[ODM_DMSID_MAX];
 	*pOdmHandle = nullptr;
 
 	// Get the apropriate DMS ID from the registry.
-	odm = Registry.GetDMS(lpszAppId, lpszDmsId);
+	odm = Registry.GetDMS(lpszAppId, dms_id);
 	if(odm == ODM_SUCCESS) 
 	{
 		// Create a new ODMClient object.
@@ -244,7 +244,7 @@ ODMSTATUS WINAPI _export ODMRegisterApp(ODMHANDLE *pOdmHandle,
 		if(pClient)
 		{
 			ODMDms *pDms = nullptr;
-			odm = pClient->ConnectDms(lpszDmsId, &pDms);
+			odm = pClient->ConnectDms(dms_id, &pDms);
 			if(odm == ODM_SUCCESS)
 				*pOdmHandle = static_cast<ODMHANDLE>(pClient);
 			else
