@@ -18,8 +18,8 @@ Application::Application(LPUNKNOWN pUnkOuter, DWORD dwEnvData)
 	m_dwRefs(1),
 	m_clientWind(reinterpret_cast<HWND>(dwEnvData)),
 	m_szQueryId{},
-	m_nQuery(0),
-	m_nQueryDocListIndex(0)
+	m_nQueryDocListIndex(0),
+	m_nQuery(0)
 {
 	if(pUnkOuter == nullptr) {
 		m_pUnkOuter = &m_Unknown;
