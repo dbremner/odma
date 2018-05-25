@@ -11,22 +11,22 @@
 
 //
 Application::Application(LPUNKNOWN pUnkOuter, DWORD dwEnvData)
-: m_Unknown(this), m_ODMDocMan(this), m_ODMDocMan2(this), m_ODMQuery( this )
+	: m_Unknown(this),
+	m_ODMDocMan(this),
+	m_ODMDocMan2(this),
+	m_ODMQuery(this),
+	m_dwRefs(1),
+	m_clientWind(reinterpret_cast<HWND>(dwEnvData)),
+	m_szQueryId{},
+	m_nQuery(0),
+	m_nQueryDocListIndex(0)
 {
-	m_dwRefs = 1;
-
 	if(pUnkOuter == nullptr) {
 		m_pUnkOuter = &m_Unknown;
 	}
 	else {
 		m_pUnkOuter = pUnkOuter;
 	}
-
-	m_clientWind = reinterpret_cast<HWND>(dwEnvData);
-
-	m_szQueryId[0] = '\0';
-	m_nQueryDocListIndex = 0;
-	m_nQuery = 0;
 }
 
 
