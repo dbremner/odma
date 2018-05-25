@@ -40,7 +40,9 @@ Document* DocumentList::GetDocumentByIndex(int n)
 	assert(n > 0);
 	assert(n < _countof(List));
 	if(List[n])
+	{
 		return List[n];
+	}
 	else
 		return nullptr;
 }

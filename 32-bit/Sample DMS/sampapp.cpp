@@ -489,9 +489,13 @@ STDMETHODIMP_(ODMSTATUS) Application::CODMDocMan2::SetAlternateContent(LPSTR lps
 		return ODM_E_DOCID;
 
 	if( *pdwFlags & ODM_ALT_DELETE )
+	{
 		return pDoc->DeleteComponent(lpszFormat);
+	}
 	else
+	{
 		return pDoc->SetComponent(lpszFormat, lpszDocLocation);
+	}
 }
 
 		
