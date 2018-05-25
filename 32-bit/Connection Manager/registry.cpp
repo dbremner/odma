@@ -32,7 +32,9 @@ static const TCHAR odma_key [] = _T("ODMA32");
 **********************************/
 
 ODMRegistry::ODMRegistry()
-	: m_bLogEnable(FALSE)
+	: m_bLogEnable(FALSE),
+	m_lpszLogPath{},
+	m_lplistTokens{}
 {
 	char szLogKey[255];
 	sprintf_s(szLogKey, "%s.ConnectionManager\\Logging", odma_key);
