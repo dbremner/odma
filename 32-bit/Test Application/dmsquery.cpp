@@ -18,14 +18,14 @@ static char THIS_FILE[] = __FILE__;
 
 
 CFrmDMSQuery::CFrmDMSQuery(CWnd* pParent /*=NULL*/)
-	: CDialog(CFrmDMSQuery::IDD, pParent)
+	: CDialog(CFrmDMSQuery::IDD, pParent),
+	m_queryId{}
 {
 	//{{AFX_DATA_INIT(CFrmDMSQuery)
 	m_txtSearch = _T("");
 	m_txtWhere = _T("");
 	m_wCount = 0;
 	//}}AFX_DATA_INIT
-	*m_queryId = NULL;
 }
 
 
