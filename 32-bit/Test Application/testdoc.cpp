@@ -38,11 +38,11 @@ END_MESSAGE_MAP()
 // CODMATestDoc construction/destruction
 
 CODMATestDoc::CODMATestDoc()
+	: m_DocId{},
+	m_FileName{},
+	m_Format{},
+	m_TitleText{}
 {
-	m_DocId[0] = '\0';
-	m_FileName[0] = '\0';
-	m_Format[0] = '\0';
-	m_TitleText[0] = '\0';
 }
 
 CODMATestDoc::~CODMATestDoc()
