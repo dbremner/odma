@@ -21,7 +21,7 @@
 #include <assert.h>
 #include "conman.h"
 
-	#define ODMA_KEY	"ODMA32"
+#define ODMA_KEY	"ODMA32"
 
 
 /**********************************
