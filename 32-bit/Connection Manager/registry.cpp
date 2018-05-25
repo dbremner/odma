@@ -20,8 +20,11 @@
 #include <limits.h>
 #include <assert.h>
 #include "conman.h"
+#include <tchar.h>
 
-#define ODMA_KEY	"ODMA32"
+static const TCHAR odma_key [] = _T("ODMA32");
+
+#define ODMA_KEY	odma_key
 
 
 /**********************************
