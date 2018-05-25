@@ -64,9 +64,7 @@ ODMRegistry::ODMRegistry(){
 	err = RegQueryValue(hLogKey, "File", m_lpszLogPath, &Len);
 	if(err != ERROR_SUCCESS || strlen(m_lpszLogPath) == 0)
 	{
-		strcpy_s(m_lpszLogPath, "C:\\");
-		strcat_s(m_lpszLogPath, ODMA_KEY);
-		strcat_s(m_lpszLogPath, ".log");
+		sprintf_s(m_lpszLogPath, "C:\\%s.log", ODMA_KEY);
 	}
 
 	err = RegQueryValue(hLogKey, "Options", m_lplistTokens, &Len);
