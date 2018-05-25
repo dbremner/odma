@@ -36,7 +36,7 @@ ODMRegistry::ODMRegistry(){
 	m_bLogEnable = FALSE;
 
 	char szLogKey[255];
-	sprintf_s(szLogKey, "%s%s", odma_key, ".ConnectionManager\\Logging");
+	sprintf_s(szLogKey, "%s.ConnectionManager\\Logging", odma_key);
 
 	HKEY hLogKey;
 	LONG err = RegOpenKey(HKEY_CLASSES_ROOT, szLogKey, &hLogKey);
