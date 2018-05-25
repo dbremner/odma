@@ -17,7 +17,10 @@
 
 
 ODMClient::ODMClient(LPSTR lpszAppId, WORD version, DWORD dwEnvData)
-: m_Unknown( this ), m_ODMDocMan( this ), m_ODMDocMan2( this ), m_ODMQuery( this )
+	: m_Unknown( this ),
+	m_ODMDocMan( this ),
+	m_ODMDocMan2( this ),
+	m_ODMQuery( this )
 {
 	m_dwRefs = 1;
 	m_version = version;
