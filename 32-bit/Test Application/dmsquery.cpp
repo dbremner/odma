@@ -87,8 +87,8 @@ void CFrmDMSQuery::OnGo()
 	if(!m_txtSearch.IsEmpty())
 		StringCchCat(lpszQuery, query_len, " search ");
 	StringCchCat(lpszQuery, query_len, m_txtSearch);
-	
-	DWORD dwFlags = ODM_SPECIFIC;
+
+	const DWORD dwFlags = ODM_SPECIFIC;
 	odm = ODMQueryExecute(CODMATestDoc::odmHandle, lpszQuery,
 		dwFlags, lpszDMSList, m_queryId );
 //	if (!odm) return;
