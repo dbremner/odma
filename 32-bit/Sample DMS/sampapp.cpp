@@ -184,7 +184,7 @@ Document *pDoc;
 	if(err)
 		return err;
 
-	LPSTR lp = pDoc->GetId();
+	const auto lp = pDoc->GetId();
 	StringCchPrintf(lpszDocId, ODM_DOCID_MAX, "::ODMA\\%s\\%s", DMSID, lp);
 	return 0;
 }
