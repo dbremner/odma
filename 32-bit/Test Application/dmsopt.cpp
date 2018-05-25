@@ -123,8 +123,9 @@ void CFrmDMSOptions::OnGetDmsList()
 	OnGetDmsCount();
 	
 	CString strDmsList;
-	LPSTR lpszDmsList = strDmsList.GetBuffer(ODM_DMSID_MAX*m_DmsCount+1);
-	ODMSTATUS odm = ODMGetDMSList(lpszDmsList, ODM_DMSID_MAX*m_DmsCount+1);
+	const auto result = ODM_DMSID_MAX*m_DmsCount + 1;
+	LPSTR lpszDmsList = strDmsList.GetBuffer(result);
+	ODMSTATUS odm = ODMGetDMSList(lpszDmsList, result);
 	char *szDms = lpszDmsList;
 	
 	m_ListDms.ResetContent();
