@@ -13,7 +13,7 @@ TABS(3,3)
 #include "conman.h"
 
 
-ODMDms::ODMDms()
+ODMDms::ODMDms() noexcept
 {
 	m_pUnk = nullptr;
 	m_pDocMan = nullptr;

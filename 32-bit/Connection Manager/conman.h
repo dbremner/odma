@@ -225,7 +225,7 @@ class ODMDms
 	char m_szQueryId[ODM_DOCID_MAX];  // Handle to this DMS's queryId, if avail.
 
 public:
-	ODMDms();
+	ODMDms() noexcept;
 	~ODMDms();
 	ODMSTATUS Init(LPCSTR lpszDmsId, LPSTR lpszAppId, WORD version,
 		LPUNKNOWN pUnkOuter, DWORD dwEnvData);

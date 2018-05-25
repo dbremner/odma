@@ -57,7 +57,7 @@ class ODMDmsList
 	}
 
 public:
-	ODMDmsList(){ m_pListHead = nullptr; }
+	ODMDmsList() noexcept { m_pListHead = nullptr; }
 	
 	~ODMDmsList(){ ClearList(); }
 	
@@ -191,7 +191,7 @@ class AppDmsOverrideList
 	}
 
 public:
-	AppDmsOverrideList(){ m_pListHead = nullptr; }
+	AppDmsOverrideList() noexcept { m_pListHead = nullptr; }
 	
 	~AppDmsOverrideList(){ ClearList(); }
 
