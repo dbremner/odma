@@ -24,9 +24,6 @@
 
 static const TCHAR odma_key [] = _T("ODMA32");
 
-#define ODMA_KEY	odma_key
-
-
 /**********************************
 
 
@@ -39,7 +36,7 @@ ODMRegistry::ODMRegistry(){
 	m_bLogEnable = FALSE;
 
 	char szLogKey[255];
-	strcpy_s(szLogKey, ODMA_KEY);
+	strcpy_s(szLogKey, odma_key);
 	strcat_s(szLogKey,".ConnectionManager\\Logging");
 
 	HKEY hLogKey;
@@ -67,7 +64,7 @@ ODMRegistry::ODMRegistry(){
 	err = RegQueryValue(hLogKey, "File", m_lpszLogPath, &Len);
 	if(err != ERROR_SUCCESS || strlen(m_lpszLogPath) == 0)
 	{
-		sprintf_s(m_lpszLogPath, "C:\\%s.log", ODMA_KEY);
+		sprintf_s(m_lpszLogPath, "C:\\%s.log", odma_key);
 	}
 
 	err = RegQueryValue(hLogKey, "Options", m_lplistTokens, &Len);
@@ -106,11 +103,11 @@ int ODMRegistry::GetAppDefaultDmsId( LPCSTR lpszAppId, LPSTR lpszDmsId )
 	if ( m_overrideList.GetDMS( lpszAppId, lpszDmsId ) )
 		return 0;
 
-	const size_t key_len = ODM_APPID_MAX + 1 + _countof(ODMA_KEY);
+	const size_t key_len = ODM_APPID_MAX + 1 + _countof(odma_key);
 	char DMSKey[key_len];
 	StringCchCopyN(DMSKey, _countof(DMSKey), lpszAppId, ODM_APPID_MAX);
 	StringCchCat(DMSKey, _countof(DMSKey), "\\" );
-	StringCchCat(DMSKey, _countof(DMSKey), ODMA_KEY);
+	StringCchCat(DMSKey, _countof(DMSKey), odma_key);
 	
 	char DMSName[ODM_DMSID_MAX];
 	LONG nLen = _countof(DMSName);
@@ -137,7 +134,7 @@ int ODMRegistry::GetSystemDefaultDmsId( LPSTR lpszDmsId )
 	int nRet = -1;
 
 	HKEY hODMKey;
-	LONG err = RegOpenKey( HKEY_CLASSES_ROOT, ODMA_KEY, &hODMKey );
+	LONG err = RegOpenKey( HKEY_CLASSES_ROOT, odma_key, &hODMKey );
 	if(err != ERROR_SUCCESS)
 		return -1;
 
@@ -186,8 +183,8 @@ int ODMRegistry::GetDMSEntry(LPCSTR lpszDmsId, LPSTR lpszDMSEntry, int entryLen)
 	if(len > ODM_DMSID_MAX)
 		return -1;
 
-	char key[ sizeof(ODMA_KEY) + 1 + ODM_DMSID_MAX ];
-	strcpy_s(key, ODMA_KEY);
+	char key[ sizeof(odma_key) + 1 + ODM_DMSID_MAX ];
+	strcpy_s(key, odma_key);
 	strcat_s(key, "\\");
 	strcat_s(key, lpszDmsId);
 	LONG vlen = entryLen;
@@ -209,7 +206,7 @@ WORD ODMRegistry::GetDMSCount()
 {
 	DWORD nDMSCount = 0;
 	HKEY hkey;	
-	if( RegOpenKey( HKEY_CLASSES_ROOT, ODMA_KEY, &hkey ) == ERROR_SUCCESS )
+	if( RegOpenKey( HKEY_CLASSES_ROOT, odma_key, &hkey ) == ERROR_SUCCESS )
 	{
 		char buffer[ ODM_DMSID_MAX ];
 		while ( RegEnumKey( hkey, nDMSCount, buffer, ODM_DMSID_MAX ) == ERROR_SUCCESS )
@@ -244,7 +241,7 @@ WORD ODMRegistry::GetDMSList( LPSTR buffer, WORD buffer_size )
 	WORD iSubKey = 0;
 	HKEY hkey;	
 	
-	if( RegOpenKey( HKEY_CLASSES_ROOT, ODMA_KEY, &hkey )== ERROR_SUCCESS )
+	if( RegOpenKey( HKEY_CLASSES_ROOT, odma_key, &hkey )== ERROR_SUCCESS )
 	{
 		WORD i = 0;
 		while ( RegEnumKey( hkey, iSubKey, &buffer[i], ODM_DMSID_MAX ) == ERROR_SUCCESS )
@@ -298,9 +295,9 @@ ODMSTATUS ODMRegistry::SetDMS( LPCSTR lpszAppId, LPCSTR lpszDMSId )
 		return ODM_E_NODMS;
 	
 	HKEY hkey;
-	char szKey[sizeof(ODMA_KEY) + 1 + ODM_DMSID_MAX];
+	char szKey[sizeof(odma_key) + 1 + ODM_DMSID_MAX];
 
-	strcpy_s( szKey, ODMA_KEY );
+	strcpy_s( szKey, odma_key );
 	strcat_s( szKey, "\\" );
 	strcat_s( szKey, lpszDMSId );
 
