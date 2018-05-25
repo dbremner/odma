@@ -94,34 +94,6 @@ Document::Document(LPSTR lpszDocId)
 }
 
 
-void Document::Init()
-{
-SYSTEMTIME tm;
-
-
-	bEdited = FALSE; //BVG:
-	SaveFlag = 0;
-	Author[0] = '\0';
-	Name[0] = '\0';
-	DocType[0] = '\0';
-	OpenCount = 0;
-
-	//BVG Init first component
-	iComponents=1;
-	Format[0][0] = '\0';
-	DocLocation[0][0] = '\0';
-
-	DocAccessed = 0;
-
-	GetLocalTime(&tm);
-
-	if(tm.wMilliseconds > 99)
-		tm.wMilliseconds /= 10;
-
-	sprintf_s(DocId, "%02d-%02d-%02d-%02d", tm.wHour, tm.wMinute, tm.wSecond, tm.wMilliseconds);
-}
-
-
 ODMSTATUS Document::Open(LPSTR lpszFileName)
 {
 	OpenCount++;

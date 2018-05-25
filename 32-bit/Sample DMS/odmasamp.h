@@ -218,8 +218,6 @@ class Document {
 	char	Format[MAXCOMPONENTS][ODM_FORMAT_MAX];
 	char	DocLocation[MAXCOMPONENTS][ODM_FILENAME_MAX];
 
-	void Init();
-
 	friend BOOL CALLBACK _export ProfileProc(HWND hwndDlg, UINT message, WPARAM wParam,
 		LPARAM lParam);
 
