@@ -49,7 +49,7 @@ class Application {
 	//----------------------------------------------------------------
 	struct CUnknown : IUnknown 
 	{
-		CUnknown(Application *pObject) { m_pObject = pObject; }
+		explicit CUnknown(Application *pObject) { m_pObject = pObject; }
 
 		//*** IUnknown ***
 		STDMETHOD(QueryInterface) (REFIID riid, LPVOID FAR* ppvObj);
@@ -229,8 +229,8 @@ class Document {
 	Document();
 	~Document() {}
 	Document(LPSTR lpszFormat, LPSTR lpszDocLocation);
-	Document(Document *pOldDoc);
-	Document(LPSTR lpszDocId);
+	explicit Document(Document *pOldDoc);
+	explicit Document(LPSTR lpszDocId);
 	char *GetId() { return DocId; }
 	int GetOpenCount() const { return OpenCount; }
 	ODMSTATUS Open(LPSTR lpszFileName);

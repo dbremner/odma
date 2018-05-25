@@ -131,7 +131,7 @@ class ODMDmsListIterator
 	ODMDmsList& m_rList;
 	ODMDmsList::ListNode* m_pCurrent;
 public:
-	ODMDmsListIterator( ODMDmsList& rList ) : m_rList( rList ) { m_pCurrent = rList.m_pListHead; }
+	explicit ODMDmsListIterator( ODMDmsList& rList ) : m_rList( rList ) { m_pCurrent = rList.m_pListHead; }
 	ODMDms*& Current(){ return m_pCurrent->m_item; }
 	void Restart(){ m_pCurrent = m_rList.m_pListHead; }
 	operator int(){ return m_pCurrent != nullptr; }
@@ -286,7 +286,7 @@ class AppDmsOverrideListIterator
 	AppDmsOverrideList& m_rList;
 	AppDmsOverrideList::ListNode* m_pCurrent;
 public:
-	AppDmsOverrideListIterator( AppDmsOverrideList& rList ) 
+	explicit AppDmsOverrideListIterator( AppDmsOverrideList& rList ) 
 		: m_rList( rList ) 
 	{ 
 		m_pCurrent = rList.m_pListHead; 
