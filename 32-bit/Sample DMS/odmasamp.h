@@ -232,7 +232,7 @@ class Document {
 	Document(Document *pOldDoc);
 	Document(LPSTR lpszDocId);
 	char *GetId() { return DocId; }
-	int GetOpenCount() { return OpenCount; }
+	int GetOpenCount() const { return OpenCount; }
 	ODMSTATUS Open(LPSTR lpszFileName);
 	ODMSTATUS Save() { SaveFlag = 1; return 0; }
 	ODMSTATUS Close(DWORD activeTime, DWORD pagesPrinted,
