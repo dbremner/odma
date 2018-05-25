@@ -61,7 +61,7 @@ public:
 	
 	~ODMDmsList(){ ClearList(); }
 	
-	BOOL IsEmpty(){ return m_pListHead == nullptr; }
+	BOOL IsEmpty() const { return m_pListHead == nullptr; }
 
 	/*
 	 * This code doesn't make sense.
