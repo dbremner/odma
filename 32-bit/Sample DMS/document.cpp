@@ -39,7 +39,7 @@ Document::Document(LPSTR lpszFormat, LPSTR lpszDocLocation)
 {
 	strcpy_s(Format[0], lpszFormat);
 
-	if(lpszDocLocation) 
+	if(lpszDocLocation != nullptr) 
 	{
 		strcpy_s(DocLocation[0], lpszDocLocation);
 		DocAccessed = 1;
