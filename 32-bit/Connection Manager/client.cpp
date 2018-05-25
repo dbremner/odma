@@ -461,8 +461,7 @@ STDMETHODIMP_(ODMSTATUS) ODMClient::CODMDocMan2::GetDocRelation(LPSTR lpszDocId,
 	
 	if(odm == ODM_E_DOCID)
 		return ODM_E_DOCID;
-
-	else if(odm != ODM_SUCCESS)
+	if(odm != ODM_SUCCESS)
 		return ODM_E_FAIL;
 
 	odm = pDms->m_pDocMan2->GetDocRelation(lpszDocId, pdwFlags,
@@ -759,7 +758,7 @@ HRESULT ODMClient::DocIdQueryInterface(LPSTR lpszDocId, REFIID riid, LPVOID *ppv
 		const ODMSTATUS odm = ConnectDocId(lpszDocId, &pDms);
 		if(odm == ODM_E_DOCID)
 			return ResultFromScode(E_INVALIDARG);
-		else if (odm != ODM_SUCCESS)
+		if (odm != ODM_SUCCESS)
 			return ResultFromScode(E_FAIL);
 	}
 	else 
