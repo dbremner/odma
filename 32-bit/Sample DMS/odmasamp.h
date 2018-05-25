@@ -69,7 +69,7 @@ class Application {
 	//----------------------------------------------------------------
 	struct CODMDocMan : IODMDocMan 
 	{
-		CODMDocMan(Application *pObject) { m_pObject = pObject; }
+		explicit CODMDocMan(Application *pObject) { m_pObject = pObject; }
 		~CODMDocMan() {}
 
 		//*** IUnknown ***
@@ -112,7 +112,7 @@ class Application {
 	//----------------------------------------------------------------
 	struct CODMDocMan2 : IODMDocMan2 
 	{
-		CODMDocMan2(Application *pObject) { m_pObject = pObject; }
+		explicit CODMDocMan2(Application *pObject) { m_pObject = pObject; }
 		~CODMDocMan2() {}
 
 		//*** IUnknown ***
@@ -164,7 +164,7 @@ class Application {
 	//----------------------------------------------------------------
 	struct CODMQuery : IODMQuery 
 	{
-		CODMQuery( Application *pObject ){ m_pObject = pObject; }
+		explicit CODMQuery( Application *pObject ){ m_pObject = pObject; }
 		~CODMQuery() {}
 
     	//*** IUnknown ***
