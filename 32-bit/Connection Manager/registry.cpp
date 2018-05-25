@@ -142,7 +142,7 @@ int ODMRegistry::GetSystemDefaultDmsId( LPSTR lpszDmsId )
 			== ERROR_SUCCESS; iSubKey++) 
 	{
 		char strKey[25];
-		sprintf_s(strKey, "%s\\%s", strDMS, "DEFAULT");
+		sprintf_s(strKey, "%s\\DEFAULT", strDMS);
 	
 		HKEY hDefKey;
 		err = RegOpenKey(hODMKey, strKey, &hDefKey);
