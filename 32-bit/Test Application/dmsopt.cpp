@@ -5,6 +5,7 @@
 #include "ODMATest.h"
 #include "TestDoc.h"
 #include "DMSOpt.h"
+#include <assert.h>
 #include <strsafe.h>
 
 #ifdef _DEBUG
@@ -125,7 +126,8 @@ void CFrmDMSOptions::OnGetDmsList()
 	CString strDmsList;
 	const auto result = ODM_DMSID_MAX*m_DmsCount + 1;
 	LPSTR lpszDmsList = strDmsList.GetBuffer(result);
-	ODMSTATUS odm = ODMGetDMSList(lpszDmsList, result);
+	assert(result < 65535);
+	ODMSTATUS odm = ODMGetDMSList(lpszDmsList, static_cast<WORD>(result));
 	char *szDms = lpszDmsList;
 	
 	m_ListDms.ResetContent();
