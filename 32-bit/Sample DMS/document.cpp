@@ -19,8 +19,8 @@ Document::Document()
 
 //Create new document
 Document::Document(LPSTR lpszFormat, LPSTR lpszDocLocation)
+	: Document()
 {
-	Init();
 	strcpy_s(Format[0], lpszFormat);
 
 	if(lpszDocLocation) 
@@ -32,8 +32,8 @@ Document::Document(LPSTR lpszFormat, LPSTR lpszDocLocation)
 
 //Create document as the copy
 Document::Document(Document *pOldDoc)
+	: Document()
 {
-	Init();
 	bEdited = pOldDoc->bEdited; //BVG:
 	strcpy_s(Author, pOldDoc->Author);
 	strcpy_s(Name, pOldDoc->Name);
