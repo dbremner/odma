@@ -350,7 +350,7 @@ void CODMATestDoc::Dump(CDumpContext& dc) const
 // Function that work with DMS
 
 
-BOOL CODMATestDoc::DMSNewDoc(LPSTR DocId)
+BOOL CODMATestDoc::DMSNewDoc(LPSTR docId)
 {
 	if (!odmHandle)
 		return FALSE;
@@ -358,7 +358,7 @@ BOOL CODMATestDoc::DMSNewDoc(LPSTR DocId)
 	if(m_bUseEx)
 		return TRUE;
 
-	const ODMSTATUS odm = ODMNewDoc(odmHandle, DocId, ODM_SILENT, ODM_FORMAT_TEXT, nullptr);
+	const ODMSTATUS odm = ODMNewDoc(odmHandle, docId, ODM_SILENT, ODM_FORMAT_TEXT, nullptr);
 	switch(odm)
 	{
 	case ODM_SUCCESS:
@@ -464,20 +464,20 @@ BOOL CODMATestDoc::DMSOpenAlter(LPSTR FileName)
 }
 
 
-void CODMATestDoc::DMSCloseDoc(LPSTR DocId)
+void CODMATestDoc::DMSCloseDoc(LPSTR docId)
 {
 	if (!odmHandle)
 		return;
 
-	DocId = DocId ? DocId:m_DocId;
+	docId = docId ? docId:m_DocId;
 
-	if (!*DocId)
+	if (!*docId)
 		return;
 
 	DWORD dwFlags = ODM_SILENT;
 
-	const ODMSTATUS odm = m_bUseEx ? ODMCloseDocEx(odmHandle, DocId, &dwFlags, 0xFFFFFFFF,0xFFFFFFFF, nullptr, NULL)
-			:ODMCloseDoc(odmHandle, DocId, 0xFFFFFFFF, 0xFFFFFFFF, nullptr, NULL);
+	const ODMSTATUS odm = m_bUseEx ? ODMCloseDocEx(odmHandle, docId, &dwFlags, 0xFFFFFFFF,0xFFFFFFFF, nullptr, NULL)
+			:ODMCloseDoc(odmHandle, docId, 0xFFFFFFFF, 0xFFFFFFFF, nullptr, NULL);
 	switch (odm)
 	{
 	case ODM_SUCCESS:
@@ -490,7 +490,7 @@ void CODMATestDoc::DMSCloseDoc(LPSTR DocId)
 	default:
 		break;
 	}
-	*DocId = NULL;
+	*docId = NULL;
 }
 
 
@@ -501,15 +501,15 @@ BOOL CODMATestDoc::DMSSaveDoc()
 
 	m_bRTF = FALSE;
 
-	char DocId[ODM_DOCID_MAX];
+	char doc_id[ODM_DOCID_MAX];
 	DWORD dwFlags = ODM_SILENT;
 
-	const ODMSTATUS odm = m_bUseEx ? ODMSaveDocEx(odmHandle, m_DocId, DocId, &dwFlags)
-				:ODMSaveDoc(odmHandle, m_DocId, DocId);
+	const ODMSTATUS odm = m_bUseEx ? ODMSaveDocEx(odmHandle, m_DocId, doc_id, &dwFlags)
+				:ODMSaveDoc(odmHandle, m_DocId, doc_id);
 	switch (odm)
 	{
 	case ODM_SUCCESS:
-		strcpy_s(m_DocId, DocId);
+		strcpy_s(m_DocId, doc_id);
 		break;
 	case ODM_E_NOOPEN:
 		return FALSE;
