@@ -18,7 +18,6 @@ ODMDms::ODMDms() noexcept
 	m_pUnk = nullptr;
 	m_pDocMan = nullptr;
 	m_pQuery = nullptr;
-	m_pDocMan = nullptr;
 	m_hDms = nullptr;
 	m_szId[0] = '\0';
 	m_szQueryId[0] = '\0';
