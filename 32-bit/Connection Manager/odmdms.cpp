@@ -14,13 +14,14 @@ TABS(3,3)
 
 
 ODMDms::ODMDms() noexcept
+	: m_szId{},
+	m_hDms(nullptr),
+	m_szQueryId{},
+	m_pUnk(nullptr),
+	m_pDocMan(nullptr),
+	m_pQuery(nullptr),
+	m_pDocMan2(nullptr)
 {
-	m_pUnk = nullptr;
-	m_pDocMan = nullptr;
-	m_pQuery = nullptr;
-	m_hDms = nullptr;
-	m_szId[0] = '\0';
-	m_szQueryId[0] = '\0';
 }
 
 ODMDms::~ODMDms()
