@@ -185,7 +185,7 @@ void CODMATestDoc::GetDocInfo(WORD wItem, LPSTR lpszData, WORD dataLen, LPCSTR d
 	switch(odm)
 	{
 	case ODM_SUCCESS:
-		return;
+		break;
 	case ODM_E_DOCID:
 		break;
 	case ODM_E_ITEM:
