@@ -134,7 +134,7 @@ public:
 	explicit ODMDmsListIterator( ODMDmsList& rList ) : m_rList( rList ) { m_pCurrent = rList.m_pListHead; }
 	ODMDms*& Current(){ return m_pCurrent->m_item; }
 	void Restart(){ m_pCurrent = m_rList.m_pListHead; }
-	operator bool(){ return m_pCurrent != nullptr; }
+	operator bool() const { return m_pCurrent != nullptr; }
 	ODMDms*& operator ++(){ m_pCurrent = m_pCurrent->m_pNext; return m_pCurrent->m_item; }
 	ODMDms*& operator ++( int )
 	{
