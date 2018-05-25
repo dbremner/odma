@@ -13,23 +13,18 @@
 #include <strsafe.h>
 
 Document::Document()
+	: bEdited(FALSE),
+	SaveFlag(0),
+	Author{},
+	Name{},
+	DocType{},
+	OpenCount{0},
+	DocAccessed{0},
+	iComponents{1},
+	Format{},
+	DocLocation{}
 {
 	SYSTEMTIME tm;
-
-	bEdited = FALSE; //BVG:
-	SaveFlag = 0;
-	Author[0] = '\0';
-	Name[0] = '\0';
-	DocType[0] = '\0';
-	OpenCount = 0;
-
-	//BVG Init first component
-	iComponents = 1;
-	Format[0][0] = '\0';
-	DocLocation[0][0] = '\0';
-
-	DocAccessed = 0;
-
 	GetLocalTime(&tm);
 
 	if (tm.wMilliseconds > 99)
