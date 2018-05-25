@@ -183,7 +183,7 @@ void CODMATestApp::OnRegisterApp()
 	OnUnRegisterApp();
 
 	const ODMSTATUS odm = ODMRegisterApp(&CODMATestDoc::odmHandle, ODM_API_VERSION,
-		(LPSTR) lpszAppId, (WORD)AfxGetMainWnd()->m_hWnd, nullptr);
+		(LPSTR) lpszAppId, (DWORD)AfxGetMainWnd()->m_hWnd, nullptr);
 	switch(odm)
 	{
 	case ODM_SUCCESS:
