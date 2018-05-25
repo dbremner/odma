@@ -1,7 +1,4 @@
 LIBRARY         ODMA32
-DESCRIPTION     'ODMA 2.0 Connection Manager 32-Bit'
-CODE            MOVEABLE DISCARDABLE
-DATA            MOVEABLE SINGLE
 
 HEAPSIZE        16392
 
