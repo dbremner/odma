@@ -20,15 +20,15 @@ ODMClient::ODMClient(LPSTR lpszAppId, WORD version, DWORD dwEnvData)
 	: m_Unknown( this ),
 	m_ODMDocMan( this ),
 	m_ODMDocMan2( this ),
-	m_ODMQuery( this )
+	m_ODMQuery( this ),
+	m_dwRefs(1),
+	m_version(version),
+	m_clientWind(reinterpret_cast<HWND>(dwEnvData)),
+	m_pDefaultDms(nullptr),
+	m_nQueryCount(0),
+	m_szQueryId{}
 {
-	m_dwRefs = 1;
-	m_version = version;
 	strcpy_s(m_appid, lpszAppId);
-	m_pDefaultDms = nullptr;
-	m_clientWind = reinterpret_cast<HWND>(dwEnvData);
-	m_nQueryCount = 0;
-	m_szQueryId[0] = '\0';
 }
 
 ODMClient::~ODMClient()
