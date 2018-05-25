@@ -242,12 +242,12 @@ class Document {
 	ODMSTATUS GetInfo(WORD item, LPSTR lpszData, WORD dataLen);
 	ODMSTATUS SetInfo(WORD item, LPSTR lpszData);
 	void SaveInfo();
-	int HasBeenAccessed() 
-		{ return DocAccessed; }
+	int HasBeenAccessed() const
+	{ return DocAccessed; }
 
 	//BVG:
-	int HasBeenEdited() 
-		{ return bEdited; } 
+	int HasBeenEdited() const
+	{ return bEdited; } 
 };
 
 class DocumentList {

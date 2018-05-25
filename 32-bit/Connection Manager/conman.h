@@ -230,11 +230,11 @@ public:
 	ODMSTATUS Init(LPCSTR lpszDmsId, LPSTR lpszAppId, WORD version,
 		LPUNKNOWN pUnkOuter, DWORD dwEnvData);
 	
-	LPCSTR GetId(){ return m_szId; } // Return a pointer to the DMS ID string.
+	LPCSTR GetId() const { return m_szId; } // Return a pointer to the DMS ID string.
 	
 	void QueryId( LPSTR lpszQueryId ){ strcpy_s( m_szQueryId, lpszQueryId ); }
 	
-	LPCSTR QueryId(){ return m_szQueryId; }
+	LPCSTR QueryId() const { return m_szQueryId; }
 
 	LPUNKNOWN	m_pUnk;			// The DMS's IUnknown interface.
 	LPODMDOCMAN m_pDocMan;		// IODMDocMan interface from the DMS.
