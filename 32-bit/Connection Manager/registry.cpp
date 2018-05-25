@@ -142,9 +142,7 @@ int ODMRegistry::GetSystemDefaultDmsId( LPSTR lpszDmsId )
 			== ERROR_SUCCESS; iSubKey++) 
 	{
 		char strKey[25];
-		strcpy_s(strKey, strDMS);
-		strcat_s(strKey, "\\");
-		strcat_s(strKey, "DEFAULT");
+		sprintf_s(strKey, "%s\\%s", strDMS, "DEFAULT");
 	
 		HKEY hDefKey;
 		err = RegOpenKey(hODMKey, strKey, &hDefKey);
@@ -183,9 +181,7 @@ int ODMRegistry::GetDMSEntry(LPCSTR lpszDmsId, LPSTR lpszDMSEntry, int entryLen)
 		return -1;
 
 	char key[ sizeof(odma_key) + 1 + ODM_DMSID_MAX ];
-	strcpy_s(key, odma_key);
-	strcat_s(key, "\\");
-	strcat_s(key, lpszDmsId);
+	sprintf_s(key, "%s\\%s", odma_key, lpszDmsId);
 	LONG vlen = entryLen;
 	const LONG err = RegQueryValue(HKEY_CLASSES_ROOT, key, lpszDMSEntry, &vlen);
 
@@ -295,10 +291,7 @@ ODMSTATUS ODMRegistry::SetDMS( LPCSTR lpszAppId, LPCSTR lpszDMSId )
 	
 	HKEY hkey;
 	char szKey[sizeof(odma_key) + 1 + ODM_DMSID_MAX];
-
-	strcpy_s( szKey, odma_key );
-	strcat_s( szKey, "\\" );
-	strcat_s( szKey, lpszDMSId );
+	sprintf_s(szKey, "%s\\%s", odma_key, lpszDMSId);
 
 	if(RegOpenKey( HKEY_CLASSES_ROOT, szKey, &hkey ) == ERROR_SUCCESS)
 		RegCloseKey( hkey );
