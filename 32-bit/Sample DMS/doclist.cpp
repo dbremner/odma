@@ -8,13 +8,10 @@
 
 
 DocumentList::DocumentList()
+	:List{}
 {
 int i;
 	char *entry;
-
-	for(i=0; i<MAXDOCS; i++)
-		List[i] = nullptr;
-
 	char *buff = new char[2048];
 
 	if(buff) {
