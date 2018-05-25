@@ -403,28 +403,25 @@ ODMSTATUS odmstatus;
 	if(lpszDocId!= nullptr)
 		return m_pObject->m_ODMDocMan.SaveAs(lpszDocId, lpszNewDocId,
 										lpszFormat, pcbCallBack, pInstanceData);
+	auto lpszTempDocId = new char[ODM_DOCID_MAX];
+
+	odmstatus=m_pObject->m_ODMDocMan.NewDoc(lpszTempDocId, 
+	                                        ODM_SILENT, lpszFormat, nullptr);
+	if(odmstatus!=ODM_SUCCESS)
+		odmstatus=ODM_E_FAIL;
 	else
-	{
-		auto lpszTempDocId = new char[ODM_DOCID_MAX];
-
-		odmstatus=m_pObject->m_ODMDocMan.NewDoc(lpszTempDocId, 
-										ODM_SILENT, lpszFormat, nullptr);
-		if(odmstatus!=ODM_SUCCESS)
-			odmstatus=ODM_E_FAIL;
-		else
 		odmstatus = m_pObject->m_ODMDocMan.SaveAs(lpszTempDocId, lpszNewDocId,
-										lpszFormat, pcbCallBack, pInstanceData);
+		                                          lpszFormat, pcbCallBack, pInstanceData);
 
-		if(odmstatus == ODM_E_CANCEL)
-			DocList.DeleteDocument(lpszTempDocId);
+	if(odmstatus == ODM_E_CANCEL)
+		DocList.DeleteDocument(lpszTempDocId);
 
-		else if(lpszNewDocId[0] == '\0')
-			StringCchCopy(lpszNewDocId, ODM_DOCID_MAX, lpszTempDocId);
+	else if(lpszNewDocId[0] == '\0')
+		StringCchCopy(lpszNewDocId, ODM_DOCID_MAX, lpszTempDocId);
 
-		delete[] lpszTempDocId;
-	}
+	delete[] lpszTempDocId;
 
-return odmstatus;		
+	return odmstatus;		
 }
 
 
