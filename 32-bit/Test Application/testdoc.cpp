@@ -131,7 +131,7 @@ BOOL CODMATestDoc::OnSelectDocEx(LPSTR lpszDocIds, LPWORD wDocCount)
 
 
 
-BOOL CODMATestDoc::OnSelectType(LPCSTR DocId, LPSTR lpszFormat, LPSTR lpszListFrm)
+BOOL CODMATestDoc::OnSelectType(LPCSTR docId, LPSTR lpszFormat, LPSTR lpszListFrm)
 {
 	StringCchCopy(lpszFormat, ODM_FORMAT_MAX, ODM_FORMAT_TEXT);
 
@@ -146,7 +146,7 @@ BOOL CODMATestDoc::OnSelectType(LPCSTR DocId, LPSTR lpszFormat, LPSTR lpszListFr
 	{
 		*lpszList = NULL;
 
-		CODMATestDoc::GetDocInfo(ODM_ALTERNATE_RENDERINGS, lpszList, dataLen, DocId);
+		CODMATestDoc::GetDocInfo(ODM_ALTERNATE_RENDERINGS, lpszList, dataLen, docId);
 	}
 	else
 	{
@@ -171,7 +171,7 @@ BOOL CODMATestDoc::OnSelectType(LPCSTR DocId, LPSTR lpszFormat, LPSTR lpszListFr
 }
 
 
-void CODMATestDoc::GetDocInfo(WORD wItem, LPSTR lpszData, WORD dataLen, LPCSTR DocId)
+void CODMATestDoc::GetDocInfo(WORD wItem, LPSTR lpszData, WORD dataLen, LPCSTR docId)
 {
 	// ODM_AUTHOR - Author of the document.
 	// ODM_NAME - Name of the document.  This is a descriptive name for the document, not the filename.
@@ -181,7 +181,7 @@ void CODMATestDoc::GetDocInfo(WORD wItem, LPSTR lpszData, WORD dataLen, LPCSTR D
 	// ODM_DMS_DEFINED - The lpszData parameter contains a DMS-specific indication of the data to be returned. Note that an application must know which DMS it is talking to and must understand the data.
 	// ODM_ALTERNATE_RENDERINGS - return a comma-separated list of format names representing the alternate formats it can return in ODMGetAlternateContent. 
 
-	const ODMSTATUS odm = ODMGetDocInfo(odmHandle, (LPSTR) DocId, wItem, lpszData, dataLen);
+	const ODMSTATUS odm = ODMGetDocInfo(odmHandle, (LPSTR) docId, wItem, lpszData, dataLen);
 	switch(odm)
 	{
 	case ODM_SUCCESS:
@@ -199,9 +199,9 @@ void CODMATestDoc::GetDocInfo(WORD wItem, LPSTR lpszData, WORD dataLen, LPCSTR D
 }
 
 
-void CODMATestDoc::GetTitle(LPSTR lpszTitle, LPCSTR DocId, LPCSTR lpszFormat)
+void CODMATestDoc::GetTitle(LPSTR lpszTitle, LPCSTR docId, LPCSTR lpszFormat)
 {
-	GetDocInfo(ODM_TITLETEXT, lpszTitle, ODM_TITLETEXT_MAX, DocId);
+	GetDocInfo(ODM_TITLETEXT, lpszTitle, ODM_TITLETEXT_MAX, docId);
 	const size_t len = ODM_TITLETEXT_MAX;
 	StringCchCat(lpszTitle, len, " (");
 	StringCchCat(lpszTitle, len, lpszFormat);
