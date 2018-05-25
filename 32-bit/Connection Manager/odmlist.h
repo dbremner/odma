@@ -85,6 +85,10 @@ public:
 			pTestNode = pTestNode->m_pNext;
 		}
 
+		if (!pTestNode)
+		{
+			return nullptr;
+		}
 		return &pTestNode->m_item;
 	}
 
@@ -213,6 +217,10 @@ public:
 			pTestNode = pTestNode->m_pNext;
 		}
 
+		if (!pTestNode)
+		{
+			return nullptr;
+		}
 		return &pTestNode->m_item;
 	}
 
