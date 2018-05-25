@@ -46,7 +46,7 @@ private:
 	//----------------------------------------------------------------
   	struct CUnknown : IUnknown 
 	{
-    	CUnknown(ODMClient *pObject)
+		  explicit CUnknown(ODMClient *pObject)
 			: m_pObject(pObject)
 		{}
 
@@ -65,7 +65,7 @@ private:
 	//----------------------------------------------------------------
   	struct CODMDocMan : IODMDocMan 
 	{
-		CODMDocMan(ODMClient *pObject)
+		explicit CODMDocMan(ODMClient *pObject)
 			:m_pObject(pObject)
 		{}
 		~CODMDocMan() {}
@@ -103,7 +103,7 @@ private:
 	***************************************************/
 	struct CODMDocMan2 : IODMDocMan2 
 	{
-		CODMDocMan2(ODMClient *pObject) { m_pObject = pObject; }
+		explicit CODMDocMan2(ODMClient *pObject) { m_pObject = pObject; }
 		~CODMDocMan2() {}
 
     //*** IUnknown ***
@@ -144,7 +144,7 @@ private:
 	//----------------------------------------------------------------
 	struct CODMQuery : IODMQuery 
 	{
-		CODMQuery( ODMClient *pObject ){ m_pObject = pObject; }
+		explicit CODMQuery( ODMClient *pObject ){ m_pObject = pObject; }
 		~CODMQuery() {}
 
     	//*** IUnknown ***
