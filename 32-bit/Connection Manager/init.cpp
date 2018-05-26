@@ -10,6 +10,8 @@
 
 #include <windows.h>
 #include <objbase.h>
+#include <wrl/wrappers/corewrappers.h>
+using file_handle = Microsoft::WRL::Wrappers::HandleT<Microsoft::WRL::Wrappers::HandleTraits::HANDLETraits>;
 
 #include "initguid.h"
 #include "conman.h"
@@ -117,14 +119,13 @@ void LogString(const char *str)
 	if(!str||!*str)
 		return;
 
-	HANDLE hFile = Registry.GetLogFile();
+	file_handle hFile{ Registry.GetLogFile() };
 
-	if(hFile == INVALID_HANDLE_VALUE)
+	if(!hFile.IsValid())
 		return;
 
 	DWORD bw = 0;
-	SetFilePointer(hFile, bw, nullptr, FILE_END);
-	WriteFile(hFile, str, static_cast<DWORD>(strlen(str)), &bw, nullptr);
-	CloseHandle(hFile);
+	SetFilePointer(hFile.Get(), bw, nullptr, FILE_END);
+	WriteFile(hFile.Get(), str, static_cast<DWORD>(strlen(str)), &bw, nullptr);
 }
 
