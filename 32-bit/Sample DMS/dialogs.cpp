@@ -20,6 +20,7 @@ int ii, index, count;
 
 	switch(message) {
 		case WM_INITDIALOG:
+		{
 			DocId = reinterpret_cast<char *>(lParam);
 
 			for(ii=0, count=0; ii<MAXDOCS; ii++) 
@@ -55,27 +56,33 @@ int ii, index, count;
 			}
 
 			return TRUE;
+		}
 
 		case WM_COMMAND: 
 			switch(GET_WM_COMMAND_ID(wParam, lParam)) 
 			{
 				case IDC_SELECT:
+				{
 					if(GET_WM_COMMAND_CMD(wParam, lParam) == LBN_DBLCLK) 
 					{
 						SendMessage(hwndDlg, WM_COMMAND, IDOK, lParam);
 					}
 					break;
+				}
 
 				case IDOK:
+				{	
 					//BVG: Get DocId from List Boxe's ItemData
 					index = (int)SendDlgItemMessage(hwndDlg, IDC_SELECT, LB_GETCURSEL, 0, 0 );
 					StringCchPrintf(DocId, ODM_DOCID_MAX, "::ODMA\\%s\\%s", DMSID,
 						reinterpret_cast<LPSTR>(SendDlgItemMessage(hwndDlg, IDC_SELECT, LB_GETITEMDATA, index, 0)) );
+				}
 
 
 				//Fall through.
 				case IDCANCEL:
 				case IDAPPSELECT:
+				{
 					//BVG: Memory Clean Up
 					for(ii=0; ii<SendDlgItemMessage(hwndDlg, IDC_SELECT, LB_GETCOUNT, 0, 0); ii++)
 					{
@@ -84,6 +91,7 @@ int ii, index, count;
 					}
 					EndDialog(hwndDlg, wParam);
 					return TRUE;
+				}
 			}
 	}
 	return FALSE;
