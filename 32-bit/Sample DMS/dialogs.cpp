@@ -182,6 +182,7 @@ static char *lpDocList;
 				//Fall through.
 				case IDCANCEL:
 				case IDAPPSELECT:
+				{
 					//BVG: Memory Clean Up
 					for(int ii=0; ii<SendDlgItemMessage(hwndDlg, IDC_SELECT, LB_GETCOUNT, 0, 0); ii++)
 					{
@@ -190,6 +191,7 @@ static char *lpDocList;
 					}
 					EndDialog(hwndDlg, wParam);
 					return TRUE;
+				}
 			}
 	}
 	return FALSE;
