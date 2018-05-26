@@ -109,12 +109,6 @@ static char *lpDocList;
 		case WM_INITDIALOG:
 		{
 			lpDocList = reinterpret_cast<char *>(lParam);
-
-			//hLBWnd = GetDlgItem(hwndDlg,IDC_SELECT);
-			//lStile = GetWindowLong(hLBWnd, GWL_STYLE);
-			//lStile |= LBS_MULTIPLESEL;
-			//SetWindowLong(hLBWnd, GWL_STYLE, lStile);
-
             int count = 0;
 			for(int ii=0; ii<MAXDOCS; ii++) 
 			{
