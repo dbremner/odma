@@ -215,7 +215,7 @@ char buff[165];
 ODMSTATUS Document::SetInfo( WORD item, LPSTR lpszData )
 {
 char *target;
-int len;
+size_t len;
 ODMSTATUS err;
 
 	switch(item) 

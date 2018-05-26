@@ -31,7 +31,8 @@ static char *DocId;
 				//BVG: Set Doc Name into List Box 
 				LPSTR lpNowDocName=new char[DOC_NAME_MAX];
 				pDoc->GetInfo(ODM_NAME, lpNowDocName, DOC_NAME_MAX);
-			    auto index=(int)SendDlgItemMessage(hwndDlg, IDC_SELECT, LB_ADDSTRING, 0, reinterpret_cast<LPARAM>(lpNowDocName));
+			    auto index=static_cast<size_t>(SendDlgItemMessage(hwndDlg, IDC_SELECT, LB_ADDSTRING, 0, reinterpret_cast<LPARAM>(lpNowDocName))
+			    );
 				delete[] lpNowDocName;
 
 				//BVG: Save DocId as ItemData
@@ -71,7 +72,7 @@ static char *DocId;
 				case IDOK:
 				{	
 					//BVG: Get DocId from List Boxe's ItemData
-					auto index = (int)SendDlgItemMessage(hwndDlg, IDC_SELECT, LB_GETCURSEL, 0, 0 );
+					auto index = static_cast<size_t>(SendDlgItemMessage(hwndDlg, IDC_SELECT, LB_GETCURSEL, 0, 0));
 					StringCchPrintf(DocId, ODM_DOCID_MAX, "::ODMA\\%s\\%s", DMSID,
 						reinterpret_cast<LPSTR>(SendDlgItemMessage(hwndDlg, IDC_SELECT, LB_GETITEMDATA, index, 0)) );
 				}
@@ -82,12 +83,13 @@ static char *DocId;
 				case IDAPPSELECT:
 				{
 				    //BVG: Memory Clean Up
-					for(int ii = 0; ii<SendDlgItemMessage(hwndDlg, IDC_SELECT, LB_GETCOUNT, 0, 0); ii++)
+                    const auto size = static_cast<size_t>(SendDlgItemMessage(hwndDlg, IDC_SELECT, LB_GETCOUNT, 0, 0));
+					for(size_t ii = 0; ii < size; ii++)
 					{
 						LPSTR lpNowDocId = reinterpret_cast<LPSTR>(SendDlgItemMessage(hwndDlg, IDC_SELECT, LB_GETITEMDATA, ii, 0));
 						delete[] lpNowDocId;
 					}
-					EndDialog(hwndDlg, wParam);
+					EndDialog(hwndDlg, static_cast<INT_PTR>(wParam));
 					return TRUE;
 				}
 			}
@@ -123,7 +125,7 @@ static char *lpDocList;
 				//BVG: Set Doc Name into List Box 
 				LPSTR lpNowDocName=new char[DOC_NAME_MAX];
 				pDoc->GetInfo(ODM_NAME, lpNowDocName, DOC_NAME_MAX);
-				const int index = (int)SendDlgItemMessage(hwndDlg, IDC_SELECT, LB_ADDSTRING, 0, reinterpret_cast<LPARAM>(lpNowDocName));
+				const auto index = (size_t)SendDlgItemMessage(hwndDlg, IDC_SELECT, LB_ADDSTRING, 0, reinterpret_cast<LPARAM>(lpNowDocName));
 				delete[] lpNowDocName;
 
 				//BVG: Save DocId as ItemData

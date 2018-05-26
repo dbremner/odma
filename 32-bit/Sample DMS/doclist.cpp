@@ -53,7 +53,7 @@ Document* DocumentList::GetDocumentByIndex(int n)
 int DocumentList::GetDocumentIndexById(LPSTR lpszDocId)
 {
 	// ::ODMA\<DmsId>\<doc-specific>
-	const int offset = 7+strlen(DMSID)+1;
+	const size_t offset = 7+strlen(DMSID)+1;
 
 	for(int i = 0; i<MAXDOCS; i++) {
 		if(List[i] == nullptr)
