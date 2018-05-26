@@ -7,7 +7,6 @@
 
 #include "stdafx.h"
 #include <windows.h>
-#include <dos.h>
 #include "odmasamp.h"
 #include <stdlib.h>
 #include <assert.h>
