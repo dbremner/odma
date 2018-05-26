@@ -43,6 +43,7 @@
 #define NOMCX
 
 #include <windows.h>
+#include <objbase.h>
 #include <string.h>
 #include <stdlib.h>
 #include <strsafe.h>
