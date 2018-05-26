@@ -5,6 +5,7 @@
  * All Rights Reserved
  */
 
+#include "stdafx.h"
 #include <windows.h>
 #include "odmasamp.h" 
 #include <strsafe.h>

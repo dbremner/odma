@@ -1,6 +1,8 @@
 /*  odmasamp.h - This file contains definitions, prototypes, etc. for the
 	 sample ODMA implementation.  */
 
+#pragma once
+
 #include <windows.h>
 #include <stdio.h>
 #include "odmacom.h"

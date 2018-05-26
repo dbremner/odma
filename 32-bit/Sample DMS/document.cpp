@@ -5,6 +5,7 @@
  * All Rights Reserved
  */
 
+#include "stdafx.h"
 #include <windows.h>
 #include <dos.h>
 #include "odmasamp.h"

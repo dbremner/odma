@@ -2,6 +2,7 @@
 	object for the ODMA sample application.  This is a container object
 	holding lists of Document objects. */
 
+#include "stdafx.h"
 #include <windows.h>
 #include "odmasamp.h"
 #include <assert.h>
