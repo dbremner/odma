@@ -101,8 +101,10 @@ BOOL CODMATestDoc::OnSelectDocEx(LPSTR lpszDocIds, LPWORD wDocCount)
 	m_bAppSel = FALSE;
 
 	if (!odmHandle)
+	{
 		return FALSE;
-  
+	}
+
 	DWORD dwFlags = 0;
 	
 	WORD wDocIdsLen = ODM_DOCID_MAX * (*wDocCount);
@@ -136,7 +138,9 @@ BOOL CODMATestDoc::OnSelectType(LPCSTR docId, LPSTR lpszFormat, LPSTR lpszListFr
 	StringCchCopy(lpszFormat, ODM_FORMAT_MAX, ODM_FORMAT_TEXT);
 
 	if(!m_bAlter)
+	{
 		return TRUE;
+	}
 
 	CString strFrmList;
 	const WORD dataLen = ODM_FORMAT_MAX*5;
@@ -315,7 +319,9 @@ void CODMATestDoc::OnFileSaveAs()
 		{
 			CString strFormat(m_Format);
 			if(strFormat.CompareNoCase(ODM_FORMAT_TEXT))
- 				bOk = DMSSaveAlter();
+			{
+				bOk = DMSSaveAlter();
+			}
 			else
 				bOk = DMSSaveAsDoc();
 		}
@@ -472,7 +478,9 @@ void CODMATestDoc::DMSCloseDoc(LPSTR docId)
 	docId = docId ? docId:m_DocId;
 
 	if (!*docId)
+	{
 		return;
+	}
 
 	DWORD dwFlags = ODM_SILENT;
 

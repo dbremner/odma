@@ -99,7 +99,9 @@ void CFrmDMSOptions::OnGetDmsInfo()
 		DWORD dwExtensions = 0;
 	
 		if(CODMATestDoc::odmHandle)
+		{
 			ODMGetDMSInfo(CODMATestDoc::odmHandle, lpszDms, &wVerNo, &dwExtensions);
+		}
 
 		m_Version.Format("%4.2f", wVerNo/100.0);
 		m_Query = (BOOL) dwExtensions & ODM_EXT_QUERY;
