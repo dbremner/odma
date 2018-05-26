@@ -20,9 +20,8 @@ static char *DocId;
 		case WM_INITDIALOG:
 		{
 			DocId = reinterpret_cast<char *>(lParam);
-            int ii, count;
-            LPSTR lpNowDocId;
-			for(ii=0, count=0; ii<MAXDOCS; ii++) 
+            int count = 0;
+		    for(int ii = 0; ii<MAXDOCS; ii++) 
 			{
 				Document *pDoc = DocList.GetDocumentByIndex(ii);
 
@@ -36,7 +35,7 @@ static char *DocId;
 				delete[] lpNowDocName;
 
 				//BVG: Save DocId as ItemData
-				lpNowDocId=new char[ODM_DOCID_MAX];
+				LPSTR lpNowDocId = new char[ODM_DOCID_MAX];
 				StringCchCopy(lpNowDocId, ODM_DOCID_MAX, pDoc->GetId());
 				SendDlgItemMessage(hwndDlg, IDC_SELECT, LB_SETITEMDATA, index, reinterpret_cast<LPARAM>(lpNowDocId));
 
@@ -82,12 +81,10 @@ static char *DocId;
 				case IDCANCEL:
 				case IDAPPSELECT:
 				{
-                    int ii;
-                    LPSTR lpNowDocId;
-					//BVG: Memory Clean Up
-					for(ii=0; ii<SendDlgItemMessage(hwndDlg, IDC_SELECT, LB_GETCOUNT, 0, 0); ii++)
+				    //BVG: Memory Clean Up
+					for(int ii = 0; ii<SendDlgItemMessage(hwndDlg, IDC_SELECT, LB_GETCOUNT, 0, 0); ii++)
 					{
-						lpNowDocId=reinterpret_cast<LPSTR>(SendDlgItemMessage(hwndDlg, IDC_SELECT, LB_GETITEMDATA, ii, 0));
+						LPSTR lpNowDocId = reinterpret_cast<LPSTR>(SendDlgItemMessage(hwndDlg, IDC_SELECT, LB_GETITEMDATA, ii, 0));
 						delete[] lpNowDocId;
 					}
 					EndDialog(hwndDlg, wParam);
