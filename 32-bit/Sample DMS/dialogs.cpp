@@ -101,15 +101,13 @@ BOOL CALLBACK _export SelectDocProcEx(HWND hwndDlg, UINT message, WPARAM wParam,
 LPARAM lParam)
 {
 static char *lpDocList;
-	LPSTR lpNowDocId;
-
 	//TODO check ownership rules for LB_GETDATA and LB_SETDATA
 
 	switch(message) {
 		case WM_INITDIALOG:
 		{
 			lpDocList = reinterpret_cast<char *>(lParam);
-            int count = 0;
+		    int count = 0;
 			for(int ii=0; ii<MAXDOCS; ii++) 
 			{
 				Document *pDoc = DocList.GetDocumentByIndex(ii);
@@ -124,7 +122,7 @@ static char *lpDocList;
 				delete[] lpNowDocName;
 
 				//BVG: Save DocId as ItemData
-				lpNowDocId=new char[ODM_DOCID_MAX];
+				LPSTR lpNowDocId = new char[ODM_DOCID_MAX];
 				StringCchCopy(lpNowDocId, ODM_DOCID_MAX, pDoc->GetId());
 				SendDlgItemMessage(hwndDlg, IDC_SELECT, LB_SETITEMDATA, index, reinterpret_cast<LPARAM>(lpNowDocId));
 
@@ -179,10 +177,10 @@ static char *lpDocList;
 				case IDCANCEL:
 				case IDAPPSELECT:
 				{
-					//BVG: Memory Clean Up
+				    //BVG: Memory Clean Up
 					for(int ii=0; ii<SendDlgItemMessage(hwndDlg, IDC_SELECT, LB_GETCOUNT, 0, 0); ii++)
 					{
-						lpNowDocId=reinterpret_cast<LPSTR>(SendDlgItemMessage(hwndDlg, IDC_SELECT, LB_GETITEMDATA, ii, 0));
+						LPSTR lpNowDocId = reinterpret_cast<LPSTR>(SendDlgItemMessage(hwndDlg, IDC_SELECT, LB_GETITEMDATA, ii, 0));
 						delete [] lpNowDocId;
 					}
 					EndDialog(hwndDlg, wParam);
