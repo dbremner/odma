@@ -15,14 +15,13 @@ BOOL CALLBACK _export SelectDocProc(HWND hwndDlg, UINT message, WPARAM wParam,
 LPARAM lParam)
 {
 static char *DocId;
-int ii, index, count;
-	LPSTR lpNowDocId;
 
 	switch(message) {
 		case WM_INITDIALOG:
 		{
 			DocId = reinterpret_cast<char *>(lParam);
-
+            int ii, count;
+            LPSTR lpNowDocId;
 			for(ii=0, count=0; ii<MAXDOCS; ii++) 
 			{
 				Document *pDoc = DocList.GetDocumentByIndex(ii);
@@ -33,7 +32,7 @@ int ii, index, count;
 				//BVG: Set Doc Name into List Box 
 				LPSTR lpNowDocName=new char[DOC_NAME_MAX];
 				pDoc->GetInfo(ODM_NAME, lpNowDocName, DOC_NAME_MAX);
-				index=(int)SendDlgItemMessage(hwndDlg, IDC_SELECT, LB_ADDSTRING, 0, reinterpret_cast<LPARAM>(lpNowDocName));
+			    auto index=(int)SendDlgItemMessage(hwndDlg, IDC_SELECT, LB_ADDSTRING, 0, reinterpret_cast<LPARAM>(lpNowDocName));
 				delete[] lpNowDocName;
 
 				//BVG: Save DocId as ItemData
@@ -73,7 +72,7 @@ int ii, index, count;
 				case IDOK:
 				{	
 					//BVG: Get DocId from List Boxe's ItemData
-					index = (int)SendDlgItemMessage(hwndDlg, IDC_SELECT, LB_GETCURSEL, 0, 0 );
+					auto index = (int)SendDlgItemMessage(hwndDlg, IDC_SELECT, LB_GETCURSEL, 0, 0 );
 					StringCchPrintf(DocId, ODM_DOCID_MAX, "::ODMA\\%s\\%s", DMSID,
 						reinterpret_cast<LPSTR>(SendDlgItemMessage(hwndDlg, IDC_SELECT, LB_GETITEMDATA, index, 0)) );
 				}
@@ -83,6 +82,8 @@ int ii, index, count;
 				case IDCANCEL:
 				case IDAPPSELECT:
 				{
+                    int ii;
+                    LPSTR lpNowDocId;
 					//BVG: Memory Clean Up
 					for(ii=0; ii<SendDlgItemMessage(hwndDlg, IDC_SELECT, LB_GETCOUNT, 0, 0); ii++)
 					{
