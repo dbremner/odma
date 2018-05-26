@@ -8,6 +8,7 @@
  Created 5/5/94 by BHC.
 */
 
+#include "stdafx.h"
 #include <windows.h>
 #include <objbase.h>
 #include <wrl/wrappers/corewrappers.h>

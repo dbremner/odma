@@ -13,6 +13,7 @@
  	Added ODMA_KEY define for ODMA32.
 */
 
+#include "stdafx.h"
 #include <windows.h>
 #include <shellapi.h>
 #include <strsafe.h>

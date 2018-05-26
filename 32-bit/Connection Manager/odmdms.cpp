@@ -9,6 +9,7 @@ TABS(3,3)
  Created 5/5/94 by BHC.
 */
 
+#include "stdafx.h"
 #include <windows.h>
 #include "conman.h"
 

@@ -11,6 +11,7 @@ LogString(str), LogParString(str, str), LogParNumber(str, str), LogParList(str, 
 function for work with logging. 
 *********************************************************************************************/
 
+#include "stdafx.h"
 #include <windows.h>
 #include "conman.h"
 

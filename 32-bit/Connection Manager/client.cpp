@@ -9,6 +9,7 @@
 	Created 5/5/94 by BHC.
 */
 
+#include "stdafx.h"
 #include <windows.h>
 #include <string.h>
 #include "odma.h"
