@@ -151,13 +151,13 @@ static char *lpDocList;
 					//Get DocIds from List Boxe's ItemData
 					if (SendDlgItemMessage(hwndDlg, IDC_SELECT, LB_GETSELCOUNT, 0, 0) == 0) break;
 
-					auto count = (int)SendDlgItemMessage(hwndDlg, IDC_SELECT, LB_GETCOUNT, 0, 0);
+				    const auto count = static_cast<size_t>(SendDlgItemMessage(hwndDlg, IDC_SELECT, LB_GETCOUNT, 0, 0));
 
 					strcpy(lpDocList, "");
 					char	szDocId[ODM_DOCID_MAX];
 
 					int end = 0;
-					for (int ii = 0; ii < count; ii++)
+					for (size_t ii = 0; ii < count; ii++)
 					{
 						if (SendDlgItemMessage(hwndDlg, IDC_SELECT, LB_GETSEL, ii, 0))
 						{
