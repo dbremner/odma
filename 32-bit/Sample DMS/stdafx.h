@@ -45,5 +45,6 @@
 #include <windows.h>
 #include <windowsx.h>
 #include <objbase.h>
+#include <stdio.h>
 #include <stdlib.h>
 #include <strsafe.h>
