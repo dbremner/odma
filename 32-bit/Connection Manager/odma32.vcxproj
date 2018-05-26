@@ -145,6 +145,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Conman.h" />
+    <ClInclude Include="handle_traits.hpp" />
     <ClInclude Include="Odmlist.h" />
     <ClInclude Include="Resource.h" />
   </ItemGroup>
