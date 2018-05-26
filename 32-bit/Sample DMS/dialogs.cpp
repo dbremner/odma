@@ -101,7 +101,6 @@ BOOL CALLBACK _export SelectDocProcEx(HWND hwndDlg, UINT message, WPARAM wParam,
 LPARAM lParam)
 {
 static char *lpDocList;
-	int count = 0;
 	LPSTR lpNowDocId;
 
 	//TODO check ownership rules for LB_GETDATA and LB_SETDATA
@@ -116,6 +115,7 @@ static char *lpDocList;
 			//lStile |= LBS_MULTIPLESEL;
 			//SetWindowLong(hLBWnd, GWL_STYLE, lStile);
 
+            int count = 0;
 			for(int ii=0; ii<MAXDOCS; ii++) 
 			{
 				Document *pDoc = DocList.GetDocumentByIndex(ii);
@@ -159,7 +159,7 @@ static char *lpDocList;
 					//Get DocIds from List Boxe's ItemData
 					if (SendDlgItemMessage(hwndDlg, IDC_SELECT, LB_GETSELCOUNT, 0, 0) == 0) break;
 
-					count = (int)SendDlgItemMessage(hwndDlg, IDC_SELECT, LB_GETCOUNT, 0, 0);
+					auto count = (int)SendDlgItemMessage(hwndDlg, IDC_SELECT, LB_GETCOUNT, 0, 0);
 
 					strcpy(lpDocList, "");
 					char	szDocId[ODM_DOCID_MAX];
