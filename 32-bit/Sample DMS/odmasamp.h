@@ -9,22 +9,6 @@
 //#include "odmasamp.rh"
 #include "resource.h"
 
-
-
-#ifndef GET_WM_COMMAND_CMD
-#define GET_WM_COMMAND_CMD(wp, lp)  HIWORD(wp)
-#endif
-
-#ifndef GET_WM_COMMAND_ID
-#define GET_WM_COMMAND_ID(wp, lp)   LOWORD(wp)
-#endif
-
-#ifndef GET_WM_COMMAND_HWND
-#define GET_WM_COMMAND_HWND(wp, lp) (HWND)lp)
-#endif
-
-
-
 #define MAXDOCS			20	// Max. # of documents the sample app. supports
 #define MAXCOMPONENTS	10	// Max. # of documents the sample app. supports
 #define DOC_NAME_MAX	255
