@@ -126,7 +126,7 @@ void LogString(const char *str)
 		return;
 
 	DWORD bw = 0;
-	SetFilePointer(hFile.Get(), bw, nullptr, FILE_END);
+	SetFilePointer(hFile.Get(), 0, nullptr, FILE_END);
 	WriteFile(hFile.Get(), str, static_cast<DWORD>(strlen(str)), &bw, nullptr);
 }
 
