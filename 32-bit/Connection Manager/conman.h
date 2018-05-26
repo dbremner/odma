@@ -5,6 +5,8 @@
  * All Rights Reserved
 */
 
+#pragma once
+
 #include "odmacom.h"
 #include "Resource.h"
 #include "odmlist.h"
