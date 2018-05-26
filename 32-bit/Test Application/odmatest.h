@@ -1,6 +1,8 @@
 // ODMATest.h : main header file for the ODMATEST application
 //
 
+#pragma once
+
 #ifndef __AFXWIN_H__
 	#error include 'stdafx.h' before including this file for PCH
 #endif
