@@ -13,11 +13,12 @@ DocumentList::DocumentList()
 {
 int i;
 	char *entry;
-	char *buff = new char[2048];
+    const size_t size = 2048;
+	char *buff = new char[size];
 
 	if(buff) {
 		// Read in documents from previous session if any.
-		GetPrivateProfileString("DocList", nullptr, "", buff, 2048, DMSINI);
+		GetPrivateProfileString("DocList", nullptr, "", buff, size, DMSINI);
 
 		for(i=0, entry=buff; *entry; i++, entry += strlen(entry)+1)
 			List[i] = new Document(entry);
