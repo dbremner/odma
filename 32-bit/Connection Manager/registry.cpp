@@ -240,7 +240,7 @@ WORD ODMRegistry::GetDMSList( LPSTR buffer, WORD buffer_size )
 	
 	if( RegOpenKey( HKEY_CLASSES_ROOT, odma_key, &hkey )== ERROR_SUCCESS )
 	{
-		WORD i = 0;
+		size_t i = 0;
 		while ( RegEnumKey( hkey, iSubKey, &buffer[i], ODM_DMSID_MAX ) == ERROR_SUCCESS )
 		{
 			++iSubKey;

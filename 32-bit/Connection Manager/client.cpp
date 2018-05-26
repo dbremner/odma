@@ -15,6 +15,7 @@
 #include "odma.h"
 #include "conman.h"
 #include <stdlib.h>
+#include <assert.h>
 
 
 ODMClient::ODMClient(LPSTR lpszAppId, WORD version, DWORD dwEnvData)
@@ -813,10 +814,11 @@ ODMSTATUS ODMClient::ClientQueryExecute( LPCSTR lpszQuery, DWORD flags,
 
 	if (flags == ODM_ALL)
 	{
-		const int nBufSize = ODM_DMSID_MAX * ODMGetDMSCount() + 1;
+        const size_t nBufSize = ODM_DMSID_MAX * ODMGetDMSCount() + 1;
+        assert(nBufSize < 65535);
 		lpszDmsList = new char[nBufSize];
 		if(lpszDmsList)
-			ODMGetDMSList(lpszDmsList, nBufSize);
+			ODMGetDMSList(lpszDmsList, static_cast<WORD>(nBufSize));
 	}
 	else if(flags == ODM_SPECIFIC)
 		lpszDmsList = (LPSTR)lpszList;
