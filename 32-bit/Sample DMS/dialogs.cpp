@@ -108,6 +108,7 @@ static char *lpDocList;
 
 	switch(message) {
 		case WM_INITDIALOG:
+		{
 			lpDocList = reinterpret_cast<char *>(lParam);
 
 			//hLBWnd = GetDlgItem(hwndDlg,IDC_SELECT);
@@ -137,6 +138,7 @@ static char *lpDocList;
 			}
 
 			return TRUE;
+		}
 
 		case WM_ACTIVATE:
 			return TRUE;
